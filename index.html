@@ -80,5 +80,43 @@ With over 4 years of experience in UI/UX and Product Design, I have successfully
         </form>
       </main>
     </noscript>
-  </body>
+  <style id="scroll-reveal-style">
+@media (prefers-reduced-motion: no-preference){
+  html.sr-on .sr-item{opacity:0 !important;transition:opacity .75s cubic-bezier(.22,1,.36,1) !important;will-change:opacity}
+  html.sr-on .sr-item.sr-in{opacity:1 !important}
+}
+</style>
+<script id="scroll-reveal-script">
+(function(){try{
+  if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  function pickStack(){var s=document.querySelector('.css-vf8mzy');if(s&&s.children.length>6)return s;var best=null,bh=0;document.querySelectorAll('div').forEach(function(d){if(d.children.length>=8){var h=d.getBoundingClientRect().height;if(h>bh){bh=h;best=d;}}});return best;}
+  function init(){
+    var stack=pickStack();if(!stack)return;
+    var vh=window.innerHeight||800;
+    var items=[].slice.call(stack.children).filter(function(el){
+      if(el.tagName==='SCRIPT'||el.tagName==='STYLE')return false;
+      var r=el.getBoundingClientRect();
+      return (r.top+window.pageYOffset)>vh*0.9 && r.height>8;
+    });
+    if(!items.length)return;
+    items.forEach(function(el,i){el.classList.add('sr-item');el.__d=(i%3)*120;});
+    document.documentElement.classList.add('sr-on');
+    function show(el){if(el.__sr)return;el.__sr=1;setTimeout(function(){el.classList.add('sr-in');},el.__d||0);}
+    function revealInView(){var h=window.innerHeight||800;items.forEach(function(el){if(el.getBoundingClientRect().top < h*0.92)show(el);});}
+    if('IntersectionObserver' in window){
+      var io=new IntersectionObserver(function(ents){ents.forEach(function(e){if(e.isIntersecting){show(e.target);io.unobserve(e.target);}});},{threshold:0.1,rootMargin:'0px 0px -6% 0px'});
+      items.forEach(function(el){io.observe(el);});
+    }
+    var ticking=false;
+    window.addEventListener('scroll',function(){if(!ticking){ticking=true;requestAnimationFrame(function(){revealInView();ticking=false;});}},{passive:true});
+    window.addEventListener('resize',revealInView,{passive:true});
+    revealInView();
+    /* BULLETPROOF SAFETY: never leave any section hidden, no matter what */
+    setTimeout(function(){items.forEach(function(el){el.classList.add('sr-in');});},6000);
+  }
+  function go(){if(window.__srDone)return;window.__srDone=true;setTimeout(init,700);}
+  if(document.readyState==='complete')go();else window.addEventListener('load',go);
+}catch(e){}})();
+</script>
+</body>
 </html>

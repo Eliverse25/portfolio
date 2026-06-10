@@ -88,13 +88,28 @@ With over 4 years of experience in UI/UX and Product Design, I have successfully
 </style>
 <script id="scroll-reveal-script">
 (function(){try{
-  if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  var POSTER={'6374532ce7e1ef76921d33819ce09abfa5e7ee51':'/_videos/v1/6374532ce7e1ef76921d33819ce09abfa5e7ee51.poster.webp','526d01598013b905064f89121fe4bfb6a46c1d2f':'/_videos/v1/526d01598013b905064f89121fe4bfb6a46c1d2f.poster.webp'};
+  function setupVideos(){
+    [].forEach.call(document.querySelectorAll('video'),function(v){
+      if(v.__vfix)return;v.__vfix=1;
+      var src=((v.currentSrc||v.src||'')+'');
+      for(var k in POSTER){if(src.indexOf(k)>=0&&!v.getAttribute('poster'))v.setAttribute('poster',POSTER[k]);}
+      v.muted=true;v.setAttribute('muted','');v.setAttribute('playsinline','');v.setAttribute('preload','auto');v.loop=true;
+      var tryPlay=function(){v.muted=true;var p=v.play&&v.play();if(p&&p.catch)p.catch(function(){});};
+      if('IntersectionObserver' in window){(new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)tryPlay();});},{threshold:0.2})).observe(v);}
+      tryPlay();
+    });
+  }
+  var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
   function pickStack(){var s=document.querySelector('.css-vf8mzy');if(s&&s.children.length>6)return s;var best=null,bh=0;document.querySelectorAll('div').forEach(function(d){if(d.children.length>=8){var h=d.getBoundingClientRect().height;if(h>bh){bh=h;best=d;}}});return best;}
   function init(){
+    setupVideos();setTimeout(setupVideos,1800);
+    if(reduce)return;
     var stack=pickStack();if(!stack)return;
     var vh=window.innerHeight||800;
     var items=[].slice.call(stack.children).filter(function(el){
       if(el.tagName==='SCRIPT'||el.tagName==='STYLE')return false;
+      if(el.querySelector&&el.querySelector('video'))return false;
       var r=el.getBoundingClientRect();
       return (r.top+window.pageYOffset)>vh*0.9 && r.height>8;
     });
@@ -102,16 +117,12 @@ With over 4 years of experience in UI/UX and Product Design, I have successfully
     items.forEach(function(el,i){el.classList.add('sr-item');el.__d=(i%3)*120;});
     document.documentElement.classList.add('sr-on');
     function show(el){if(el.__sr)return;el.__sr=1;setTimeout(function(){el.classList.add('sr-in');},el.__d||0);}
-    function revealInView(){var h=window.innerHeight||800;items.forEach(function(el){if(el.getBoundingClientRect().top < h*0.92)show(el);});}
-    if('IntersectionObserver' in window){
-      var io=new IntersectionObserver(function(ents){ents.forEach(function(e){if(e.isIntersecting){show(e.target);io.unobserve(e.target);}});},{threshold:0.1,rootMargin:'0px 0px -6% 0px'});
-      items.forEach(function(el){io.observe(el);});
-    }
+    function revealInView(){var h=window.innerHeight||800;items.forEach(function(el){if(el.getBoundingClientRect().top<h*0.92)show(el);});}
+    if('IntersectionObserver' in window){var io=new IntersectionObserver(function(ents){ents.forEach(function(e){if(e.isIntersecting){show(e.target);io.unobserve(e.target);}});},{threshold:0.1,rootMargin:'0px 0px -6% 0px'});items.forEach(function(el){io.observe(el);});}
     var ticking=false;
-    window.addEventListener('scroll',function(){if(!ticking){ticking=true;requestAnimationFrame(function(){revealInView();ticking=false;});}},{passive:true});
+    window.addEventListener('scroll',function(){if(!ticking){ticking=true;requestAnimationFrame(function(){revealInView();setupVideos();ticking=false;});}},{passive:true});
     window.addEventListener('resize',revealInView,{passive:true});
     revealInView();
-    /* BULLETPROOF SAFETY: never leave any section hidden, no matter what */
     setTimeout(function(){items.forEach(function(el){el.classList.add('sr-in');});},6000);
   }
   function go(){if(window.__srDone)return;window.__srDone=true;setTimeout(init,700);}

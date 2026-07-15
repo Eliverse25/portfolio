@@ -122,7 +122,7 @@ body.past-wall .brand,body.past-wall .side,body.past-wall .legal{opacity:1;point
 .reel video{width:100%;height:auto}
 .cols{
   margin-top:26px;display:grid;grid-template-columns:repeat(2,minmax(0,260px));gap:26px;
-  text-align:center;font-size:13.5px;color:#5f5f5f;line-height:1.5;
+  text-align:left;font-size:13.5px;color:#5f5f5f;line-height:1.5;
   width:min(680px,72vw);justify-content:center;
 }
 

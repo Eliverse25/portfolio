@@ -232,3 +232,132 @@
   if (mbtn) mbtn.addEventListener("click", function () { mmenu.classList.add("open"); });
   mmenu.querySelector("[data-close-menu]").addEventListener("click", closeMenu);
 })();
+
+/* =========================================================
+   HIRE ME — guided chat (static; ends in a prefilled email)
+   ========================================================= */
+(function () {
+  var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var hirep = document.getElementById("hirep");
+  var chat = document.getElementById("chat");
+  if (!hirep || !chat) return;
+  var started = false, answers = {};
+
+  function put(node) {
+    chat.appendChild(node);
+    requestAnimationFrame(function () { requestAnimationFrame(function () { node.classList.add("in"); }); });
+    hirep.scrollTop = hirep.scrollHeight;
+    return node;
+  }
+  function label(text, you) {
+    var d = document.createElement("div");
+    d.className = "who" + (you ? " you" : "");
+    if (you) d.textContent = "You";
+    else d.innerHTML = "<b>Danny</b> UI/UX & Product Designer";
+    chat.appendChild(d);
+  }
+  function bubble(text, cls) {
+    var d = document.createElement("div");
+    d.className = "msg " + (cls || "");
+    d.textContent = text;
+    return put(d);
+  }
+  function avatar() {
+    var d = document.createElement("div");
+    d.className = "avatar";
+    d.textContent = "D.";
+    return put(d);
+  }
+  function typing(fn, delay) {
+    if (reduce) { fn(); return; }
+    var t = document.createElement("div");
+    t.className = "msg typing in";
+    t.innerHTML = "<i></i><i></i><i></i>";
+    chat.appendChild(t); hirep.scrollTop = hirep.scrollHeight;
+    setTimeout(function () { t.remove(); fn(); }, delay || 750);
+  }
+  function form(lblText, inputHTML, okText, onOk) {
+    var d = document.createElement("div");
+    d.className = "msg form";
+    d.innerHTML = '<div class="lbl"></div>' + inputHTML + '<button class="ok" type="button">' + okText + "</button>";
+    d.querySelector(".lbl").textContent = lblText;
+    put(d);
+    var field = d.querySelector("input,textarea");
+    setTimeout(function () { field.focus(); }, 350);
+    function submit() {
+      var v = field.value.trim();
+      if (!v) { field.focus(); return; }
+      d.remove();
+      onOk(v);
+    }
+    d.querySelector(".ok").addEventListener("click", submit);
+    field.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" && field.tagName === "INPUT") { e.preventDefault(); submit(); }
+    });
+  }
+
+  function start() {
+    if (started) return; started = true;
+    label("Danny");
+    bubble("Good day 🤝");
+    typing(function () {
+      bubble("I'm Danny 👋");
+      avatar();
+      setTimeout(function () {
+        label("", true);
+        bubble("👋", "you");
+        bubble("Nice to meet you, Danny!", "you");
+        setTimeout(askName, reduce ? 0 : 500);
+      }, reduce ? 0 : 600);
+    }, 800);
+  }
+  function askName() {
+    form("My name is", '<input type="text" autocomplete="name" placeholder="Your name">', "OK ⏎", function (v) {
+      answers.name = v;
+      bubble(v, "you");
+      typing(function () {
+        label("Danny");
+        bubble("Nice to meet you, " + v + "! Where can I reach you?");
+        setTimeout(askEmail, reduce ? 0 : 400);
+      });
+    });
+  }
+  function askEmail() {
+    form("You can reach me at", '<input type="email" autocomplete="email" placeholder="you@company.com">', "OK ⏎", function (v) {
+      answers.email = v;
+      bubble(v, "you");
+      typing(function () {
+        label("Danny");
+        bubble("And what are we building together? ✨");
+        setTimeout(askProject, reduce ? 0 : 400);
+      });
+    });
+  }
+  function askProject() {
+    form("The project", '<textarea placeholder="A few lines about your product, timeline, budget…"></textarea>', "Send it ↗", function (v) {
+      answers.project = v;
+      bubble(v.length > 140 ? v.slice(0, 140) + "…" : v, "you");
+      typing(function () {
+        label("Danny");
+        bubble("Perfect — your email app is opening. Hit send and I'll reply within 24h 🚀");
+        var body = "Hi Danny,%0D%0A%0D%0A" + encodeURIComponent(v) + "%0D%0A%0D%0A" +
+          encodeURIComponent(answers.name) + " — " + encodeURIComponent(answers.email);
+        setTimeout(function () {
+          location.href = "mailto:eliuniversestu@gmail.com?subject=" +
+            encodeURIComponent("Project inquiry — " + answers.name) + "&body=" + body;
+        }, reduce ? 0 : 900);
+      });
+    });
+  }
+
+  [].forEach.call(document.querySelectorAll("[data-hire]"), function (b) {
+    b.addEventListener("click", function (e) {
+      e.preventDefault();
+      hirep.classList.add("open");
+      var mm = document.getElementById("mmenu"); if (mm) mm.classList.remove("open");
+      setTimeout(start, reduce ? 0 : 450);
+    });
+  });
+  document.querySelector("[data-hire-close]").addEventListener("click", function () { hirep.classList.remove("open"); });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape") hirep.classList.remove("open"); });
+})();

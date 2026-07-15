@@ -19,7 +19,7 @@
   <a href="#services" data-scroll><svg viewBox="0 0 24 24"><path d="M13 2 5 13h6l-2 9 8-13h-6l2-7z"/></svg>Services</a>
   <a href="#about" data-scroll><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9 10h.01M15 10h.01"/><path d="M8.5 14.5c1 1.2 2.2 1.8 3.5 1.8s2.5-.6 3.5-1.8"/></svg>About</a>
   <a href="#contact" data-scroll><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>Contact</a>
-  <a class="hire" href="mailto:hello@dannyxs.com"><svg viewBox="0 0 24 24"><path d="M22 3 11 13.5"/><path d="M22 3l-7 18-4-7.5L3 9l19-6z"/></svg>Hire me</a>
+  <a class="hire" href="mailto:eliuniversestu@gmail.com" data-hire><svg viewBox="0 0 24 24"><path d="M22 3 11 13.5"/><path d="M22 3l-7 18-4-7.5L3 9l19-6z"/></svg>Hire me</a>
 </nav>
 
 <div class="legal">Based in Vietnam<br>©2026</div>
@@ -130,11 +130,41 @@
     </ul>
   </section>
 
+  <!-- EXPERIENCE -->
+  <section class="sec" id="experience">
+    <p class="kicker rv">Experience</p>
+    <h2 class="rv">Where I&apos;ve worked.</h2>
+    <ul class="xp rv">
+      <li>
+        <span class="when">Oct 2024 — Present</span>
+        <span><span class="co">Quantum3labs — Stormbit</span><div class="role">Product Designer · Design Lead</div></span>
+        <span class="desc">Crypto finance products: Stormbit insured vaults, Qash payroll and Prism QR payments. Leading a 3-person design team, closely involved in feature development.</span>
+      </li>
+      <li>
+        <span class="when">Aug 2023 — Jan 2025</span>
+        <span><span class="co">Orbit Technology</span><div class="role">Design Team Lead</div></span>
+        <span class="desc">First role in crypto; led a team of four. Launched the Kibble Clicker minigame on TON — 700k+ users within a week — while Kibble Exchange raised $5M+ in VC funding. Also designed campaign banners with the marketing team.</span>
+      </li>
+      <li>
+        <span class="when">Dec 2022 — Jul 2023</span>
+        <span><span class="co">iLotusLand — Viet An Group</span><div class="role">UI/UX Designer</div></span>
+        <span class="desc">IoT environmental monitoring with the top market share in Vietnam. Built product mindset working directly with Product Owners, BAs, QA and DevOps.</span>
+      </li>
+      <li>
+        <span class="when">Nov 2021 — Dec 2022</span>
+        <span><span class="co">8X land</span><div class="role">UI/UX Designer</div></span>
+        <span class="desc">Real-estate app for searching and filtering properties — first role after graduating from FPT University.</span>
+      </li>
+    </ul>
+    <p class="xp-meta rv">Education: Digital Art &amp; Design — FPT University · Tools: Figma, Adobe Suite, CapCut · Languages: Vietnamese, English</p>
+    <a class="pill rv" href="/cv/" target="_blank" rel="noreferrer">View full CV &nearr;</a>
+  </section>
+
   <!-- CONTACT -->
   <section class="sec contact" id="contact">
     <p class="kicker rv">Contact</p>
     <h2 class="rv">Say hello.</h2>
-    <a class="pill rv" href="mailto:hello@dannyxs.com">hello@dannyxs.com</a>
+    <a class="pill rv" href="mailto:eliuniversestu@gmail.com">eliuniversestu@gmail.com</a>
     <div class="socials rv">
       <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer">LinkedIn</a>
       <a href="https://x.com/" target="_blank" rel="noreferrer">Twitter</a>
@@ -142,7 +172,7 @@
       <a href="https://wa.me/" target="_blank" rel="noreferrer">WhatsApp</a>
       <a href="#" rel="noreferrer">CV</a>
     </div>
-    <p class="footnote rv">©2026 Dinh Phan Nhat Nam · Available for freelance from $30/h</p>
+    <p class="footnote rv">©2026 Dinh Phan Nhat Nam · Available for freelance from $30/h · Ho Chi Minh City</p>
   </section>
 
 </div>
@@ -218,6 +248,15 @@
   <a href="#services" data-scroll>Services</a>
   <a href="#about" data-scroll>About</a>
   <a href="#contact" data-scroll>Contact</a>
+  <button type="button" data-hire>Hire me</button>
+</div>
+
+
+<!-- HIRE ME: guided chat -->
+<div class="hirep" id="hirep">
+  <div class="hirep__brand">Danny_xs<br><span class="tm">UI/UX &amp; Product design™</span></div>
+  <button class="hirep__close" type="button" data-hire-close>Close</button>
+  <div class="chat" id="chat"></div>
 </div>
 
 <script src="assets/main.js"></script>

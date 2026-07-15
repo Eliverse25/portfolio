@@ -172,7 +172,10 @@
       name: "Prism Pay", meta: "Mobile · Payments — 2025 · UI/UX, Product",
       sum: "A QR-code payment app for spending digital assets on everyday purchases — part of the crypto finance suite I design at Quantum3labs, alongside Stormbit and Qash.",
       did: ["End-to-end payment flows — scan, pay, receive", "QR and wallet UX aimed at non-crypto-native users", "Design language shared with the Qash product family"],
-      link: "", img: "assets/work/prismpay.webp"
+      link: "",
+      appstore: "https://apps.apple.com/us/app/prism-pay/id6768889220",
+      googleplay: "https://play.google.com/store/apps/details?id=quantum3labs.prismapp",
+      img: "assets/work/prismpay.webp"
     },
     getgoldy: {
       name: "Get Goldy", meta: "Mobile · Fintech — 2025 · UI/UX, Product",
@@ -217,6 +220,14 @@
     var lk = document.getElementById("dv-link");
     lk.href = p.link || "#";
     lk.style.display = p.link ? "" : "none";
+    var stores = document.getElementById("dv-stores");
+    var as = document.getElementById("dv-appstore");
+    var gp = document.getElementById("dv-gplay");
+    as.href = p.appstore || "#";
+    gp.href = p.googleplay || "#";
+    as.style.display = p.appstore ? "" : "none";
+    gp.style.display = p.googleplay ? "" : "none";
+    stores.style.display = (p.appstore || p.googleplay) ? "" : "none";
     dview.classList.add("show");
     dview.querySelector(".dview__body").scrollTop = 0;
   }

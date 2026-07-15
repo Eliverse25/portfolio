@@ -174,6 +174,12 @@
       did: ["End-to-end payment flows — scan, pay, receive", "QR and wallet UX aimed at non-crypto-native users", "Design language shared with the Qash product family"],
       link: "", img: "assets/work/prismpay.webp"
     },
+    getgoldy: {
+      name: "Get Goldy", meta: "Mobile · Fintech — 2025 · UI/UX, Product",
+      sum: "A gold-savings app for the Vietnamese market: buy gold by the fraction, watch your stash grow piece by piece, and keep bills in one place. Tích vàng nhẹ tênh, từng ngày tiền lên.",
+      did: ["Savings flows — buy by fraction, track every piece you own", "Bills and receipts management", "Warm, collectible visual language with 3D gold artifacts"],
+      link: "", img: "assets/work/getgoldy.webp"
+    },
     gearrunner: {
       name: "Gear Runner", meta: "Mobile · Game — 2024 · UI/UX, UX research",
       sum: "Mobile game UI and user-behavior research for a move-to-earn experience that rewards real-world activity with gear and progression.",

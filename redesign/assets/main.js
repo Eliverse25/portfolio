@@ -168,6 +168,12 @@
       did: ["Story reader and lesson UI", "AI translation experience", "Voice and character system"],
       link: "https://apps.apple.com/vn/app/tr%C3%B9m-chinese-ti%E1%BA%BFng-trung-hsk/id6468914724", img: "assets/work/trumchinese.webp"
     },
+    prismpay: {
+      name: "Prism Pay", meta: "Mobile · Payments — 2025 · UI/UX, Product",
+      sum: "A QR-code payment app for spending digital assets on everyday purchases — part of the crypto finance suite I design at Quantum3labs, alongside Stormbit and Qash.",
+      did: ["End-to-end payment flows — scan, pay, receive", "QR and wallet UX aimed at non-crypto-native users", "Design language shared with the Qash product family"],
+      link: "", img: "assets/work/prismpay.webp"
+    },
     gearrunner: {
       name: "Gear Runner", meta: "Mobile · Game — 2024 · UI/UX, UX research",
       sum: "Mobile game UI and user-behavior research for a move-to-earn experience that rewards real-world activity with gear and progression.",
@@ -202,7 +208,9 @@
     var ul = document.getElementById("dv-did");
     ul.textContent = "";
     p.did.forEach(function (d) { var li = document.createElement("li"); li.textContent = d; ul.appendChild(li); });
-    document.getElementById("dv-link").href = p.link;
+    var lk = document.getElementById("dv-link");
+    lk.href = p.link || "#";
+    lk.style.display = p.link ? "" : "none";
     dview.classList.add("show");
     dview.querySelector(".dview__body").scrollTop = 0;
   }

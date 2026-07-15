@@ -131,30 +131,37 @@
   /* =========================================================
      WORK DRAWER + PROJECT DETAIL
      ========================================================= */
+  var NOTE = "Built solo, end-to-end: from the first design to the live product — no frontend developers involved.";
   var PROJECTS = {
+    quantum3labs: {
+      name: "Quantum3 Labs", meta: "Web3 · Studio — 2024–Present · Product Designer, Design Lead",
+      sum: "The Web3 studio behind Stormbit, Qash and Prism — where I lead design across the whole product suite, including the studio's own site.",
+      did: ["Design direction across the product suite", "Studio website and brand touchpoints", "Working hand-in-hand with engineering on every release"],
+      note: NOTE, link: "https://www.quantum3labs.com/", img: "assets/work/quantum3labs.webp"
+    },
     stormbit: {
       name: "Stormbit", meta: "Web3 · DeFi — 2025 · Branding, UI/UX, Product",
       sum: "A full-cycle Web3 finance product: from brand identity to a lending and earning experience built for a global launch at ETHCC Cannes.",
       did: ["Brand identity and the lightning mark", "End-to-end UI/UX for earn and borrow flows", "Launch campaign and event key visuals"],
-      link: "https://stormbit.finance", img: "assets/work/stormbit.webp"
+      note: NOTE, link: "https://stormbit.finance", img: "assets/work/stormbit.webp"
     },
     kibble: {
       name: "Kibble Exchange", meta: "Web3 · DEX on TON — 2024 · UI/UX, Game design",
       sum: "A decentralized exchange on the TON network, paired with a Telegram minigame that reached 700,000 players in its first week.",
       did: ["Swap and trading interface design", "Telegram minigame UX and onboarding", "TON Meetup Vietnam 2024 event branding"],
-      link: "https://kibble.exchange", img: "assets/work/kibble.webp"
+      note: NOTE, link: "https://kibble.exchange", img: "assets/work/kibble.webp"
     },
     qash: {
       name: "Qash", meta: "Web3 · Finance — 2026 · Landing, Banners, Team lead",
       sum: "Landing page design, banner systems and design team leadership for a Web3 finance platform built around vaults and yield.",
       did: ["Landing page and marketing visuals", "Banner system across campaigns", "Leading the design team and reviews"],
-      link: "https://qash-landing.vercel.app/", img: "assets/work/qash.webp"
+      note: NOTE, link: "https://www.qash.finance/", img: "assets/work/qash.webp"
     },
     polypay: {
       name: "PolyPay", meta: "Web3 · Payments — 2025 · Brand, UI/UX, Team lead",
       sum: "Brand identity and the full journey from MVP to final UI for a crypto payments and payroll platform, with team management throughout.",
       did: ["Brand identity and app icon", "MVP to final product UI", "Multi-signature transfers and batch approvals", "Market positioning visuals"],
-      link: "https://polypay.pro/", img: "assets/work/polypay.webp"
+      note: NOTE, link: "https://polypay.pro/", img: "assets/work/polypay.webp"
     },
     oneplan: {
       name: "OnePlan Travel", meta: "Mobile · Travel — 2025 · Co-founder & CEO, Product",
@@ -220,6 +227,9 @@
     var lk = document.getElementById("dv-link");
     lk.href = p.link || "#";
     lk.style.display = p.link ? "" : "none";
+    var note = document.getElementById("dv-note");
+    note.textContent = p.note || "";
+    note.style.display = p.note ? "" : "none";
     var stores = document.getElementById("dv-stores");
     var as = document.getElementById("dv-appstore");
     var gp = document.getElementById("dv-gplay");

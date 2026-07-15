@@ -3,209 +3,202 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Danny — UI/UX & Product Designer</title>
-<meta name="description" content="Dinh Phan Nhat Nam (Danny), UI/UX & Product Designer. From first spark to final experience, every step is shaped with intent.">
-<link rel="preload" href="assets/fonts/SpaceGrotesk.woff2" as="font" type="font/woff2" crossorigin>
+<title>Danny_xs — UI/UX & Product Designer</title>
+<meta name="description" content="Dinh Phan Nhat Nam (Danny), UI/UX & Product Designer. A one-man product design studio — Web3, mobile, education.">
+<link rel="preload" href="assets/fonts/InstrumentSans.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
 
-<!-- NAV -->
-<header class="nav">
-  <div class="wrap">
-    <a href="#top" class="nav__logo">Danny<b>.</b></a>
-    <nav class="nav__links">
-      <a href="#work">Work</a>
-      <a href="#process">Process</a>
-      <a href="#about">About</a>
-      <a href="#contact" class="nav__cta">Hire me</a>
-    </nav>
-    <button class="nav__burger" aria-label="Open menu">Menu</button>
-  </div>
-</header>
+<!-- fixed chrome -->
+<div class="brand">Danny_xs<br><span class="tm">UI/UX &amp; Product design™</span></div>
 
-<!-- HERO -->
-<section class="hero" id="top">
-  <div class="hero__top wrap" style="padding:0">
-    <p class="hero__avail mono"><span class="hero__dot"></span> Available for freelance · from $30/h</p>
-    <p>UI/UX &amp; Product Designer and design team leader. Nearly 5 years turning complex ideas into products people can see, use, and believe in — across Web3, education, and IoT.</p>
-  </div>
-  <div class="wrap" style="width:100%">
-    <h1>
-      <span class="row"><span>Dinh</span></span>
-      <span class="row"><span>Phan<em>.</em></span></span>
-      <span class="row"><span>Nam</span></span>
-    </h1>
-    <div class="hero__meta">
-      <span class="mono">UI/UX · Product · Branding — EST. 2000</span>
-      <a href="#work" class="hero__scroll">Selected work <span class="hero__scrollicon">↓</span></a>
-    </div>
-  </div>
-</section>
+<nav class="side" aria-label="Main">
+  <a href="#top" data-scroll><svg viewBox="0 0 24 24"><path d="M4 11 12 4l8 7v9H4z"/><path d="M10 20v-5h4v5"/></svg>Home</a>
+  <button type="button" data-drawer><svg viewBox="0 0 24 24"><path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M3 12.5l9 5 9-5"/><path d="M3 17l9 5 9-5"/></svg>Work</button>
+  <a href="#services" data-scroll><svg viewBox="0 0 24 24"><path d="M13 2 5 13h6l-2 9 8-13h-6l2-7z"/></svg>Services</a>
+  <a href="#about" data-scroll><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9 10h.01M15 10h.01"/><path d="M8.5 14.5c1 1.2 2.2 1.8 3.5 1.8s2.5-.6 3.5-1.8"/></svg>About</a>
+  <a href="#contact" data-scroll><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>Contact</a>
+  <a class="hire" href="mailto:hello@dannyxs.com"><svg viewBox="0 0 24 24"><path d="M22 3 11 13.5"/><path d="M22 3l-7 18-4-7.5L3 9l19-6z"/></svg>Hire me</a>
+</nav>
 
-<!-- MARQUEE -->
-<div class="marquee" aria-hidden="true">
-  <div class="marquee__track">
-    <span>Product Design</span><span>Branding</span><span>UI / UX</span><span>Landing Pages</span><span>Concept</span><span>Banner Design</span>
-    <span>Product Design</span><span>Branding</span><span>UI / UX</span><span>Landing Pages</span><span>Concept</span><span>Banner Design</span>
-  </div>
+<div class="legal">Based in Vietnam<br>©2026</div>
+
+<div class="topbar">
+  <span>Danny_xs</span>
+  <button type="button" data-menu>Menu</button>
 </div>
 
-<!-- WORK -->
-<section class="section" id="work">
-  <div class="wrap">
-    <div class="shead reveal">
-      <h2>Selected<br>Work</h2>
-      <p class="mono">7 projects — 2024–2026</p>
-    </div>
-    <div class="work__list reveal">
+<!-- chevron pill -->
+<button class="more" type="button" aria-label="Scroll to content">
+  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m3 3.5 5 4 5-4M3 8.5l5 4 5-4"/></svg>
+</button>
 
-      <div class="work__item">
-        <a class="work__link" href="https://stormbit.finance" target="_blank" rel="noreferrer">
-          <span class="work__idx">01</span>
-          <span class="work__name">Stormbit</span>
-          <span class="work__tags"><span class="work__cat">Web3 / DeFi</span><span>Branding · UI/UX · Product</span></span>
-          <span class="work__arrow">↗</span>
-        </a>
-        <div class="work__thumb"><img src="assets/work/stormbit.webp" alt="Stormbit" loading="lazy"></div>
-      </div>
+<!-- internal scroll -->
+<div class="scroll" id="scroll">
 
-      <div class="work__item">
-        <a class="work__link" href="https://kibble.exchange" target="_blank" rel="noreferrer">
-          <span class="work__idx">02</span>
-          <span class="work__name">Kibble</span>
-          <span class="work__tags"><span class="work__cat">Web3 / DEX</span><span>UI/UX · Game</span></span>
-          <span class="work__arrow">↗</span>
-        </a>
-        <div class="work__thumb"><img src="assets/work/kibble.webp" alt="Kibble Exchange" loading="lazy"></div>
-      </div>
-
-      <div class="work__item">
-        <a class="work__link" href="https://qash-landing.vercel.app/" target="_blank" rel="noreferrer">
-          <span class="work__idx">03</span>
-          <span class="work__name">Qash</span>
-          <span class="work__tags"><span class="work__cat">Web3 / Finance</span><span>Landing · Team lead</span></span>
-          <span class="work__arrow">↗</span>
-        </a>
-        <div class="work__thumb"><img src="assets/work/qash.webp" alt="Qash" loading="lazy"></div>
-      </div>
-
-      <div class="work__item">
-        <a class="work__link" href="https://polypay.pro/" target="_blank" rel="noreferrer">
-          <span class="work__idx">04</span>
-          <span class="work__name">PolyPay</span>
-          <span class="work__tags"><span class="work__cat">Web3 / Payments</span><span>Brand · UI/UX</span></span>
-          <span class="work__arrow">↗</span>
-        </a>
-        <div class="work__thumb"><img src="assets/work/polypay.webp" alt="PolyPay" loading="lazy"></div>
-      </div>
-
-      <div class="work__item">
-        <a class="work__link" href="https://apps.apple.com/vn/app/oneplan-travel/id6761648165" target="_blank" rel="noreferrer">
-          <span class="work__idx">05</span>
-          <span class="work__name">OnePlan</span>
-          <span class="work__tags"><span class="work__cat">Mobile / Travel</span><span>Co-founder · Product</span></span>
-          <span class="work__arrow">↗</span>
-        </a>
-        <div class="work__thumb"><img src="assets/work/oneplan.webp" alt="OnePlan Travel" loading="lazy"></div>
-      </div>
-
-      <div class="work__item">
-        <a class="work__link" href="https://apps.apple.com/vn/app/tr%C3%B9m-chinese-ti%E1%BA%BFng-trung-hsk/id6468914724" target="_blank" rel="noreferrer">
-          <span class="work__idx">06</span>
-          <span class="work__name">Trùm Chinese</span>
-          <span class="work__tags"><span class="work__cat">Education</span><span>UI/UX · Mobile</span></span>
-          <span class="work__arrow">↗</span>
-        </a>
-        <div class="work__thumb"><img src="assets/work/trumchinese.webp" alt="Trùm Chinese" loading="lazy"></div>
-      </div>
-
-      <div class="work__item">
-        <a class="work__link" href="https://apps.apple.com/vn/app/gear-runner/id6758157431" target="_blank" rel="noreferrer">
-          <span class="work__idx">07</span>
-          <span class="work__name">Gear Runner</span>
-          <span class="work__tags"><span class="work__cat">Mobile / Game</span><span>UI/UX · Research</span></span>
-          <span class="work__arrow">↗</span>
-        </a>
-        <div class="work__thumb"><img src="assets/work/gearrunner.webp" alt="Gear Runner" loading="lazy"></div>
-      </div>
-
-    </div>
+  <!-- IMAGE WALL -->
+  <div class="wall" id="top" aria-label="Selected visuals from shipped projects">
+    <a><img src="assets/wall/t01.webp" alt="" loading="eager"></a>
+    <a><img src="assets/wall/t02.webp" alt="" loading="eager"></a>
+    <a><img src="assets/wall/t03.webp" alt="" loading="eager"></a>
+    <a><img src="assets/wall/t04.webp" alt="" loading="eager"></a>
+    <a><img src="assets/wall/t05.webp" alt="" loading="eager"></a>
+    <a><img src="assets/wall/t06.webp" alt="" loading="eager"></a>
+    <a><img src="assets/wall/t07.webp" alt="" loading="eager"></a>
+    <a><img src="assets/wall/t08.webp" alt="" loading="eager"></a>
+    <a><img src="assets/wall/t09.webp" alt="" loading="eager"></a>
+    <a><img src="assets/wall/t10.webp" alt="" loading="eager"></a>
+    <a><img src="assets/wall/t11.webp" alt="" loading="eager"></a>
+    <a><img src="assets/wall/t12.webp" alt="" loading="eager"></a>
+    <a><img src="assets/wall/t13.webp" alt="" loading="eager"></a>
+    <a><img src="assets/wall/t14.webp" alt="" loading="eager"></a>
+    <a><img src="assets/wall/t15.webp" alt="" loading="eager"></a>
+    <a><img src="assets/wall/t16.webp" alt="" loading="eager"></a>
+    <a><img src="assets/wall/t17.webp" alt="" loading="eager"></a>
+    <a><img src="assets/wall/t18.webp" alt="" loading="eager"></a>
+    <a><img src="assets/wall/t19.webp" alt="" loading="eager"></a>
+    <a><img src="assets/wall/t20.webp" alt="" loading="eager"></a>
+    <a><img src="assets/wall/t21.webp" alt="" loading="eager"></a>
+    <a><img src="assets/wall/t22.webp" alt="" loading="lazy"></a>
+    <a><img src="assets/wall/t23.webp" alt="" loading="lazy"></a>
+    <a><img src="assets/wall/t24.webp" alt="" loading="lazy"></a>
+    <a><img src="assets/wall/t25.webp" alt="" loading="lazy"></a>
+    <a><img src="assets/wall/t26.webp" alt="" loading="lazy"></a>
+    <a><img src="assets/wall/t27.webp" alt="" loading="lazy"></a>
+    <a><img src="assets/wall/t28.webp" alt="" loading="lazy"></a>
+    <a><img src="assets/wall/t29.webp" alt="" loading="lazy"></a>
+    <a><img src="assets/wall/t30.webp" alt="" loading="lazy"></a>
+    <a><img src="assets/wall/t31.webp" alt="" loading="lazy"></a>
+    <a><img src="assets/wall/t32.webp" alt="" loading="lazy"></a>
+    <a><img src="assets/wall/t33.webp" alt="" loading="lazy"></a>
+    <a><img src="assets/wall/t34.webp" alt="" loading="lazy"></a>
+    <a><img src="assets/wall/t35.webp" alt="" loading="lazy"></a>
+    <a><img src="assets/wall/t36.webp" alt="" loading="lazy"></a>
+    <a><img src="assets/wall/t37.webp" alt="" loading="lazy"></a>
+    <a><img src="assets/wall/t38.webp" alt="" loading="lazy"></a>
+    <a><img src="assets/wall/t39.webp" alt="" loading="lazy"></a>
+    <a><img src="assets/wall/t40.webp" alt="" loading="lazy"></a>
+    <a><img src="assets/wall/t41.webp" alt="" loading="lazy"></a>
+    <a><img src="assets/wall/t42.webp" alt="" loading="lazy"></a>
+    <a><img src="assets/wall/t43.webp" alt="" loading="lazy"></a>
+    <a><img src="assets/wall/t44.webp" alt="" loading="lazy"></a>
+    <a><img src="assets/wall/t45.webp" alt="" loading="lazy"></a>
+    <a><img src="assets/wall/t46.webp" alt="" loading="lazy"></a>
+    <a><img src="assets/wall/t47.webp" alt="" loading="lazy"></a>
+    <a><img src="assets/wall/t48.webp" alt="" loading="lazy"></a>
   </div>
-</section>
 
-<!-- PROCESS -->
-<section class="section process" id="process">
-  <div class="wrap">
-    <div class="shead reveal">
-      <h2>How I work</h2>
-      <p class="mono" style="max-width:36ch">Insight · Vision · Design · Execution — with intent at every step.</p>
+  <!-- STUDIO -->
+  <section class="studio" id="studio">
+    <h1 class="rv">Danny_xs. A one-man product design studio. Open for work.</h1>
+    <button class="pill rv" type="button" data-reel><span class="tri"></span>Watch the reel</button>
+    <div class="reel rv">
+      <video src="assets/reel.mp4" poster="assets/reel-poster.webp" muted loop playsinline preload="metadata"></video>
     </div>
-    <div class="process__grid">
-      <div class="process__step reveal"><span class="n">01</span><h3>Discovery</h3><p>User research and problem framing to find what actually matters before a single pixel.</p></div>
-      <div class="process__step reveal"><span class="n">02</span><h3>Direction</h3><p>Strategic alignment on priorities, scope, and the design bets worth making.</p></div>
-      <div class="process__step reveal"><span class="n">03</span><h3>Design</h3><p>Wireframes, flows, and polished interfaces that hold up under real use.</p></div>
-      <div class="process__step reveal"><span class="n">04</span><h3>Delivery</h3><p>Close collaboration with developers through handoff, launch, and iteration.</p></div>
+    <div class="cols">
+      <p class="rv">Allies to startups and global teams alike — I help founders craft Web3, mobile and education products people can&apos;t help but love.</p>
+      <p class="rv">Nearly 5 years, 30+ shipped products, one 700k-player minigame. Insight, vision, design, execution — with intent at every step.</p>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ABOUT -->
-<section class="section" id="about">
-  <div class="wrap">
-    <p class="mono reveal">About</p>
-    <p class="about__statement reveal" style="margin-top:20px">From first spark to final experience, every step is shaped with <b>intent.</b></p>
-    <div class="about__grid">
-      <div class="reveal">
-        <p class="about__lead">I&apos;m Dinh Phan Nhat Nam, a UI/UX &amp; product designer and design team leader with nearly 5 years of experience and 30+ shipped products. I move through insight, vision, design, and execution to turn complex ideas into products that are clear, considered, and genuinely useful.</p>
-        <div class="stats">
-          <div><div class="num">5+</div><div class="lbl">Years designing</div></div>
-          <div><div class="num">30+</div><div class="lbl">Products shipped</div></div>
-          <div><div class="num">700k</div><div class="lbl">Players reached</div></div>
-        </div>
-      </div>
-      <div class="reveal">
-        <p class="mono" style="margin-bottom:6px">Recognition</p>
-        <ul class="awards">
-          <li><span class="t">Awwwards <span class="c">×2</span></span><span class="d">Site of the Day nominee</span></li>
-          <li><span class="t">Superteam Malaysia</span><span class="d">Top 3 · Shirt design</span></li>
-          <li><span class="t">Kibble minigame</span><span class="d">700k players / week</span></li>
-          <li><span class="t">Trùm Chinese</span><span class="d">4.8★ · Top 5 education VN</span></li>
-        </ul>
-      </div>
+  <!-- SERVICES -->
+  <section class="sec" id="services">
+    <p class="kicker rv">Services</p>
+    <h2 class="rv">From first spark to final experience.</h2>
+    <div class="chips rv">
+      <span>Product design</span><span>UI/UX</span><span>Branding</span>
+      <span>Landing pages</span><span>Banner design</span><span>Concept development</span>
+      <span>Design team leadership</span>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- CONTACT -->
-<section class="section contact" id="contact">
-  <div class="wrap">
-    <p class="mono reveal">Let&apos;s work together</p>
-    <h2 class="contact__big reveal"><a href="mailto:hello@dannyxs.com">Say<br>hello<em style="color:var(--accent);font-style:normal">.</em></a></h2>
-    <div class="contact__row reveal">
-      <div class="contact__socials">
-        <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer">LinkedIn</a>
-        <a href="https://x.com/" target="_blank" rel="noreferrer">Twitter</a>
-        <a href="https://t.me/" target="_blank" rel="noreferrer">Telegram</a>
-        <a href="https://wa.me/" target="_blank" rel="noreferrer">WhatsApp</a>
-        <a href="#" target="_blank" rel="noreferrer">CV</a>
-      </div>
-      <a href="mailto:hello@dannyxs.com" class="mono" style="color:var(--paper)">hello@dannyxs.com</a>
+  <!-- ABOUT -->
+  <section class="sec" id="about">
+    <p class="kicker rv">About</p>
+    <h2 class="rv">Dinh Phan Nhat Nam — UI/UX &amp; product designer, design team leader, based in Vietnam.</h2>
+    <div class="about-stats rv">
+      <div><div class="num">5+</div><div class="lbl">Years designing</div></div>
+      <div><div class="num">30+</div><div class="lbl">Products shipped</div></div>
+      <div><div class="num">700k</div><div class="lbl">Players reached</div></div>
     </div>
-    <div class="foot">
-      <span>© 2026 Dinh Phan Nhat Nam</span>
-      <span>Design &amp; build — Danny</span>
+    <ul class="rec rv">
+      <li><span class="t">Awwwards <span class="x">×2</span></span><span class="d">Site of the Day nominee</span></li>
+      <li><span class="t">Superteam Malaysia</span><span class="d">Top 3 · Shirt design</span></li>
+      <li><span class="t">Kibble minigame</span><span class="d">700k players in one week</span></li>
+      <li><span class="t">Trùm Chinese</span><span class="d">4.8★ · Top 5 education in Vietnam</span></li>
+    </ul>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="sec contact" id="contact">
+    <p class="kicker rv">Contact</p>
+    <h2 class="rv">Say hello.</h2>
+    <a class="pill rv" href="mailto:hello@dannyxs.com">hello@dannyxs.com</a>
+    <div class="socials rv">
+      <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer">LinkedIn</a>
+      <a href="https://x.com/" target="_blank" rel="noreferrer">Twitter</a>
+      <a href="https://t.me/" target="_blank" rel="noreferrer">Telegram</a>
+      <a href="https://wa.me/" target="_blank" rel="noreferrer">WhatsApp</a>
+      <a href="#" rel="noreferrer">CV</a>
     </div>
+    <p class="footnote rv">©2026 Dinh Phan Nhat Nam · Available for freelance from $30/h</p>
+  </section>
+
+</div>
+
+<!-- WORK DRAWER -->
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" aria-label="Work">
+  <div class="drawer__head">
+    <h3>Work</h3>
+    <button class="drawer__close" type="button" data-close>Close</button>
   </div>
-</section>
+  <div class="tabs" role="tablist">
+    <button role="tab" aria-selected="true" data-tab="all">All</button>
+    <button role="tab" aria-selected="false" data-tab="web3">Web3</button>
+    <button role="tab" aria-selected="false" data-tab="mobile">Mobile</button>
+  </div>
+  <div class="drawer__grid">
+    <a class="dcard" data-cat="web3" href="https://stormbit.finance" target="_blank" rel="noreferrer">
+      <div class="thumb"><img src="assets/work/stormbit.webp" alt="Stormbit" loading="lazy"></div>
+      <div class="nm">Stormbit</div><div class="ct">Web3 · DeFi</div>
+    </a>
+    <a class="dcard" data-cat="web3" href="https://kibble.exchange" target="_blank" rel="noreferrer">
+      <div class="thumb"><img src="assets/work/kibble.webp" alt="Kibble" loading="lazy"></div>
+      <div class="nm">Kibble</div><div class="ct">Web3 · DEX</div>
+    </a>
+    <a class="dcard" data-cat="web3" href="https://qash-landing.vercel.app/" target="_blank" rel="noreferrer">
+      <div class="thumb"><img src="assets/work/qash.webp" alt="Qash" loading="lazy"></div>
+      <div class="nm">Qash</div><div class="ct">Web3 · Finance</div>
+    </a>
+    <a class="dcard" data-cat="web3" href="https://polypay.pro/" target="_blank" rel="noreferrer">
+      <div class="thumb"><img src="assets/work/polypay.webp" alt="PolyPay" loading="lazy"></div>
+      <div class="nm">PolyPay</div><div class="ct">Web3 · Payments</div>
+    </a>
+    <a class="dcard" data-cat="mobile" href="https://apps.apple.com/vn/app/oneplan-travel/id6761648165" target="_blank" rel="noreferrer">
+      <div class="thumb"><img src="assets/work/oneplan.webp" alt="OnePlan Travel" loading="lazy"></div>
+      <div class="nm">OnePlan Travel</div><div class="ct">Mobile · Travel</div>
+    </a>
+    <a class="dcard" data-cat="mobile" href="https://apps.apple.com/vn/app/tr%C3%B9m-chinese-ti%E1%BA%BFng-trung-hsk/id6468914724" target="_blank" rel="noreferrer">
+      <div class="thumb"><img src="assets/work/trumchinese.webp" alt="Trùm Chinese" loading="lazy"></div>
+      <div class="nm">Trùm Chinese</div><div class="ct">Mobile · Education</div>
+    </a>
+    <a class="dcard" data-cat="mobile" href="https://apps.apple.com/vn/app/gear-runner/id6758157431" target="_blank" rel="noreferrer">
+      <div class="thumb"><img src="assets/work/gearrunner.webp" alt="Gear Runner" loading="lazy"></div>
+      <div class="nm">Gear Runner</div><div class="ct">Mobile · Game</div>
+    </a>
+  </div>
+</aside>
 
 <!-- MOBILE MENU -->
-<div class="mobmenu" id="mobmenu">
-  <button class="mobmenu__close" aria-label="Close">Close</button>
-  <a href="#work">Work</a>
-  <a href="#process">Process</a>
-  <a href="#about">About</a>
-  <a href="#contact">Hire me</a>
+<div class="mmenu" id="mmenu">
+  <button class="x" type="button" data-close-menu>Close</button>
+  <a href="#top" data-scroll>Home</a>
+  <button type="button" data-drawer>Work</button>
+  <a href="#services" data-scroll>Services</a>
+  <a href="#about" data-scroll>About</a>
+  <a href="#contact" data-scroll>Contact</a>
 </div>
 
 <script src="assets/main.js"></script>

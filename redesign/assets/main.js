@@ -1,62 +1,101 @@
 (function () {
   var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var sc = document.getElementById("scroll");
+  var wall = document.getElementById("top");
+  var studio = document.getElementById("studio");
 
-  // Hero line reveal on load
-  function heroIn() { document.querySelector(".hero").classList.add("loaded"); }
-  if (document.readyState === "complete") heroIn();
-  else window.addEventListener("load", heroIn);
+  /* ---------- past-wall state (sidebar/logo fade in, chevron out) ---------- */
+  function onScroll() {
+    var threshold = wall.offsetHeight - innerHeight * 0.6;
+    document.body.classList.toggle("past-wall", sc.scrollTop > threshold);
+  }
+  sc.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+  // wall height changes as images load — keep the state honest
+  if ("ResizeObserver" in window) new ResizeObserver(onScroll).observe(wall);
+  window.addEventListener("load", onScroll);
 
-  // Scroll reveal (staggered per section)
+  /* ---------- chevron: jump to studio ---------- */
+  document.querySelector(".more").addEventListener("click", function () {
+    studio.scrollIntoView({ behavior: reduce ? "auto" : "smooth" });
+  });
+
+  /* ---------- sidebar / menu smooth scroll (inside container) ---------- */
+  [].forEach.call(document.querySelectorAll("[data-scroll]"), function (a) {
+    a.addEventListener("click", function (e) {
+      var id = a.getAttribute("href");
+      var t = id && document.querySelector(id);
+      if (!t) return;
+      e.preventDefault();
+      closeMenu();
+      t.scrollIntoView({ behavior: reduce ? "auto" : "smooth" });
+    });
+  });
+
+  /* ---------- reveals (root = internal scroller) ---------- */
+  var rvs = [].slice.call(document.querySelectorAll(".rv"));
   if ("IntersectionObserver" in window && !reduce) {
     var io = new IntersectionObserver(function (ents) {
       ents.forEach(function (e) {
         if (!e.isIntersecting) return;
         var el = e.target;
-        var sibs = [].slice.call(el.parentElement.querySelectorAll(":scope > .reveal"));
-        var i = sibs.indexOf(el);
-        el.style.transitionDelay = Math.max(0, i) * 80 + "ms";
+        var sibs = [].slice.call(el.parentElement.querySelectorAll(":scope > .rv"));
+        el.style.transitionDelay = Math.max(0, sibs.indexOf(el)) * 70 + "ms";
         el.classList.add("in");
         io.unobserve(el);
       });
-    }, { threshold: 0.14, rootMargin: "0px 0px -8% 0px" });
-    [].forEach.call(document.querySelectorAll(".reveal"), function (el) { io.observe(el); });
-    // safety: reveal everything after 5s no matter what
-    setTimeout(function () { [].forEach.call(document.querySelectorAll(".reveal"), function (el) { el.classList.add("in"); }); }, 5000);
+    }, { root: sc, threshold: 0.15 });
+    rvs.forEach(function (el) { io.observe(el); });
+    setTimeout(function () { rvs.forEach(function (el) { el.classList.add("in"); }); }, 5000);
   } else {
-    [].forEach.call(document.querySelectorAll(".reveal"), function (el) { el.classList.add("in"); });
+    rvs.forEach(function (el) { el.classList.add("in"); });
   }
 
-  // Work: thumbnail follows cursor within a row
-  if (window.matchMedia && matchMedia("(hover:hover) and (pointer:fine)").matches && !reduce) {
-    [].forEach.call(document.querySelectorAll(".work__item"), function (item) {
-      var thumb = item.querySelector(".work__thumb");
-      if (!thumb) return;
-      item.addEventListener("mousemove", function (ev) {
-        var r = item.getBoundingClientRect();
-        var x = ev.clientX - r.left;
-        thumb.style.left = Math.max(0, Math.min(r.width - thumb.offsetWidth, x - thumb.offsetWidth / 2)) + "px";
+  /* ---------- reel ---------- */
+  var video = document.querySelector(".reel video");
+  var pill = document.querySelector("[data-reel]");
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (e.isIntersecting) { video.muted = true; var p = video.play(); p && p.catch && p.catch(function(){}); }
+        else video.pause();
+      });
+    }, { root: sc, threshold: 0.3 }).observe(video);
+  }
+  if (pill) pill.addEventListener("click", function () {
+    video.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "center" });
+    video.muted = !video.muted;
+    if (video.muted === false) { video.currentTime = 0; }
+    var p = video.play(); p && p.catch && p.catch(function(){});
+  });
+
+  /* ---------- work drawer ---------- */
+  var drawer = document.getElementById("drawer");
+  var scrim = document.getElementById("scrim");
+  function openDrawer() { drawer.classList.add("open"); scrim.classList.add("on"); closeMenu(); }
+  function closeDrawer() { drawer.classList.remove("open"); scrim.classList.remove("on"); }
+  [].forEach.call(document.querySelectorAll("[data-drawer]"), function (b) { b.addEventListener("click", openDrawer); });
+  drawer.querySelector("[data-close]").addEventListener("click", closeDrawer);
+  scrim.addEventListener("click", closeDrawer);
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape") { closeDrawer(); closeMenu(); } });
+
+  /* tabs filter */
+  var tabs = [].slice.call(drawer.querySelectorAll("[data-tab]"));
+  var cards = [].slice.call(drawer.querySelectorAll(".dcard"));
+  tabs.forEach(function (t) {
+    t.addEventListener("click", function () {
+      tabs.forEach(function (x) { x.setAttribute("aria-selected", x === t ? "true" : "false"); });
+      var f = t.getAttribute("data-tab");
+      cards.forEach(function (c) {
+        c.style.display = (f === "all" || c.getAttribute("data-cat") === f) ? "" : "none";
       });
     });
-  }
-
-  // Mobile menu
-  var burger = document.querySelector(".nav__burger");
-  var menu = document.getElementById("mobmenu");
-  var close = menu && menu.querySelector(".mobmenu__close");
-  function toggle(open) { menu.classList[open ? "add" : "remove"]("open"); document.body.style.overflow = open ? "hidden" : ""; }
-  if (burger) burger.addEventListener("click", function () { toggle(true); });
-  if (close) close.addEventListener("click", function () { toggle(false); });
-  if (menu) [].forEach.call(menu.querySelectorAll("a"), function (a) { a.addEventListener("click", function () { toggle(false); }); });
-
-  // Smooth-scroll for same-page anchors
-  [].forEach.call(document.querySelectorAll('a[href^="#"]'), function (a) {
-    a.addEventListener("click", function (e) {
-      var id = a.getAttribute("href");
-      if (id.length < 2) return;
-      var t = document.querySelector(id);
-      if (!t) return;
-      e.preventDefault();
-      t.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
-    });
   });
+
+  /* ---------- mobile menu ---------- */
+  var mmenu = document.getElementById("mmenu");
+  function closeMenu() { mmenu.classList.remove("open"); }
+  var mbtn = document.querySelector("[data-menu]");
+  if (mbtn) mbtn.addEventListener("click", function () { mmenu.classList.add("open"); });
+  mmenu.querySelector("[data-close-menu]").addEventListener("click", closeMenu);
 })();

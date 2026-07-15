@@ -149,7 +149,7 @@
       name: "Kibble Exchange", meta: "Web3 · DEX on TON — 2024 · UI/UX, Game design",
       sum: "A decentralized exchange on the TON network, paired with a Telegram minigame that reached 700,000 players in its first week.",
       did: ["Swap and trading interface design", "Telegram minigame UX and onboarding", "TON Meetup Vietnam 2024 event branding"],
-      note: NOTE, link: "https://kibble.exchange", img: "assets/work/kibble.webp"
+      link: "https://kibble.exchange", img: "assets/work/kibble.webp"
     },
     qash: {
       name: "Qash", meta: "Web3 · Finance — 2026 · Landing, Banners, Team lead",

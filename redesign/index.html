@@ -160,34 +160,51 @@
     <button role="tab" aria-selected="false" data-tab="mobile">Mobile</button>
   </div>
   <div class="drawer__grid">
-    <a class="dcard" data-cat="web3" href="https://stormbit.finance" target="_blank" rel="noreferrer">
+    <a class="dcard" data-project="stormbit" data-cat="web3" href="https://stormbit.finance" target="_blank" rel="noreferrer">
       <div class="thumb"><img src="assets/work/stormbit.webp" alt="Stormbit" loading="lazy"></div>
       <div class="nm">Stormbit</div><div class="ct">Web3 · DeFi</div>
     </a>
-    <a class="dcard" data-cat="web3" href="https://kibble.exchange" target="_blank" rel="noreferrer">
+    <a class="dcard" data-project="kibble" data-cat="web3" href="https://kibble.exchange" target="_blank" rel="noreferrer">
       <div class="thumb"><img src="assets/work/kibble.webp" alt="Kibble" loading="lazy"></div>
       <div class="nm">Kibble</div><div class="ct">Web3 · DEX</div>
     </a>
-    <a class="dcard" data-cat="web3" href="https://qash-landing.vercel.app/" target="_blank" rel="noreferrer">
+    <a class="dcard" data-project="qash" data-cat="web3" href="https://qash-landing.vercel.app/" target="_blank" rel="noreferrer">
       <div class="thumb"><img src="assets/work/qash.webp" alt="Qash" loading="lazy"></div>
       <div class="nm">Qash</div><div class="ct">Web3 · Finance</div>
     </a>
-    <a class="dcard" data-cat="web3" href="https://polypay.pro/" target="_blank" rel="noreferrer">
+    <a class="dcard" data-project="polypay" data-cat="web3" href="https://polypay.pro/" target="_blank" rel="noreferrer">
       <div class="thumb"><img src="assets/work/polypay.webp" alt="PolyPay" loading="lazy"></div>
       <div class="nm">PolyPay</div><div class="ct">Web3 · Payments</div>
     </a>
-    <a class="dcard" data-cat="mobile" href="https://apps.apple.com/vn/app/oneplan-travel/id6761648165" target="_blank" rel="noreferrer">
+    <a class="dcard" data-project="oneplan" data-cat="mobile" href="https://apps.apple.com/vn/app/oneplan-travel/id6761648165" target="_blank" rel="noreferrer">
       <div class="thumb"><img src="assets/work/oneplan.webp" alt="OnePlan Travel" loading="lazy"></div>
       <div class="nm">OnePlan Travel</div><div class="ct">Mobile · Travel</div>
     </a>
-    <a class="dcard" data-cat="mobile" href="https://apps.apple.com/vn/app/tr%C3%B9m-chinese-ti%E1%BA%BFng-trung-hsk/id6468914724" target="_blank" rel="noreferrer">
+    <a class="dcard" data-project="trumchinese" data-cat="mobile" href="https://apps.apple.com/vn/app/tr%C3%B9m-chinese-ti%E1%BA%BFng-trung-hsk/id6468914724" target="_blank" rel="noreferrer">
       <div class="thumb"><img src="assets/work/trumchinese.webp" alt="Trùm Chinese" loading="lazy"></div>
       <div class="nm">Trùm Chinese</div><div class="ct">Mobile · Education</div>
     </a>
-    <a class="dcard" data-cat="mobile" href="https://apps.apple.com/vn/app/gear-runner/id6758157431" target="_blank" rel="noreferrer">
+    <a class="dcard" data-project="gearrunner" data-cat="mobile" href="https://apps.apple.com/vn/app/gear-runner/id6758157431" target="_blank" rel="noreferrer">
       <div class="thumb"><img src="assets/work/gearrunner.webp" alt="Gear Runner" loading="lazy"></div>
       <div class="nm">Gear Runner</div><div class="ct">Mobile · Game</div>
     </a>
+  </div>
+
+  <!-- project detail (fills the drawer, slides in from right) -->
+  <div class="dview" id="dview">
+    <div class="dview__head">
+      <button class="dview__back" type="button" data-back>&larr; Back</button>
+      <button class="drawer__close" type="button" data-close>Close</button>
+    </div>
+    <div class="dview__body">
+      <div class="dview__cover"><img id="dv-img" src="" alt=""></div>
+      <h4 id="dv-name"></h4>
+      <div class="meta" id="dv-meta"></div>
+      <p class="sum" id="dv-sum"></p>
+      <div class="did-t">What I did</div>
+      <ul id="dv-did"></ul>
+      <a class="pill visit" id="dv-link" href="#" target="_blank" rel="noreferrer">Visit live &nearr;</a>
+    </div>
   </div>
 </aside>
 

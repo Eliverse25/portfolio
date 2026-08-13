@@ -1,398 +1,434 @@
+/* dannyxs.com — behaviors for the tabbed-portfolio layout */
 (function () {
-  var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var sc = document.getElementById("scroll");
-  var wall = document.getElementById("top");
-  var studio = document.getElementById("studio");
+  "use strict";
 
-  /* =========================================================
-     IMAGE WALL — flex columns + entry rise + per-column lag
-     (the reference builds the wall from _column divs that
-      trail the scroll at slightly different rates)
-     ========================================================= */
-  var cols = [];
-  function buildWall() {
-    var tiles = [].slice.call(wall.querySelectorAll("a"));
-    var n = innerWidth < 560 ? 3 : innerWidth < 900 ? 4 : innerWidth < 1280 ? 6 : 7;
-    wall.textContent = "";
-    cols = [];
-    for (var i = 0; i < n; i++) {
-      var c = document.createElement("div");
-      c.className = "wcol";
-      wall.appendChild(c);
-      cols.push(c);
+  var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var isDesktop = function () { return window.matchMedia("(min-width: 1024px)").matches; };
+
+  var EMAIL = "eliuniversestu@gmail.com";
+
+  /* ---------- projects registry (order = page order) ---------- */
+  var PROJECTS = [
+    { id: "quantum3labs", name: "Quantum3 Labs", group: "Web3" },
+    { id: "stormbit", name: "Stormbit", group: "Web3" },
+    { id: "kibble", name: "Kibble Exchange", group: "Web3" },
+    { id: "qash", name: "Qash", group: "Web3" },
+    { id: "polypay", name: "PolyPay", group: "Web3" },
+    { id: "prismpay", name: "Prism Pay", group: "Mobile Apps" },
+    { id: "getgoldy", name: "Get Goldy", group: "Mobile Apps" },
+    { id: "oneplan", name: "OnePlan Travel", group: "Mobile Apps" },
+    { id: "trumchinese", name: "Trùm Chinese", group: "Mobile Apps" },
+    { id: "gearrunner", name: "Gear Runner", group: "Mobile Apps" }
+  ];
+
+  /* ---------- the About letter (shared desktop + mobile) ---------- */
+  var LETTER = [
+    'I’m Dinh Phan Nhat Nam — everyone calls me Danny. A Product Designer from Vietnam.',
+    'Over the past five years I’ve designed more than 30 products across Web3, education and IoT — and somewhere along the way, design stopped being a job and became the way I look at everything.',
+    'Today I lead design at <a class="txtlink" href="https://www.quantum3labs.com/" target="_blank" rel="noreferrer">Quantum3 Labs</a>, the studio behind Stormbit, Qash and Prism Pay. In Web3 I don’t stop at the mockup: I design and build the product end-to-end, no frontend developers involved.',
+    'I also co-founded <a class="txtlink" href="https://apps.apple.com/vn/app/oneplan-travel/id6761648165" target="_blank" rel="noreferrer">OnePlan Travel</a>, an iOS app for planning group trips — my turn on the founder’s side of the table.',
+    'Along the way the work picked up two Awwwards mentions and a top-3 shirt design at Superteam Malaysia.',
+    'And the beer mug in the corner? That’s the unofficial logo. If you’re ever in Ho Chi Minh City, the first round’s on me.'
+  ];
+  document.querySelectorAll("[data-letter]").forEach(function (el) {
+    el.innerHTML = LETTER.map(function (p) { return "<p>" + p + "</p>"; }).join("");
+  });
+
+  /* ---------- clock ---------- */
+  function fmt(tz) {
+    return new Intl.DateTimeFormat("en-GB", { hour: "2-digit", minute: "2-digit", hour12: false, timeZone: tz }).format(new Date());
+  }
+  function tickClock() {
+    var here = fmt("Asia/Ho_Chi_Minh");
+    var yours = fmt(undefined);
+    var txt = (here === yours)
+      ? "It’s " + here + " in Ho Chi Minh City."
+      : "It’s " + here + " in Ho Chi Minh City, and " + yours + " where you are.";
+    document.querySelectorAll("[data-clock]").forEach(function (el) { el.textContent = txt; });
+  }
+  tickClock();
+  setInterval(tickClock, 15000);
+
+  /* ---------- typed greeting ---------- */
+  (function () {
+    var h = new Date().getHours();
+    var word = h < 12 ? "Good morning" : h < 18 ? "Good afternoon" : "Good evening";
+    var msg = word + ", I’m Danny!";
+    var targets = document.querySelectorAll("[data-typed]");
+    if (reduceMotion) {
+      targets.forEach(function (t) { t.textContent = msg; });
+      return;
     }
-    tiles.forEach(function (t, i) { cols[i % n].appendChild(t); });
-    // stagger column tops slightly (ragged top rhythm, like the reference)
-    cols.forEach(function (c, i) { c.style.marginTop = (i % 2 ? -34 : 0) - (i % 3) * 18 + "px"; });
-  }
-  buildWall();
+    var i = 0;
+    setTimeout(function type() {
+      i++;
+      targets.forEach(function (t) { t.textContent = msg.slice(0, i); });
+      if (i < msg.length) setTimeout(type, 42 + Math.random() * 46);
+    }, 500);
+  })();
 
-  /* entry: columns rise into place once first images are ready */
-  function wallIn() {
-    if (wall.classList.contains("wall-in")) return;
-    requestAnimationFrame(function () { wall.classList.add("wall-in"); });
-    setTimeout(function () { wall.classList.add("wall-live"); }, 1700);
-  }
-  var probe = wall.querySelector("img");
-  if (probe && !probe.complete) probe.addEventListener("load", wallIn, { once: true });
-  setTimeout(wallIn, 900); // never wait forever
+  /* ---------- navigation ---------- */
+  var mainEl = document.getElementById("main");
+  var pages = Array.prototype.slice.call(document.querySelectorAll(".page"));
+  var tabs = Array.prototype.slice.call(document.querySelectorAll(".sidebar .tab"));
+  var pillLabel = document.getElementById("pill-label");
+  var pillIcon = document.getElementById("pill-icon");
 
-  /* per-column lag: columns chase the scroll with different stiffness */
-  if (!reduce) {
-    var LAG = [0.16, 0.11, 0.19, 0.09, 0.14, 0.08, 0.12];
-    var pos = [];
-    var raf = null;
-    function tick() {
-      var target = sc.scrollTop;
-      var live = false;
-      cols.forEach(function (c, i) {
-        if (pos[i] == null) pos[i] = target;
-        pos[i] += (target - pos[i]) * LAG[i % LAG.length];
-        var d = target - pos[i];
-        if (Math.abs(d) > 0.4) live = true; else pos[i] = target, d = 0;
-        c.style.transform = d ? "translateY(" + d.toFixed(1) + "px)" : "";
+  function projectOf(id) {
+    for (var i = 0; i < PROJECTS.length; i++) if (PROJECTS[i].id === id) return PROJECTS[i];
+    return null;
+  }
+  function iconOf(id) { return id === "welcome" ? "assets/favicon-32.png" : "assets/icons/" + id + ".svg"; }
+  function nameOf(id) { var p = projectOf(id); return p ? p.name : "Home"; }
+
+  var mobCurrent = "welcome";
+
+  function goTo(id) {
+    if (isDesktop()) {
+      var sec = document.getElementById(id);
+      if (sec) sec.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
+    } else {
+      // mobile: swap pages
+      document.querySelectorAll(".page.proj.mob-open, .mob-about.mob-open").forEach(function (el) {
+        el.classList.remove("mob-open");
       });
-      raf = live ? requestAnimationFrame(tick) : null;
+      mobCurrent = id;
+      if (id === "welcome") {
+        mainEl.classList.remove("mob-in-proj");
+        window.scrollTo(0, 0);
+      } else {
+        mainEl.classList.add("mob-in-proj");
+        var sec2 = document.getElementById(id);
+        if (sec2) sec2.classList.add("mob-open");
+        window.scrollTo(0, 0);
+      }
+      pillLabel.textContent = nameOf(id);
+      pillIcon.src = iconOf(id);
+      document.querySelectorAll(".sheet .s-row[data-goto]").forEach(function (r) {
+        r.classList.toggle("cur", r.getAttribute("data-goto") === id);
+      });
     }
-    sc.addEventListener("scroll", function () {
-      if (!raf && sc.scrollTop < wall.offsetHeight + innerHeight) raf = requestAnimationFrame(tick);
-    }, { passive: true });
+    closeSheet();
   }
 
-  var rebuildT;
-  addEventListener("resize", function () {
-    clearTimeout(rebuildT);
-    rebuildT = setTimeout(function () { buildWall(); wall.classList.add("wall-in"); }, 200);
+  document.addEventListener("click", function (e) {
+    var g = e.target.closest("[data-goto]");
+    if (g) { goTo(g.getAttribute("data-goto")); return; }
+    var back = e.target.closest("[data-back]");
+    if (back) { goTo("welcome"); return; }
   });
 
-  /* ---------- past-wall state ---------- */
-  function onScroll() {
-    var threshold = wall.offsetHeight - innerHeight * 0.6;
-    document.body.classList.toggle("past-wall", sc.scrollTop > threshold);
+  /* sidebar active state follows scroll (desktop) */
+  var activeId = "welcome";
+  function currentPage() {
+    var mid = window.scrollY + window.innerHeight / 2;
+    var best = pages[0], bestD = Infinity;
+    pages.forEach(function (p) {
+      var top = p.offsetTop, c = top + p.offsetHeight / 2;
+      var d = Math.abs(c - mid);
+      if (d < bestD) { bestD = d; best = p; }
+    });
+    return best;
   }
-  sc.addEventListener("scroll", onScroll, { passive: true });
-  onScroll();
-  if ("ResizeObserver" in window) new ResizeObserver(onScroll).observe(wall);
-  addEventListener("load", onScroll);
+  function updateActive() {
+    if (!isDesktop()) return;
+    var p = currentPage();
+    p.classList.add("seen");
+    if (p.id !== activeId) {
+      activeId = p.id;
+      tabs.forEach(function (t) { t.classList.toggle("active", t.getAttribute("data-goto") === activeId); });
+      syncVideos(activeId);
+    }
+  }
+  var lastRun = 0;
+  window.addEventListener("scroll", function () {
+    var now = Date.now();
+    if (now - lastRun < 80) return;
+    lastRun = now;
+    updateActive();
+    setTimeout(updateActive, 140); // settle after snap
+  }, { passive: true });
+  window.addEventListener("resize", updateActive);
+  updateActive();
 
-  /* ---------- chevron ---------- */
-  document.querySelector(".more").addEventListener("click", function () {
-    studio.scrollIntoView({ behavior: reduce ? "auto" : "smooth" });
-  });
-
-  /* ---------- nav scroll ---------- */
-  [].forEach.call(document.querySelectorAll("[data-scroll]"), function (a) {
-    a.addEventListener("click", function (e) {
-      var t = document.querySelector(a.getAttribute("href") || "");
-      if (!t) return;
-      e.preventDefault();
-      closeMenu();
-      t.scrollIntoView({ behavior: reduce ? "auto" : "smooth" });
+  /* group collapse */
+  document.querySelectorAll(".ghead").forEach(function (h) {
+    h.addEventListener("click", function () {
+      var body = document.getElementById(h.getAttribute("data-group"));
+      var closed = h.classList.toggle("closed");
+      if (body) body.classList.toggle("hidden", closed);
     });
   });
 
-  /* ---------- reveals ---------- */
-  var rvs = [].slice.call(document.querySelectorAll(".rv"));
-  if ("IntersectionObserver" in window && !reduce) {
-    var io = new IntersectionObserver(function (ents) {
-      ents.forEach(function (e) {
-        if (!e.isIntersecting) return;
-        var el = e.target;
-        var sibs = [].slice.call(el.parentElement.querySelectorAll(":scope > .rv"));
-        el.style.transitionDelay = Math.max(0, sibs.indexOf(el)) * 70 + "ms";
-        el.classList.add("in");
-        io.unobserve(el);
-      });
-    }, { root: sc, threshold: 0.15 });
-    rvs.forEach(function (el) { io.observe(el); });
-    setTimeout(function () { rvs.forEach(function (el) { el.classList.add("in"); }); }, 5000);
-  } else {
-    rvs.forEach(function (el) { el.classList.add("in"); });
+  /* ---------- avatar popover ---------- */
+  var meBtn = document.getElementById("me-btn");
+  var meMenu = document.getElementById("me-menu");
+  if (meBtn) {
+    meBtn.addEventListener("click", function (e) {
+      e.stopPropagation();
+      meMenu.hidden = !meMenu.hidden;
+    });
+    document.addEventListener("click", function (e) {
+      if (!meMenu.hidden && !e.target.closest(".me-wrap")) meMenu.hidden = true;
+    });
   }
 
-  /* ---------- reel ---------- */
-  var video = document.querySelector(".reel video");
-  var pill = document.querySelector("[data-reel]");
-  if (video && "IntersectionObserver" in window) {
-    new IntersectionObserver(function (es) {
-      es.forEach(function (e) {
-        if (e.isIntersecting) { video.muted = true; var p = video.play(); p && p.catch && p.catch(function(){}); }
-        else video.pause();
-      });
-    }, { root: sc, threshold: 0.3 }).observe(video);
-  }
-  if (pill) pill.addEventListener("click", function () {
-    video.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "center" });
-    video.muted = !video.muted;
-    if (!video.muted) video.currentTime = 0;
-    var p = video.play(); p && p.catch && p.catch(function(){});
+  /* ---------- copy email ---------- */
+  document.querySelectorAll("[data-copy-email]").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      function done() {
+        btn.classList.add("copied");
+        setTimeout(function () { btn.classList.remove("copied"); }, 1400);
+      }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(EMAIL).then(done, done);
+      } else {
+        var ta = document.createElement("textarea");
+        ta.value = EMAIL; document.body.appendChild(ta); ta.select();
+        try { document.execCommand("copy"); } catch (err) {}
+        document.body.removeChild(ta); done();
+      }
+    });
   });
 
-  /* =========================================================
-     WORK DRAWER + PROJECT DETAIL
-     ========================================================= */
-  var NOTE = "Built solo, end-to-end: from the first design to the live product — no frontend developers involved.";
-  var PROJECTS = {
-    quantum3labs: {
-      name: "Quantum3 Labs", meta: "Web3 · Studio — 2024–Present · Product Designer, Design Lead",
-      sum: "The Web3 studio behind Stormbit, Qash and Prism — where I lead design across the whole product suite, including the studio's own site.",
-      did: ["Design direction across the product suite", "Studio website and brand touchpoints", "Working hand-in-hand with engineering on every release"],
-      note: NOTE, link: "https://www.quantum3labs.com/", img: "assets/work/quantum3labs.webp"
-    },
-    stormbit: {
-      name: "Stormbit", meta: "Web3 · DeFi — 2025 · Branding, UI/UX, Product",
-      sum: "A full-cycle Web3 finance product: from brand identity to a lending and earning experience built for a global launch at ETHCC Cannes.",
-      did: ["Brand identity and the lightning mark", "End-to-end UI/UX for earn and borrow flows", "Launch campaign and event key visuals"],
-      note: NOTE, link: "https://stormbit.finance", img: "assets/work/stormbit.webp"
-    },
-    kibble: {
-      name: "Kibble Exchange", meta: "Web3 · DEX on TON — 2024 · UI/UX, Game design",
-      sum: "A decentralized exchange on the TON network, paired with a Telegram minigame that reached 700,000 players in its first week.",
-      did: ["Swap and trading interface design", "Telegram minigame UX and onboarding", "TON Meetup Vietnam 2024 event branding"],
-      link: "https://kibble.exchange", img: "assets/work/kibble.webp"
-    },
-    qash: {
-      name: "Qash", meta: "Web3 · Finance — 2026 · Landing, Banners, Team lead",
-      sum: "Landing page design, banner systems and design team leadership for a Web3 finance platform built around vaults and yield.",
-      did: ["Landing page and marketing visuals", "Banner system across campaigns", "Leading the design team and reviews"],
-      note: NOTE, link: "https://www.qash.finance/", img: "assets/work/qash.webp"
-    },
-    polypay: {
-      name: "PolyPay", meta: "Web3 · Payments — 2025 · Brand, UI/UX, Team lead",
-      sum: "Brand identity and the full journey from MVP to final UI for a crypto payments and payroll platform, with team management throughout.",
-      did: ["Brand identity and app icon", "MVP to final product UI", "Multi-signature transfers and batch approvals", "Market positioning visuals"],
-      note: NOTE, link: "https://polypay.pro/", img: "assets/work/polypay.webp"
-    },
-    oneplan: {
-      name: "OnePlan Travel", meta: "Mobile · Travel — 2025 · Co-founder & CEO, Product",
-      sum: "An iOS app for planning group travel, where I led both the product and the company as co-founder and CEO.",
-      did: ["Product vision and roadmap", "End-to-end iOS app design", "Itinerary and shared-expense flows"],
-      link: "https://apps.apple.com/vn/app/oneplan-travel/id6761648165", img: "assets/work/oneplan.webp"
-    },
-    trumchinese: {
-      name: "Trùm Chinese", meta: "Mobile · Education — 2024 · UI/UX, Product",
-      sum: "A language-learning app that reached a 4.8-star rating and a top-5 education spot in Vietnam by teaching Chinese through stories and AI translation.",
-      did: ["Story reader and lesson UI", "AI translation experience", "Voice and character system"],
-      link: "https://apps.apple.com/vn/app/tr%C3%B9m-chinese-ti%E1%BA%BFng-trung-hsk/id6468914724", img: "assets/work/trumchinese.webp"
-    },
-    prismpay: {
-      name: "Prism Pay", meta: "Mobile · Payments — 2025 · UI/UX, Product",
-      sum: "A QR-code payment app for spending digital assets on everyday purchases — part of the crypto finance suite I design at Quantum3labs, alongside Stormbit and Qash.",
-      did: ["End-to-end payment flows — scan, pay, receive", "QR and wallet UX aimed at non-crypto-native users", "Design language shared with the Qash product family"],
-      link: "",
-      appstore: "https://apps.apple.com/us/app/prism-pay/id6768889220",
-      googleplay: "https://play.google.com/store/apps/details?id=quantum3labs.prismapp",
-      img: "assets/work/prismpay.webp"
-    },
-    getgoldy: {
-      name: "Get Goldy", meta: "Mobile · Fintech — 2025 · UI/UX, Product",
-      sum: "A gold-savings app for the Vietnamese market: buy gold by the fraction, watch your stash grow piece by piece, and keep bills in one place. Tích vàng nhẹ tênh, từng ngày tiền lên.",
-      did: ["Savings flows — buy by fraction, track every piece you own", "Bills and receipts management", "Warm, collectible visual language with 3D gold artifacts"],
-      link: "", img: "assets/work/getgoldy.webp"
-    },
-    gearrunner: {
-      name: "Gear Runner", meta: "Mobile · Game — 2024 · UI/UX, UX research",
-      sum: "Mobile game UI and user-behavior research for a move-to-earn experience that rewards real-world activity with gear and progression.",
-      did: ["Game UI and inventory system", "Activity and health tracking screens", "User-behavior research"],
-      link: "https://apps.apple.com/vn/app/gear-runner/id6758157431", img: "assets/work/gearrunner.webp"
-    }
-  };
+  /* ---------- omnibox search ---------- */
+  var omniWrap = document.getElementById("omni-wrap");
+  var omniInput = document.getElementById("omni-input");
+  var omniDrop = document.getElementById("omni-drop");
+  var omniList = document.getElementById("omni-list");
+  var omniSel = 0;
 
-  var drawer = document.getElementById("drawer");
-  var scrim = document.getElementById("scrim");
-  var dview = document.getElementById("dview");
-  function openDrawer() { drawer.classList.add("open"); scrim.classList.add("on"); closeMenu(); }
-  function closeDrawer() { drawer.classList.remove("open"); scrim.classList.remove("on"); setTimeout(function(){ dview.classList.remove("show"); }, 450); }
-  [].forEach.call(document.querySelectorAll("[data-drawer]"), function (b) { b.addEventListener("click", openDrawer); });
-  [].forEach.call(drawer.querySelectorAll("[data-close]"), function (b) { b.addEventListener("click", closeDrawer); });
-  scrim.addEventListener("click", closeDrawer);
+  function omniResults(q) {
+    q = q.trim().toLowerCase();
+    if (!q) return [];
+    return PROJECTS.filter(function (p) {
+      return (p.name + " " + p.group + " " + p.id).toLowerCase().indexOf(q) !== -1;
+    });
+  }
+  function renderOmni(res) {
+    if (!res.length) {
+      omniList.innerHTML = '<div class="omni-empty">No matches — try a project name.</div>';
+      return;
+    }
+    omniList.innerHTML = res.map(function (p, i) {
+      return '<button type="button" class="omni-row' + (i === omniSel ? " sel" : "") + '" data-omni="' + p.id + '">' +
+        '<img src="' + iconOf(p.id) + '" alt="">' +
+        '<span class="r-name">' + p.name + '</span>' +
+        '<span class="r-group">' + p.group + '</span>' +
+        '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 4v7a4 4 0 0 1-4 4H4"/><path d="m9 10-5 5 5 5"/></svg>' +
+        "</button>";
+    }).join("");
+  }
+  function updateOmni() {
+    var v = omniInput.value;
+    omniWrap.classList.toggle("filled", v.length > 0);
+    var res = omniResults(v);
+    if (v.trim()) {
+      if (omniSel >= res.length) omniSel = 0;
+      renderOmni(res);
+      omniDrop.hidden = false;
+    } else {
+      omniDrop.hidden = true;
+    }
+  }
+  function closeOmni() {
+    omniInput.value = "";
+    omniSel = 0;
+    updateOmni();
+  }
+  if (omniInput) {
+    omniInput.addEventListener("input", function () { omniSel = 0; updateOmni(); });
+    omniInput.addEventListener("keydown", function (e) {
+      var res = omniResults(omniInput.value);
+      if (e.key === "ArrowDown") { e.preventDefault(); if (res.length) { omniSel = (omniSel + 1) % res.length; renderOmni(res); } }
+      else if (e.key === "ArrowUp") { e.preventDefault(); if (res.length) { omniSel = (omniSel - 1 + res.length) % res.length; renderOmni(res); } }
+      else if (e.key === "Enter") { if (res.length) { goTo(res[omniSel].id); closeOmni(); omniInput.blur(); } }
+      else if (e.key === "Escape") { closeOmni(); omniInput.blur(); }
+    });
+    omniDrop.addEventListener("mousedown", function (e) {
+      var row = e.target.closest("[data-omni]");
+      if (row) { e.preventDefault(); goTo(row.getAttribute("data-omni")); closeOmni(); omniInput.blur(); }
+    });
+    omniWrap.querySelector(".clear").addEventListener("click", function () { closeOmni(); omniInput.focus(); });
+    document.addEventListener("click", function (e) {
+      if (!omniDrop.hidden && !e.target.closest("#omni-wrap")) omniDrop.hidden = true;
+    });
+    omniInput.addEventListener("focus", updateOmni);
+    document.addEventListener("keydown", function (e) {
+      if ((e.metaKey || e.ctrlKey) && (e.key === "k" || e.key === "K")) {
+        e.preventDefault();
+        goTo("welcome");
+        setTimeout(function () { omniInput.focus(); }, 350);
+      }
+    });
+  }
+
+  /* ---------- video players ---------- */
+  var players = [];
+  document.querySelectorAll(".stage-video").forEach(function (stage) {
+    var v = stage.querySelector(".vmain");
+    var bg = stage.querySelector(".vbg");
+    var ctrl = stage.querySelector(".vctrl");
+    var pp = ctrl.querySelector(".pp");
+    var seek = ctrl.querySelector(".seek");
+    var fill = ctrl.querySelector(".fill");
+    var knob = ctrl.querySelector(".knob");
+    var pageEl = stage.closest(".page");
+
+    function play() {
+      v.play().catch(function () {});
+      if (bg && isDesktop()) bg.play().catch(function () {});
+      ctrl.classList.add("playing");
+      pp.title = "Pause";
+    }
+    function pause() {
+      v.pause(); if (bg) bg.pause();
+      ctrl.classList.remove("playing");
+      pp.title = "Play";
+    }
+    pp.addEventListener("click", function () { v.paused ? play() : pause(); });
+    v.addEventListener("click", function () { v.paused ? play() : pause(); });
+    v.addEventListener("timeupdate", function () {
+      if (!v.duration) return;
+      var p = (v.currentTime / v.duration) * 100;
+      fill.style.width = p + "%";
+      knob.style.left = p + "%";
+      seek.setAttribute("aria-valuenow", Math.round(p));
+      if (bg && Math.abs(bg.currentTime - v.currentTime) > 0.35) bg.currentTime = v.currentTime;
+    });
+    function seekTo(clientX) {
+      var r = seek.querySelector(".track").getBoundingClientRect();
+      var p = Math.min(1, Math.max(0, (clientX - r.left) / r.width));
+      if (v.duration) v.currentTime = p * v.duration;
+    }
+    var dragging = false;
+    seek.addEventListener("pointerdown", function (e) { dragging = true; seek.setPointerCapture(e.pointerId); seekTo(e.clientX); });
+    seek.addEventListener("pointermove", function (e) { if (dragging) seekTo(e.clientX); });
+    seek.addEventListener("pointerup", function () { dragging = false; });
+    players.push({ pageId: pageEl.id, play: play, pause: pause, video: v });
+  });
+  function syncVideos(activeId) {
+    if (!players) return;
+    players.forEach(function (p) {
+      if (p.pageId === activeId) { if (!reduceMotion) p.play(); }
+      else p.pause();
+    });
+  }
+
+  /* ---------- shot viewers (segmented images + phone flows) ---------- */
+  document.querySelectorAll("[data-viewer]").forEach(function (stage) {
+    var shotsBox = stage.querySelector("[data-shots]");
+    var shots = Array.prototype.slice.call(shotsBox.querySelectorAll(".shot"));
+    var segs = Array.prototype.slice.call(stage.querySelectorAll("[data-seg] > button"));
+    var next = stage.querySelector("[data-next]");
+    var fsbtn = stage.querySelector("[data-fullscreen]");
+    var idx = 0;
+    var isFlow = stage.hasAttribute("data-flow");
+
+    // measure the first image to size the shots box
+    function size() {
+      var img = shots[0].querySelector("img");
+      if (!img.naturalWidth) return;
+      var area = stage.querySelector(".canvasarea");
+      var maxW = area.clientWidth - (isFlow ? 120 : 0);
+      var maxH = area.clientHeight;
+      if (!maxH || maxH < 40) maxH = area.clientHeight;
+      var ratio = img.naturalWidth / img.naturalHeight;
+      var w = maxW, h = w / ratio;
+      if (h > maxH) { h = maxH; w = h * ratio; }
+      shotsBox.style.width = Math.round(w) + "px";
+      shotsBox.style.height = Math.round(h) + "px";
+    }
+    var first = shots[0].querySelector("img");
+    if (first.complete) size(); else first.addEventListener("load", size);
+    window.addEventListener("resize", size);
+    if ("ResizeObserver" in window) new ResizeObserver(size).observe(stage.querySelector(".canvasarea"));
+
+    function show(i) {
+      idx = (i + shots.length) % shots.length;
+      shots.forEach(function (s, j) { s.classList.toggle("on", j === idx); });
+      segs.forEach(function (s, j) { s.classList.toggle("on", j === idx); });
+    }
+    segs.forEach(function (s, j) { s.addEventListener("click", function () { show(j); }); });
+    if (next) next.addEventListener("click", function () { show(idx + 1); });
+    shotsBox.addEventListener("click", function () {
+      if (isFlow) show(idx + 1);
+      else if (fsbtn) openLightbox(shots[idx].querySelector("img").src);
+    });
+    shotsBox.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); show(idx + 1); }
+    });
+    if (fsbtn) fsbtn.addEventListener("click", function () {
+      openLightbox(shots[idx].querySelector("img").src);
+    });
+  });
+
+  /* ---------- lightbox ---------- */
+  var lightbox = document.getElementById("lightbox");
+  var lbImg = lightbox.querySelector("img");
+  function openLightbox(src) {
+    lbImg.src = src;
+    lightbox.classList.add("open");
+    lightbox.setAttribute("aria-hidden", "false");
+  }
+  function closeLightbox() {
+    lightbox.classList.remove("open");
+    lightbox.setAttribute("aria-hidden", "true");
+  }
+  lightbox.addEventListener("click", function (e) {
+    if (e.target === lightbox || e.target.closest("[data-lb-close]")) closeLightbox();
+  });
+
+  /* ---------- about dialog ---------- */
+  var aboutDlg = document.getElementById("about-dlg");
+  function openAbout() {
+    if (isDesktop()) {
+      aboutDlg.classList.add("open");
+      aboutDlg.setAttribute("aria-hidden", "false");
+    } else {
+      // mobile: about is a page
+      document.querySelectorAll(".page.proj.mob-open").forEach(function (el) { el.classList.remove("mob-open"); });
+      mainEl.classList.add("mob-in-proj");
+      mobCurrent = "mob-about";
+      document.getElementById("mob-about").classList.add("mob-open");
+      pillLabel.textContent = "About";
+      pillIcon.src = "assets/favicon-32.png";
+      window.scrollTo(0, 0);
+      closeSheet();
+    }
+  }
+  function closeAbout() {
+    aboutDlg.classList.remove("open");
+    aboutDlg.setAttribute("aria-hidden", "true");
+  }
+  document.addEventListener("click", function (e) {
+    if (e.target.closest("[data-about]")) { openAbout(); return; }
+    if (e.target.closest("[data-about-close]")) { closeAbout(); return; }
+  });
+  document.querySelectorAll(".pola").forEach(function (p) {
+    p.addEventListener("click", function () {
+      var flipped = p.classList.toggle("flipped");
+      p.setAttribute("aria-pressed", flipped ? "true" : "false");
+    });
+  });
   document.addEventListener("keydown", function (e) {
-    if (e.key !== "Escape") return;
-    if (dview.classList.contains("show")) dview.classList.remove("show");
-    else { closeDrawer(); closeMenu(); }
-  });
-
-  /* card click -> detail */
-  function showProject(key) {
-    var p = PROJECTS[key];
-    if (!p) return;
-    document.getElementById("dv-img").src = p.img;
-    document.getElementById("dv-img").alt = p.name;
-    document.getElementById("dv-name").textContent = p.name;
-    document.getElementById("dv-meta").textContent = p.meta;
-    document.getElementById("dv-sum").textContent = p.sum;
-    var ul = document.getElementById("dv-did");
-    ul.textContent = "";
-    p.did.forEach(function (d) { var li = document.createElement("li"); li.textContent = d; ul.appendChild(li); });
-    var lk = document.getElementById("dv-link");
-    lk.href = p.link || "#";
-    lk.style.display = p.link ? "" : "none";
-    var note = document.getElementById("dv-note");
-    note.textContent = p.note || "";
-    note.style.display = p.note ? "" : "none";
-    var stores = document.getElementById("dv-stores");
-    var as = document.getElementById("dv-appstore");
-    var gp = document.getElementById("dv-gplay");
-    as.href = p.appstore || "#";
-    gp.href = p.googleplay || "#";
-    as.style.display = p.appstore ? "" : "none";
-    gp.style.display = p.googleplay ? "" : "none";
-    stores.style.display = (p.appstore || p.googleplay) ? "" : "none";
-    dview.classList.add("show");
-    dview.querySelector(".dview__body").scrollTop = 0;
-  }
-  [].forEach.call(drawer.querySelectorAll(".dcard"), function (card) {
-    card.addEventListener("click", function (e) {
-      e.preventDefault();
-      showProject(card.getAttribute("data-project"));
-    });
-  });
-  dview.querySelector("[data-back]").addEventListener("click", function () { dview.classList.remove("show"); });
-
-  /* tabs filter */
-  var tabs = [].slice.call(drawer.querySelectorAll("[data-tab]"));
-  var cards = [].slice.call(drawer.querySelectorAll(".dcard"));
-  tabs.forEach(function (t) {
-    t.addEventListener("click", function () {
-      tabs.forEach(function (x) { x.setAttribute("aria-selected", x === t ? "true" : "false"); });
-      var f = t.getAttribute("data-tab");
-      cards.forEach(function (c) { c.style.display = (f === "all" || c.getAttribute("data-cat") === f) ? "" : "none"; });
-    });
-  });
-
-  /* ---------- mobile menu ---------- */
-  var mmenu = document.getElementById("mmenu");
-  function closeMenu() { mmenu.classList.remove("open"); }
-  var mbtn = document.querySelector("[data-menu]");
-  if (mbtn) mbtn.addEventListener("click", function () { mmenu.classList.add("open"); });
-  mmenu.querySelector("[data-close-menu]").addEventListener("click", closeMenu);
-})();
-
-/* =========================================================
-   HIRE ME — guided chat (static; ends in a prefilled email)
-   ========================================================= */
-(function () {
-  var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var hirep = document.getElementById("hirep");
-  var chat = document.getElementById("chat");
-  if (!hirep || !chat) return;
-  var started = false, answers = {};
-
-  function put(node) {
-    chat.appendChild(node);
-    requestAnimationFrame(function () { requestAnimationFrame(function () { node.classList.add("in"); }); });
-    hirep.scrollTop = hirep.scrollHeight;
-    return node;
-  }
-  function label(text, you) {
-    var d = document.createElement("div");
-    d.className = "who" + (you ? " you" : "");
-    if (you) d.textContent = "You";
-    else d.innerHTML = "<b>Danny</b> UI/UX & Product Designer";
-    chat.appendChild(d);
-  }
-  function bubble(text, cls) {
-    var d = document.createElement("div");
-    d.className = "msg " + (cls || "");
-    d.textContent = text;
-    return put(d);
-  }
-  function avatar() {
-    var d = document.createElement("div");
-    d.className = "avatar";
-    d.textContent = "D.";
-    return put(d);
-  }
-  function typing(fn, delay) {
-    if (reduce) { fn(); return; }
-    var t = document.createElement("div");
-    t.className = "msg typing in";
-    t.innerHTML = "<i></i><i></i><i></i>";
-    chat.appendChild(t); hirep.scrollTop = hirep.scrollHeight;
-    setTimeout(function () { t.remove(); fn(); }, delay || 750);
-  }
-  function form(lblText, inputHTML, okText, onOk) {
-    var d = document.createElement("div");
-    d.className = "msg form";
-    d.innerHTML = '<div class="lbl"></div>' + inputHTML + '<button class="ok" type="button">' + okText + "</button>";
-    d.querySelector(".lbl").textContent = lblText;
-    put(d);
-    var field = d.querySelector("input,textarea");
-    setTimeout(function () { field.focus(); }, 350);
-    function submit() {
-      var v = field.value.trim();
-      if (!v) { field.focus(); return; }
-      d.remove();
-      onOk(v);
+    if (e.key === "Escape") {
+      if (lightbox.classList.contains("open")) closeLightbox();
+      else if (aboutDlg.classList.contains("open")) closeAbout();
+      else closeSheet();
     }
-    d.querySelector(".ok").addEventListener("click", submit);
-    field.addEventListener("keydown", function (e) {
-      if (e.key === "Enter" && field.tagName === "INPUT") { e.preventDefault(); submit(); }
-    });
-  }
-
-  function start() {
-    if (started) return; started = true;
-    label("Danny");
-    bubble("Good day 🤝");
-    typing(function () {
-      bubble("I'm Danny 👋");
-      avatar();
-      setTimeout(function () {
-        label("", true);
-        bubble("👋", "you");
-        bubble("Nice to meet you, Danny!", "you");
-        setTimeout(askName, reduce ? 0 : 500);
-      }, reduce ? 0 : 600);
-    }, 800);
-  }
-  function askName() {
-    form("My name is", '<input type="text" autocomplete="name" placeholder="Your name">', "OK ⏎", function (v) {
-      answers.name = v;
-      bubble(v, "you");
-      typing(function () {
-        label("Danny");
-        bubble("Nice to meet you, " + v + "! Where can I reach you?");
-        setTimeout(askEmail, reduce ? 0 : 400);
-      });
-    });
-  }
-  function askEmail() {
-    form("You can reach me at", '<input type="email" autocomplete="email" placeholder="you@company.com">', "OK ⏎", function (v) {
-      answers.email = v;
-      bubble(v, "you");
-      typing(function () {
-        label("Danny");
-        bubble("And what are we building together? ✨");
-        setTimeout(askProject, reduce ? 0 : 400);
-      });
-    });
-  }
-  function askProject() {
-    form("The project", '<textarea placeholder="A few lines about your product, timeline, budget…"></textarea>', "Send it ↗", function (v) {
-      answers.project = v;
-      bubble(v.length > 140 ? v.slice(0, 140) + "…" : v, "you");
-      typing(function () {
-        label("Danny");
-        bubble("Perfect — your email app is opening. Hit send and I'll reply within 24h 🚀");
-        var body = "Hi Danny,%0D%0A%0D%0A" + encodeURIComponent(v) + "%0D%0A%0D%0A" +
-          encodeURIComponent(answers.name) + " — " + encodeURIComponent(answers.email);
-        setTimeout(function () {
-          location.href = "mailto:eliuniversestu@gmail.com?subject=" +
-            encodeURIComponent("Project inquiry — " + answers.name) + "&body=" + body;
-        }, reduce ? 0 : 900);
-      });
-    });
-  }
-
-  [].forEach.call(document.querySelectorAll("[data-hire]"), function (b) {
-    b.addEventListener("click", function (e) {
-      e.preventDefault();
-      hirep.classList.add("open");
-      var mm = document.getElementById("mmenu"); if (mm) mm.classList.remove("open");
-      setTimeout(start, reduce ? 0 : 450);
-    });
   });
-  document.querySelector("[data-hire-close]").addEventListener("click", function () { hirep.classList.remove("open"); });
-  document.addEventListener("keydown", function (e) { if (e.key === "Escape") hirep.classList.remove("open"); });
+
+  /* ---------- mobile sheet ---------- */
+  var pill = document.getElementById("mob-pill");
+  var sheetScrim = document.getElementById("sheet-scrim");
+  function openSheet() { document.body.classList.add("sheet-open"); }
+  function closeSheet() { document.body.classList.remove("sheet-open"); }
+  if (pill) pill.addEventListener("click", function () {
+    document.body.classList.contains("sheet-open") ? closeSheet() : openSheet();
+  });
+  if (sheetScrim) sheetScrim.addEventListener("click", closeSheet);
+
+  /* start the home video muted-paused; play videos only when visible */
+  syncVideos("welcome");
 })();

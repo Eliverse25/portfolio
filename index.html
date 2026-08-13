@@ -2,288 +2,629 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Danny_xs — UI/UX & Product Designer</title>
-<meta name="description" content="Dinh Phan Nhat Nam (Danny), UI/UX & Product Designer. A one-man product design studio — Web3, mobile, education.">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Danny – Product Designer</title>
+<meta name="description" content="Product Designer in Ho Chi Minh City, leading design at Quantum3 Labs. Case studies from Stormbit, Kibble, Qash and PolyPay — plus mobile apps like Prism Pay, Get Goldy and Trùm Chinese.">
+<meta name="theme-color" content="#f8f8f8">
+<link rel="canonical" href="https://dannyxs.com">
+<meta property="og:title" content="Danny – Product Designer">
+<meta property="og:description" content="Product Designer in Ho Chi Minh City, leading design at Quantum3 Labs. Web3 case studies and mobile apps — each project a tab in the sidebar.">
+<meta property="og:url" content="https://dannyxs.com">
+<meta property="og:site_name" content="Danny_xs">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
 <link rel="icon" type="image/png" sizes="512x512" href="assets/favicon-512.png">
-<link rel="apple-touch-icon" href="assets/favicon-180.png">
-<link rel="preload" href="assets/fonts/InstrumentSans.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/styles.css">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/favicon-180.png">
+<link rel="stylesheet" href="assets/styles.css?v=5">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Person","name":"Dinh Phan Nhat Nam","alternateName":"Danny","url":"https://dannyxs.com","jobTitle":"Product Designer","worksFor":{"@type":"Organization","name":"Quantum3 Labs","url":"https://www.quantum3labs.com/"},"address":{"@type":"PostalAddress","addressLocality":"Ho Chi Minh City","addressCountry":"VN"},"email":"mailto:eliuniversestu@gmail.com","description":"Product Designer from Vietnam. Leading design at Quantum3 Labs — Stormbit, Qash, Prism Pay — and building Web3 products end-to-end, design to production."}
+</script>
 </head>
 <body>
 
-<!-- fixed chrome -->
-<div class="brand">Danny_xs<br><span class="tm">UI/UX &amp; Product design™</span></div>
+<div class="bg-gradient" aria-hidden="true"></div>
+<div class="bg-frost" aria-hidden="true"></div>
 
-<nav class="side" aria-label="Main">
-  <a href="#top" data-scroll><svg viewBox="0 0 24 24"><path d="M4 11 12 4l8 7v9H4z"/><path d="M10 20v-5h4v5"/></svg>Home</a>
-  <button type="button" data-drawer><svg viewBox="0 0 24 24"><path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M3 12.5l9 5 9-5"/><path d="M3 17l9 5 9-5"/></svg>Work</button>
-  <a href="#services" data-scroll><svg viewBox="0 0 24 24"><path d="M13 2 5 13h6l-2 9 8-13h-6l2-7z"/></svg>Services</a>
-  <a href="#about" data-scroll><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9 10h.01M15 10h.01"/><path d="M8.5 14.5c1 1.2 2.2 1.8 3.5 1.8s2.5-.6 3.5-1.8"/></svg>About</a>
-  <a href="#contact" data-scroll><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>Contact</a>
-  <a class="hire" href="mailto:eliuniversestu@gmail.com" data-hire><svg viewBox="0 0 24 24"><path d="M22 3 11 13.5"/><path d="M22 3l-7 18-4-7.5L3 9l19-6z"/></svg>Hire me</a>
-</nav>
+<!-- ======================= LEFT SIDEBAR (desktop) ======================= -->
+<aside class="sidebar">
+  <nav class="tabs">
+    <button type="button" class="tab home-tab active" data-goto="welcome">
+      <img src="assets/favicon-32.png" alt="">
+      <span>Home</span>
+    </button>
 
-<div class="legal">Based in Vietnam<br>©2026</div>
+    <button type="button" class="ghead" data-group="g-web3">
+      <span>Web3</span>
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+    </button>
+    <div class="group-items" id="g-web3">
+      <button type="button" class="tab" data-goto="quantum3labs"><img src="assets/icons/quantum3labs.svg" alt=""><span>Quantum3 Labs</span></button>
+      <button type="button" class="tab" data-goto="stormbit"><img src="assets/icons/stormbit.svg" alt=""><span>Stormbit</span></button>
+      <button type="button" class="tab" data-goto="kibble"><img src="assets/icons/kibble.svg" alt=""><span>Kibble Exchange</span></button>
+      <button type="button" class="tab" data-goto="qash"><img src="assets/icons/qash.svg" alt=""><span>Qash</span></button>
+      <button type="button" class="tab" data-goto="polypay"><img src="assets/icons/polypay.svg" alt=""><span>PolyPay</span></button>
+    </div>
 
-<div class="topbar">
-  <span>Danny_xs</span>
-  <button type="button" data-menu>Menu</button>
-</div>
+    <button type="button" class="ghead" data-group="g-mobile">
+      <span>Mobile Apps</span>
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+    </button>
+    <div class="group-items" id="g-mobile">
+      <button type="button" class="tab" data-goto="prismpay"><img src="assets/icons/prismpay.svg" alt=""><span>Prism Pay</span></button>
+      <button type="button" class="tab" data-goto="getgoldy"><img src="assets/icons/getgoldy.svg" alt=""><span>Get Goldy</span></button>
+      <button type="button" class="tab" data-goto="oneplan"><img src="assets/icons/oneplan.svg" alt=""><span>OnePlan Travel</span></button>
+      <button type="button" class="tab" data-goto="trumchinese"><img src="assets/icons/trumchinese.svg" alt=""><span>Trùm Chinese</span></button>
+      <button type="button" class="tab" data-goto="gearrunner"><img src="assets/icons/gearrunner.svg" alt=""><span>Gear Runner</span></button>
+    </div>
+    <div style="height:24px"></div>
+  </nav>
 
-<!-- chevron pill -->
-<button class="more" type="button" aria-label="Scroll to content">
-  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m3 3.5 5 4 5-4M3 8.5l5 4 5-4"/></svg>
-</button>
-
-<!-- internal scroll -->
-<div class="scroll" id="scroll">
-
-  <!-- IMAGE WALL -->
-  <div class="wall" id="top" aria-label="Selected visuals from shipped projects">
-    <a><img src="assets/wall/t01.webp?v=3" alt="" loading="eager"></a>
-    <a><img src="assets/wall/t02.webp?v=3" alt="" loading="eager"></a>
-    <a><img src="assets/wall/t03.webp?v=3" alt="" loading="eager"></a>
-    <a><img src="assets/wall/t04.webp?v=3" alt="" loading="eager"></a>
-    <a><img src="assets/wall/t05.webp?v=3" alt="" loading="eager"></a>
-    <a><img src="assets/wall/t06.webp?v=3" alt="" loading="eager"></a>
-    <a><img src="assets/wall/t07.webp?v=3" alt="" loading="eager"></a>
-    <a><img src="assets/wall/t08.webp?v=3" alt="" loading="eager"></a>
-    <a><img src="assets/wall/t09.webp?v=3" alt="" loading="eager"></a>
-    <a><img src="assets/wall/t10.webp?v=3" alt="" loading="eager"></a>
-    <a><img src="assets/wall/t11.webp?v=3" alt="" loading="eager"></a>
-    <a><img src="assets/wall/t12.webp?v=3" alt="" loading="eager"></a>
-    <a><img src="assets/wall/t13.webp?v=3" alt="" loading="eager"></a>
-    <a><img src="assets/wall/t14.webp?v=3" alt="" loading="eager"></a>
-    <a><img src="assets/wall/t15.webp?v=3" alt="" loading="eager"></a>
-    <a><img src="assets/wall/t16.webp?v=3" alt="" loading="eager"></a>
-    <a><img src="assets/wall/t17.webp?v=3" alt="" loading="eager"></a>
-    <a><img src="assets/wall/t18.webp?v=3" alt="" loading="eager"></a>
-    <a><img src="assets/wall/t19.webp?v=3" alt="" loading="eager"></a>
-    <a><img src="assets/wall/t20.webp?v=3" alt="" loading="eager"></a>
-    <a><img src="assets/wall/t21.webp?v=3" alt="" loading="eager"></a>
-    <a><img src="assets/wall/t22.webp?v=3" alt="" loading="lazy"></a>
-    <a><img src="assets/wall/t23.webp?v=3" alt="" loading="lazy"></a>
-    <a><img src="assets/wall/t24.webp?v=3" alt="" loading="lazy"></a>
-    <a><img src="assets/wall/t25.webp?v=3" alt="" loading="lazy"></a>
-    <a><img src="assets/wall/t26.webp?v=3" alt="" loading="lazy"></a>
-    <a><img src="assets/wall/t27.webp?v=3" alt="" loading="lazy"></a>
-    <a><img src="assets/wall/t28.webp?v=3" alt="" loading="lazy"></a>
-    <a><img src="assets/wall/t29.webp?v=3" alt="" loading="lazy"></a>
-    <a><img src="assets/wall/t30.webp?v=3" alt="" loading="lazy"></a>
-    <a><img src="assets/wall/t31.webp?v=3" alt="" loading="lazy"></a>
-    <a><img src="assets/wall/t32.webp?v=3" alt="" loading="lazy"></a>
-    <a><img src="assets/wall/t33.webp?v=3" alt="" loading="lazy"></a>
-    <a><img src="assets/wall/t34.webp?v=3" alt="" loading="lazy"></a>
-    <a><img src="assets/wall/t35.webp?v=3" alt="" loading="lazy"></a>
-    <a><img src="assets/wall/t36.webp?v=3" alt="" loading="lazy"></a>
-    <a><img src="assets/wall/t37.webp?v=3" alt="" loading="lazy"></a>
-    <a><img src="assets/wall/t38.webp?v=3" alt="" loading="lazy"></a>
-    <a><img src="assets/wall/t39.webp?v=3" alt="" loading="lazy"></a>
-    <a><img src="assets/wall/t40.webp?v=3" alt="" loading="lazy"></a>
-    <a><img src="assets/wall/t41.webp?v=3" alt="" loading="lazy"></a>
-    <a><img src="assets/wall/t42.webp?v=3" alt="" loading="lazy"></a>
-    <a><img src="assets/wall/t43.webp?v=3" alt="" loading="lazy"></a>
-    <a><img src="assets/wall/t44.webp?v=3" alt="" loading="lazy"></a>
-    <a><img src="assets/wall/t45.webp?v=3" alt="" loading="lazy"></a>
-    <a><img src="assets/wall/t46.webp?v=3" alt="" loading="lazy"></a>
-    <a><img src="assets/wall/t47.webp?v=3" alt="" loading="lazy"></a>
-    <a><img src="assets/wall/t48.webp?v=3" alt="" loading="lazy"></a>
+  <div class="me-wrap">
+    <div class="me-menu" id="me-menu" hidden>
+      <button type="button" data-about>
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        About
+      </button>
+      <a href="assets/CV-2026.pdf" target="_blank" rel="noreferrer" download="DinhPhanNhatNam_CV-2026.pdf">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg>
+        CV
+      </a>
+      <button type="button" class="copybtn" data-copy-email title="eliuniversestu@gmail.com">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg>
+        <span class="lbl">Email</span><span class="ok" aria-hidden="true">Copied</span>
+      </button>
+    </div>
+    <button type="button" class="me-btn" id="me-btn">
+      <img src="assets/favicon-512.png" alt="Danny">
+      <span class="me-name"><b>Danny</b><i>Product Designer</i></span>
+    </button>
   </div>
-
-  <!-- STUDIO -->
-  <section class="studio" id="studio">
-    <h1 class="rv">Danny_xs. A one-man product design studio. Open for work.</h1>
-    <button class="pill rv" type="button" data-reel><span class="tri"></span>Watch the reel</button>
-    <div class="reel rv">
-      <video src="assets/reel.mp4" poster="assets/reel-poster.webp" muted loop playsinline preload="metadata"></video>
-    </div>
-    <div class="cols">
-      <p class="rv">Allies to startups and global teams alike — I help founders craft Web3, mobile and education products people can&apos;t help but love.</p>
-      <p class="rv">Nearly 5 years, 30+ shipped products, one 700k-player minigame. Insight, vision, design, execution — with intent at every step.</p>
-    </div>
-  </section>
-
-  <!-- SERVICES -->
-  <section class="sec" id="services">
-    <p class="kicker rv">Services</p>
-    <h2 class="rv">From first spark to final experience.</h2>
-    <div class="chips rv">
-      <span>Product design</span><span>UI/UX</span><span>Branding</span>
-      <span>Landing pages</span><span>Banner design</span><span>Concept development</span>
-      <span>Design team leadership</span>
-    </div>
-  </section>
-
-  <!-- ABOUT -->
-  <section class="sec" id="about">
-    <p class="kicker rv">About</p>
-    <h2 class="rv">Dinh Phan Nhat Nam — UI/UX &amp; product designer, design team leader, based in Vietnam.</h2>
-    <div class="about-stats rv">
-      <div><div class="num">5+</div><div class="lbl">Years designing</div></div>
-      <div><div class="num">30+</div><div class="lbl">Products shipped</div></div>
-      <div><div class="num">700k</div><div class="lbl">Players reached</div></div>
-    </div>
-    <ul class="rec rv">
-      <li><span class="t">Awwwards <span class="x">×2</span></span><span class="d">Certificates</span></li>
-      <li><span class="t">Superteam Malaysia</span><span class="d">Top 3 · Shirt design</span></li>
-      <li><span class="t">Kibble minigame</span><span class="d">700k players in one week</span></li>
-      <li><span class="t">Trùm Chinese</span><span class="d">4.8★ · Top 5 education in Vietnam</span></li>
-    </ul>
-  </section>
-
-  <!-- EXPERIENCE -->
-  <section class="sec" id="experience">
-    <p class="kicker rv">Experience</p>
-    <h2 class="rv">Where I&apos;ve worked.</h2>
-    <ul class="xp rv">
-      <li>
-        <span class="when">Oct 2024 — Present</span>
-        <span><span class="co">Quantum3labs — Stormbit</span><div class="role">Product Designer · Design Lead</div></span>
-        <span class="desc">Crypto finance products: Stormbit insured vaults, Qash payroll and Prism QR payments. Leading a 3-person design team, closely involved in feature development.</span>
-      </li>
-      <li>
-        <span class="when">Aug 2023 — Jan 2025</span>
-        <span><span class="co">Orbit Technology</span><div class="role">Design Team Lead</div></span>
-        <span class="desc">First role in crypto; led a team of four. Launched the Kibble Clicker minigame on TON — 700k+ users within a week — while Kibble Exchange raised $5M+ in VC funding. Also designed campaign banners with the marketing team.</span>
-      </li>
-      <li>
-        <span class="when">Dec 2022 — Jul 2023</span>
-        <span><span class="co">iLotusLand — Viet An Group</span><div class="role">UI/UX Designer</div></span>
-        <span class="desc">IoT environmental monitoring with the top market share in Vietnam. Built product mindset working directly with Product Owners, BAs, QA and DevOps.</span>
-      </li>
-      <li>
-        <span class="when">Nov 2021 — Dec 2022</span>
-        <span><span class="co">8X land</span><div class="role">UI/UX Designer</div></span>
-        <span class="desc">Real-estate app for searching and filtering properties — first role after graduating from FPT University.</span>
-      </li>
-    </ul>
-    <p class="xp-meta rv">Education: Digital Art &amp; Design — FPT University · Tools: Figma, Adobe Suite, CapCut · Languages: Vietnamese, English</p>
-    <a class="pill rv" href="assets/CV-2026.pdf" download="DinhPhanNhatNam_CV-2026.pdf">Download CV &darr;</a>
-  </section>
-
-  <!-- CONTACT -->
-  <section class="sec contact" id="contact">
-    <p class="kicker rv">Contact</p>
-    <h2 class="rv">Say hello.</h2>
-    <a class="pill rv" href="mailto:eliuniversestu@gmail.com" data-hire>Hire me</a>
-    <div class="socials rv">
-      <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer">LinkedIn</a>
-      <a href="https://x.com/" target="_blank" rel="noreferrer">Twitter</a>
-      <a href="https://t.me/" target="_blank" rel="noreferrer">Telegram</a>
-      <a href="https://wa.me/" target="_blank" rel="noreferrer">WhatsApp</a>
-    </div>
-    <p class="footnote rv">©2026 Dinh Phan Nhat Nam · Available for freelance from $30/h · Ho Chi Minh City</p>
-  </section>
-
-</div>
-
-<!-- WORK DRAWER -->
-<div class="scrim" id="scrim"></div>
-<aside class="drawer" id="drawer" aria-label="Work">
-  <div class="drawer__head">
-    <h3>Work</h3>
-    <button class="drawer__close" type="button" data-close>Close</button>
-  </div>
-  <div class="tabs" role="tablist">
-    <button role="tab" aria-selected="true" data-tab="all">All</button>
-    <button role="tab" aria-selected="false" data-tab="web3">Web3</button>
-    <button role="tab" aria-selected="false" data-tab="mobile">Mobile</button>
-  </div>
-  <div class="drawer__grid">
-    <a class="dcard" data-project="quantum3labs" data-cat="web3" href="https://www.quantum3labs.com/" target="_blank" rel="noreferrer">
-      <div class="thumb"><img src="assets/work/quantum3labs.webp" alt="Quantum3 Labs" loading="lazy"></div>
-      <div class="nm">Quantum3 Labs</div><div class="ct">Web3 · Studio</div>
-    </a>
-    <a class="dcard" data-project="stormbit" data-cat="web3" href="https://stormbit.finance" target="_blank" rel="noreferrer">
-      <div class="thumb"><img src="assets/work/stormbit.webp" alt="Stormbit" loading="lazy"></div>
-      <div class="nm">Stormbit</div><div class="ct">Web3 · DeFi</div>
-    </a>
-    <a class="dcard" data-project="kibble" data-cat="web3" href="https://kibble.exchange" target="_blank" rel="noreferrer">
-      <div class="thumb"><img src="assets/work/kibble.webp" alt="Kibble" loading="lazy"></div>
-      <div class="nm">Kibble</div><div class="ct">Web3 · DEX</div>
-    </a>
-    <a class="dcard" data-project="qash" data-cat="web3" href="https://qash-landing.vercel.app/" target="_blank" rel="noreferrer">
-      <div class="thumb"><img src="assets/work/qash.webp" alt="Qash" loading="lazy"></div>
-      <div class="nm">Qash</div><div class="ct">Web3 · Finance</div>
-    </a>
-    <a class="dcard" data-project="polypay" data-cat="web3" href="https://polypay.pro/" target="_blank" rel="noreferrer">
-      <div class="thumb"><img src="assets/work/polypay.webp" alt="PolyPay" loading="lazy"></div>
-      <div class="nm">PolyPay</div><div class="ct">Web3 · Payments</div>
-    </a>
-    <a class="dcard" data-project="oneplan" data-cat="mobile" href="https://apps.apple.com/vn/app/oneplan-travel/id6761648165" target="_blank" rel="noreferrer">
-      <div class="thumb"><img src="assets/work/oneplan.webp" alt="OnePlan Travel" loading="lazy"></div>
-      <div class="nm">OnePlan Travel</div><div class="ct">Mobile · Travel</div>
-    </a>
-    <a class="dcard" data-project="trumchinese" data-cat="mobile" href="https://apps.apple.com/vn/app/tr%C3%B9m-chinese-ti%E1%BA%BFng-trung-hsk/id6468914724" target="_blank" rel="noreferrer">
-      <div class="thumb"><img src="assets/work/trumchinese.webp" alt="Trùm Chinese" loading="lazy"></div>
-      <div class="nm">Trùm Chinese</div><div class="ct">Mobile · Education</div>
-    </a>
-    <a class="dcard" data-project="gearrunner" data-cat="mobile" href="https://apps.apple.com/vn/app/gear-runner/id6758157431" target="_blank" rel="noreferrer">
-      <div class="thumb"><img src="assets/work/gearrunner.webp" alt="Gear Runner" loading="lazy"></div>
-      <div class="nm">Gear Runner</div><div class="ct">Mobile · Game</div>
-    </a>
-    <a class="dcard" data-project="prismpay" data-cat="mobile" href="#">
-      <div class="thumb"><img src="assets/work/prismpay.webp" alt="Prism Pay" loading="lazy"></div>
-      <div class="nm">Prism Pay</div><div class="ct">Mobile · Payments</div>
-    </a>
-    <a class="dcard" data-project="getgoldy" data-cat="mobile" href="#">
-      <div class="thumb"><img src="assets/work/getgoldy.webp" alt="Get Goldy" loading="lazy"></div>
-      <div class="nm">Get Goldy</div><div class="ct">Mobile · Fintech</div>
-    </a>
-  </div>
-
 </aside>
 
-<!-- project detail: second panel to the RIGHT of the drawer -->
-<div class="dview" id="dview">
-  <div class="dview__head">
-    <button class="dview__back" type="button" data-back>&larr; Back</button>
-    <button class="drawer__close" type="button" data-close>Close</button>
-  </div>
-  <div class="dview__body">
-    <div class="dview__cover"><img id="dv-img" src="" alt=""></div>
-    <h4 id="dv-name"></h4>
-    <div class="meta" id="dv-meta"></div>
-    <p class="sum" id="dv-sum"></p>
-    <div class="did-t">What I did</div>
-    <ul id="dv-did"></ul>
-    <p class="note" id="dv-note"></p>
-    <div class="stores" id="dv-stores">
-      <a class="store" id="dv-appstore" href="#" target="_blank" rel="noreferrer">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
-        <span><small>Download on the</small><b>App Store</b></span>
+<!-- ======================= MOBILE PILL + SHEET ======================= -->
+<button type="button" class="mob-pill" id="mob-pill" aria-haspopup="dialog">
+  <img src="assets/favicon-32.png" alt="" id="pill-icon">
+  <b id="pill-label">Home</b>
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m18 15-6-6-6 6"/></svg>
+</button>
+<div class="sheet-scrim" id="sheet-scrim"></div>
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-label="Open a project">
+  <nav>
+    <button type="button" class="s-row cur" data-goto="welcome"><img src="assets/favicon-32.png" alt="">Home</button>
+    <div class="s-ghead">Web3</div>
+    <button type="button" class="s-row" data-goto="quantum3labs"><img src="assets/icons/quantum3labs.svg" alt="">Quantum3 Labs</button>
+    <button type="button" class="s-row" data-goto="stormbit"><img src="assets/icons/stormbit.svg" alt="">Stormbit</button>
+    <button type="button" class="s-row" data-goto="kibble"><img src="assets/icons/kibble.svg" alt="">Kibble Exchange</button>
+    <button type="button" class="s-row" data-goto="qash"><img src="assets/icons/qash.svg" alt="">Qash</button>
+    <button type="button" class="s-row" data-goto="polypay"><img src="assets/icons/polypay.svg" alt="">PolyPay</button>
+    <div class="s-ghead">Mobile Apps</div>
+    <button type="button" class="s-row" data-goto="prismpay"><img src="assets/icons/prismpay.svg" alt="">Prism Pay</button>
+    <button type="button" class="s-row" data-goto="getgoldy"><img src="assets/icons/getgoldy.svg" alt="">Get Goldy</button>
+    <button type="button" class="s-row" data-goto="oneplan"><img src="assets/icons/oneplan.svg" alt="">OnePlan Travel</button>
+    <button type="button" class="s-row" data-goto="trumchinese"><img src="assets/icons/trumchinese.svg" alt="">Trùm Chinese</button>
+    <button type="button" class="s-row" data-goto="gearrunner"><img src="assets/icons/gearrunner.svg" alt="">Gear Runner</button>
+    <div class="s-extra">
+      <button type="button" class="s-row" data-about>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        About
+      </button>
+      <a class="s-row" href="assets/CV-2026.pdf" target="_blank" rel="noreferrer" download="DinhPhanNhatNam_CV-2026.pdf">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg>
+        CV
       </a>
-      <a class="store" id="dv-gplay" href="#" target="_blank" rel="noreferrer">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22.018 13.298l-3.919 2.218-3.515-3.493 3.543-3.521 3.891 2.202a1.49 1.49 0 0 1 0 2.594zM1.337.924a1.486 1.486 0 0 0-.112.568v21.017c0 .217.045.419.124.6l11.155-11.087L1.337.924zm12.207 10.065l3.258-3.238L3.45.195a1.466 1.466 0 0 0-.946-.179l11.04 10.973zm0 2.067l-11 10.933c.298.036.612-.016.906-.183l13.324-7.54-3.23-3.21z"/></svg>
-        <span><small>Get it on</small><b>Google Play</b></span>
-      </a>
+      <button type="button" class="s-row copybtn" data-copy-email title="eliuniversestu@gmail.com">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg>
+        <span class="lbl">Email</span><span class="ok" aria-hidden="true">Copied</span>
+      </button>
     </div>
-    <a class="pill visit" id="dv-link" href="#" target="_blank" rel="noreferrer">Visit live &nearr;</a>
+  </nav>
+</div>
+
+<main id="main">
+
+  <!-- ======================= MOBILE HOME ======================= -->
+  <div class="mob-home" id="mob-home">
+    <p class="clockline" data-clock></p>
+    <div class="hello">
+      <h1 aria-label="Hi, I'm Danny!"><img class="mark" src="assets/favicon-180.png" alt=""><span data-typed></span><span class="caret" aria-hidden="true"></span></h1>
+      <p class="sub">Product Designer based in Ho Chi Minh City. Currently leading design at <a class="txtlink" href="https://www.quantum3labs.com/" target="_blank" rel="noreferrer">Quantum3 Labs</a>. From first spark to final experience, every step is shaped with intent.</p>
+    </div>
+    <nav class="mob-list">
+      <div class="m-ghead">Web3</div>
+      <button type="button" class="m-row" data-goto="quantum3labs"><img src="assets/icons/quantum3labs.svg" alt=""><span class="m-txt"><b>Quantum3 Labs</b><i>The studio where I lead design</i></span></button>
+      <button type="button" class="m-row" data-goto="stormbit"><img src="assets/icons/stormbit.svg" alt=""><span class="m-txt"><b>Stormbit</b><i>From brand identity to a global DeFi launch</i></span></button>
+      <button type="button" class="m-row" data-goto="kibble"><img src="assets/icons/kibble.svg" alt=""><span class="m-txt"><b>Kibble Exchange</b><i>A DEX with a 700k-player minigame</i></span></button>
+      <button type="button" class="m-row" data-goto="qash"><img src="assets/icons/qash.svg" alt=""><span class="m-txt"><b>Qash</b><i>Vaults, yield and a landing that sells</i></span></button>
+      <button type="button" class="m-row" data-goto="polypay"><img src="assets/icons/polypay.svg" alt=""><span class="m-txt"><b>PolyPay</b><i>Crypto payroll, from MVP to launch</i></span></button>
+      <div class="m-ghead">Mobile Apps</div>
+      <button type="button" class="m-row" data-goto="prismpay"><img src="assets/icons/prismpay.svg" alt=""><span class="m-txt"><b>Prism Pay</b><i>Pay with crypto, as easy as a QR</i></span></button>
+      <button type="button" class="m-row" data-goto="getgoldy"><img src="assets/icons/getgoldy.svg" alt=""><span class="m-txt"><b>Get Goldy</b><i>Gold savings, piece by piece</i></span></button>
+      <button type="button" class="m-row" data-goto="oneplan"><img src="assets/icons/oneplan.svg" alt=""><span class="m-txt"><b>OnePlan Travel</b><i>Group travel, planned together</i></span></button>
+      <button type="button" class="m-row" data-goto="trumchinese"><img src="assets/icons/trumchinese.svg" alt=""><span class="m-txt"><b>Trùm Chinese</b><i>Chinese through stories and AI</i></span></button>
+      <button type="button" class="m-row" data-goto="gearrunner"><img src="assets/icons/gearrunner.svg" alt=""><span class="m-txt"><b>Gear Runner</b><i>Move-to-earn game UI</i></span></button>
+    </nav>
+    <div class="homelinks">
+      <a href="assets/CV-2026.pdf" target="_blank" rel="noreferrer" download="DinhPhanNhatNam_CV-2026.pdf">CV</a>
+      <button type="button" class="copybtn" data-copy-email title="eliuniversestu@gmail.com" aria-label="Copy email address"><span class="lbl">Email</span><span class="ok" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Copied</span></button>
+      <a href="#" rel="noreferrer">LinkedIn</a>
+      <a href="#" rel="noreferrer">X</a>
+      <a href="#" rel="noreferrer">Telegram</a>
+    </div>
+  </div>
+
+  <!-- ======================= MOBILE ABOUT ======================= -->
+  <section id="mob-about" class="mob-about">
+    <button type="button" class="backbtn" data-back aria-label="Back to Home">
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+    </button>
+    <div class="photo">
+      <img src="assets/work/stormbit.webp" alt="Stormbit, designed and built by Danny">
+      <span class="cap">Stormbit, 2025</span>
+    </div>
+    <div class="letter-flat">
+      <p class="dear">Dear visitor,</p>
+      <div class="body" data-letter></div>
+    </div>
+  </section>
+
+  <!-- ======================= HOME ======================= -->
+  <section id="welcome" class="page seen">
+    <div class="stage">
+      <p class="clockline" data-clock></p>
+      <div class="home-inner">
+        <div class="hello">
+          <h1 aria-label="Hi, I'm Danny!"><img class="mark" src="assets/favicon-180.png" alt=""><span data-typed></span><span class="caret" aria-hidden="true"></span></h1>
+          <p class="sub">Product Designer based in Ho Chi Minh City. Currently leading design at <a class="txtlink" href="https://www.quantum3labs.com/" target="_blank" rel="noreferrer">Quantum3 Labs</a>.<br>From first spark to final experience, every step is shaped with intent.</p>
+        </div>
+        <div class="omni-wrap" id="omni-wrap">
+          <div class="omni" id="omni">
+            <svg class="lens" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
+            <input type="text" id="omni-input" placeholder="Try “Stormbit”…" autocomplete="off" spellcheck="false">
+            <button type="button" class="clear" aria-label="Clear search"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button>
+            <span class="kbd">⌘ K</span>
+          </div>
+          <div class="omni-drop" id="omni-drop" hidden>
+            <div class="omni-list" id="omni-list"></div>
+            <div class="omni-hints"><span>↵ open</span><span>↑↓ navigate</span><span>esc close</span></div>
+          </div>
+        </div>
+        <div class="featured">
+          <span class="f-label">Featured work</span>
+          <div class="f-grid">
+            <button type="button" class="f-card" data-goto="stormbit">
+              <span class="glow" aria-hidden="true" style="background:radial-gradient(100% 60% at 50% 100%, rgba(199,187,245,.55) 0%, transparent 65%)"></span>
+              <img src="assets/icons/stormbit.svg" alt="">
+              <span class="f-txt"><b>Stormbit</b><p>From brand identity to a global DeFi launch</p><i>Web3 · 2025</i></span>
+            </button>
+            <button type="button" class="f-card" data-goto="prismpay">
+              <span class="glow" aria-hidden="true" style="background:radial-gradient(100% 60% at 50% 100%, rgba(244,178,153,.55) 0%, transparent 65%)"></span>
+              <img src="assets/icons/prismpay.svg" alt="">
+              <span class="f-txt"><b>Prism Pay</b><p>Pay with crypto, as easy as a QR</p><i>Mobile · 2025</i></span>
+            </button>
+            <button type="button" class="f-card" data-goto="trumchinese">
+              <span class="glow" aria-hidden="true" style="background:radial-gradient(100% 60% at 50% 100%, rgba(233,213,176,.55) 0%, transparent 65%)"></span>
+              <img src="assets/icons/trumchinese.svg" alt="">
+              <span class="f-txt"><b>Trùm Chinese</b><p>4.8★ and top-5 education in Vietnam</p><i>Mobile · 2024</i></span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="homelinks">
+        <a href="assets/CV-2026.pdf" target="_blank" rel="noreferrer" download="DinhPhanNhatNam_CV-2026.pdf">CV</a>
+        <button type="button" class="copybtn" data-copy-email title="eliuniversestu@gmail.com" aria-label="Copy email address"><span class="lbl">Email</span><span class="ok" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Copied</span></button>
+        <a href="#" rel="noreferrer">LinkedIn</a>
+        <a href="#" rel="noreferrer">X</a>
+        <a href="#" rel="noreferrer">Telegram</a>
+      </div>
+    </div>
+    <aside class="rail">
+      <div class="chip rv">
+        <img src="assets/favicon-32.png" alt="">
+        <span class="c-txt"><b>Home</b><i>dannyxs.com</i></span>
+      </div>
+      <div class="story rv d1">
+        <p>This layout is inspired by the productivity tools I use to design and ship every day.</p>
+        <p>Each project is a tab in the sidebar. Click one to open it, or keep scrolling to move through them. Use Search to jump straight to any project.</p>
+        <p>Looking for my experience? It's all in the <a class="txtlink" href="assets/CV-2026.pdf" target="_blank" rel="noreferrer" download="DinhPhanNhatNam_CV-2026.pdf">CV</a>.</p>
+        <p>Want to know more? Open the <button type="button" class="txtlink" data-about>About</button> section. In short: I design Web3 and mobile products — and build them myself, no frontend developers involved.</p>
+      </div>
+      <div class="facts rv d2">
+        <div class="row"><span class="k">Click a tab</span><span class="v">Opens a project</span></div>
+        <div class="row"><span class="k">Scroll</span><span class="v">Flips the pages</span></div>
+        <div class="row"><span class="k">Search</span><span class="v">Jumps anywhere</span></div>
+      </div>
+    </aside>
+  </section>
+
+  <!-- ======================= QUANTUM3 LABS ======================= -->
+  <section id="quantum3labs" class="page proj">
+    <button type="button" class="backbtn mob-only" data-back aria-label="Back to Home"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></button>
+    <div class="stage stage-video">
+      <video class="vbg" src="assets/reel.mp4" muted loop playsinline aria-hidden="true"></video>
+      <video class="vmain" src="assets/reel.mp4" poster="assets/reel-poster.webp" muted loop playsinline></video>
+      <div class="vctrl">
+        <button type="button" class="pp" aria-label="Play the Quantum3 Labs reel" title="Play">
+          <svg class="i-play" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z"/></svg>
+          <svg class="i-pause" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="14" y="3" width="5" height="18" rx="1"/><rect x="5" y="3" width="5" height="18" rx="1"/></svg>
+        </button>
+        <div class="seek" role="slider" tabindex="0" aria-label="Seek the reel" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+          <div class="track"><div class="fill"></div><span class="knob" aria-hidden="true"></span></div>
+        </div>
+      </div>
+    </div>
+    <aside class="rail">
+      <div class="chip rv"><img src="assets/icons/quantum3labs.svg" alt=""><span class="c-txt"><b>Quantum3 Labs</b><i>Web3 · Studio</i></span></div>
+      <div class="story rv d1">
+        <p>Quantum3 Labs is the Web3 studio behind Stormbit, Qash and Prism Pay — and the place where I lead design across the whole product suite.</p>
+        <p>I set the design direction for every product, shape the studio's website and brand touchpoints, and work hand-in-hand with engineering on every release.</p>
+        <p class="note">Built solo, end-to-end: from the first design to the live product — no frontend developers involved.</p>
+      </div>
+      <div class="facts rv d2">
+        <div class="row"><span class="k">Contributions</span><span class="v">Design lead, Product</span></div>
+        <div class="row"><span class="k">Year</span><span class="v">2024 – Present</span></div>
+        <div class="row"><span class="k">Site</span><a class="v" href="https://www.quantum3labs.com/" target="_blank" rel="noreferrer">quantum3labs.com</a></div>
+      </div>
+    </aside>
+  </section>
+
+  <!-- ======================= STORMBIT ======================= -->
+  <section id="stormbit" class="page proj">
+    <button type="button" class="backbtn mob-only" data-back aria-label="Back to Home"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></button>
+    <div class="stage stage-media" data-viewer style="--mobh:62vw">
+      <div class="canvasarea">
+        <div class="shots framed" data-shots role="button" tabindex="0" aria-label="Stormbit — next view">
+          <div class="shot on"><img src="assets/wall/t07.webp" alt="Stormbit — Borrow" loading="lazy"></div>
+          <div class="shot"><img src="assets/wall/t44.webp" alt="Stormbit — Vaults" loading="lazy"></div>
+          <div class="shot"><img src="assets/wall/t17.webp" alt="Stormbit — ETHCC campaign" loading="lazy"></div>
+          <div class="shot"><img src="assets/wall/t28.webp" alt="Stormbit — launch banner" loading="lazy"></div>
+        </div>
+      </div>
+      <div class="ctlrow">
+        <div class="segbar" data-seg>
+          <button type="button" class="on"><span class="t">Product</span></button>
+          <button type="button"><span class="t">Vaults</span></button>
+          <button type="button"><span class="t">Campaign</span></button>
+          <button type="button"><span class="t">Launch</span></button>
+        </div>
+        <span class="fswrap"><button type="button" class="fsbtn" data-fullscreen aria-label="Stormbit — open full screen" title="Open full screen"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="m21 3-7 7"/><path d="m3 21 7-7"/><path d="M9 21H3v-6"/></svg></button></span>
+      </div>
+    </div>
+    <aside class="rail">
+      <div class="chip rv"><img src="assets/icons/stormbit.svg" alt=""><span class="c-txt"><b>Stormbit</b><i>Web3 · DeFi</i></span></div>
+      <div class="story rv d1">
+        <p>A full-cycle Web3 finance product: from brand identity to a lending and earning experience built for a global launch at ETHCC Cannes.</p>
+        <p>I created the brand identity and the lightning mark, designed the end-to-end UI/UX for the earn and borrow flows, and produced the launch campaign and event key visuals.</p>
+        <p class="note">Built solo, end-to-end: from the first design to the live product — no frontend developers involved.</p>
+      </div>
+      <div class="facts rv d2">
+        <div class="row"><span class="k">Contributions</span><span class="v">Branding, UI/UX, Product</span></div>
+        <div class="row"><span class="k">Year</span><span class="v">2025</span></div>
+        <div class="row"><span class="k">Site</span><a class="v" href="https://stormbit.finance" target="_blank" rel="noreferrer">stormbit.finance</a></div>
+      </div>
+    </aside>
+  </section>
+
+  <!-- ======================= KIBBLE ======================= -->
+  <section id="kibble" class="page proj">
+    <button type="button" class="backbtn mob-only" data-back aria-label="Back to Home"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></button>
+    <div class="stage stage-media" data-viewer data-flow style="--mobh:64svh">
+      <div class="canvasarea">
+        <div class="shots phones" data-shots role="button" tabindex="0" aria-label="Kibble — next screen">
+          <div class="shot on"><img src="assets/wall/t03.webp" alt="Kibble — swap interface" loading="lazy"></div>
+          <div class="shot"><img src="assets/wall/t45.webp" alt="Kibble — Telegram minigame" loading="lazy"></div>
+        </div>
+        <button type="button" class="nextbtn" data-next aria-label="Kibble — next screen"><span class="halo" aria-hidden="true"></span><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button>
+      </div>
+      <div class="ctlrow">
+        <div class="segbar" data-seg>
+          <button type="button" class="on"><span class="n">1</span><span class="t">Swap</span></button>
+          <button type="button"><span class="n">2</span><span class="t">Minigame</span></button>
+        </div>
+      </div>
+    </div>
+    <aside class="rail">
+      <div class="chip rv"><img src="assets/icons/kibble.svg" alt=""><span class="c-txt"><b>Kibble Exchange</b><i>Web3 · DEX on TON</i></span></div>
+      <div class="story rv d1">
+        <p>A decentralized exchange on the TON network, paired with a Telegram minigame that reached 700,000 players in its first week.</p>
+        <p>I designed the swap and trading interface, the minigame's UX and onboarding, and the event branding for TON Meetup Vietnam 2024.</p>
+      </div>
+      <div class="facts rv d2">
+        <div class="row"><span class="k">Minigame players</span><span class="v">700k in week one</span></div>
+        <div class="row"><span class="k">Contributions</span><span class="v">UI/UX, Game design</span></div>
+        <div class="row"><span class="k">Year</span><span class="v">2024</span></div>
+        <div class="row"><span class="k">Site</span><a class="v" href="https://kibble.exchange" target="_blank" rel="noreferrer">kibble.exchange</a></div>
+      </div>
+    </aside>
+  </section>
+
+  <!-- ======================= QASH ======================= -->
+  <section id="qash" class="page proj">
+    <button type="button" class="backbtn mob-only" data-back aria-label="Back to Home"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></button>
+    <div class="stage stage-media" data-viewer style="--mobh:62vw">
+      <div class="canvasarea">
+        <div class="shots framed" data-shots role="button" tabindex="0" aria-label="Qash — next view">
+          <div class="shot on"><img src="assets/wall/t24.webp" alt="Qash — vaults dashboard" loading="lazy"></div>
+          <div class="shot"><img src="assets/wall/t33.webp" alt="Qash — Token2049 campaign" loading="lazy"></div>
+          <div class="shot"><img src="assets/wall/t42.webp" alt="Qash — solutions deck" loading="lazy"></div>
+        </div>
+      </div>
+      <div class="ctlrow">
+        <div class="segbar" data-seg>
+          <button type="button" class="on"><span class="t">Product</span></button>
+          <button type="button"><span class="t">Campaign</span></button>
+          <button type="button"><span class="t">Deck</span></button>
+        </div>
+        <span class="fswrap"><button type="button" class="fsbtn" data-fullscreen aria-label="Qash — open full screen" title="Open full screen"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="m21 3-7 7"/><path d="m3 21 7-7"/><path d="M9 21H3v-6"/></svg></button></span>
+      </div>
+    </div>
+    <aside class="rail">
+      <div class="chip rv"><img src="assets/icons/qash.svg" alt=""><span class="c-txt"><b>Qash</b><i>Web3 · Finance</i></span></div>
+      <div class="story rv d1">
+        <p>Landing page design, banner systems and design team leadership for a Web3 finance platform built around vaults and yield.</p>
+        <p>I designed the landing page and marketing visuals, built the banner system that runs across campaigns, and led the design team and reviews.</p>
+        <p class="note">Built solo, end-to-end: from the first design to the live product — no frontend developers involved.</p>
+      </div>
+      <div class="facts rv d2">
+        <div class="row"><span class="k">Contributions</span><span class="v">Landing, Banners, Team lead</span></div>
+        <div class="row"><span class="k">Year</span><span class="v">2026</span></div>
+        <div class="row"><span class="k">Site</span><a class="v" href="https://www.qash.finance/" target="_blank" rel="noreferrer">qash.finance</a></div>
+      </div>
+    </aside>
+  </section>
+
+  <!-- ======================= POLYPAY ======================= -->
+  <section id="polypay" class="page proj">
+    <button type="button" class="backbtn mob-only" data-back aria-label="Back to Home"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></button>
+    <div class="stage stage-media" data-viewer style="--mobh:62vw">
+      <div class="canvasarea">
+        <div class="shots framed" data-shots role="button" tabindex="0" aria-label="PolyPay — next view">
+          <div class="shot on"><img src="assets/wall/t12.webp" alt="PolyPay — multi-signature transfers" loading="lazy"></div>
+          <div class="shot"><img src="assets/wall/t23.webp" alt="PolyPay — batch approvals" loading="lazy"></div>
+          <div class="shot"><img src="assets/wall/t21.webp" alt="PolyPay — mainnet launch" loading="lazy"></div>
+          <div class="shot"><img src="assets/wall/t26.webp" alt="PolyPay — signers poster" loading="lazy"></div>
+        </div>
+      </div>
+      <div class="ctlrow">
+        <div class="segbar" data-seg>
+          <button type="button" class="on"><span class="t">Transfers</span></button>
+          <button type="button"><span class="t">Batch</span></button>
+          <button type="button"><span class="t">Launch</span></button>
+          <button type="button"><span class="t">Brand</span></button>
+        </div>
+        <span class="fswrap"><button type="button" class="fsbtn" data-fullscreen aria-label="PolyPay — open full screen" title="Open full screen"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="m21 3-7 7"/><path d="m3 21 7-7"/><path d="M9 21H3v-6"/></svg></button></span>
+      </div>
+    </div>
+    <aside class="rail">
+      <div class="chip rv"><img src="assets/icons/polypay.svg" alt=""><span class="c-txt"><b>PolyPay</b><i>Web3 · Payments</i></span></div>
+      <div class="story rv d1">
+        <p>Brand identity and the full journey from MVP to final UI for a crypto payments and payroll platform.</p>
+        <p>I designed the brand and app icon, took the product from MVP to final UI — multi-signature transfers, batch approvals, market positioning — and managed the design team throughout.</p>
+        <p class="note">Built solo, end-to-end: from the first design to the live product — no frontend developers involved.</p>
+      </div>
+      <div class="facts rv d2">
+        <div class="row"><span class="k">Contributions</span><span class="v">Brand, UI/UX, Team lead</span></div>
+        <div class="row"><span class="k">Year</span><span class="v">2025</span></div>
+        <div class="row"><span class="k">Site</span><a class="v" href="https://polypay.pro/" target="_blank" rel="noreferrer">polypay.pro</a></div>
+      </div>
+    </aside>
+  </section>
+
+  <!-- ======================= PRISM PAY ======================= -->
+  <section id="prismpay" class="page proj">
+    <button type="button" class="backbtn mob-only" data-back aria-label="Back to Home"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></button>
+    <div class="stage stage-media" data-viewer data-flow style="--mobh:64svh">
+      <div class="canvasarea">
+        <div class="shots phones" data-shots role="button" tabindex="0" aria-label="Prism Pay — next screen">
+          <div class="shot on"><img src="assets/wall/t15.webp" alt="Prism Pay — home" loading="lazy"></div>
+          <div class="shot"><img src="assets/wall/t20.webp" alt="Prism Pay — portfolio" loading="lazy"></div>
+          <div class="shot"><img src="assets/wall/t25.webp" alt="Prism Pay — history" loading="lazy"></div>
+        </div>
+        <button type="button" class="nextbtn" data-next aria-label="Prism Pay — next screen"><span class="halo" aria-hidden="true"></span><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button>
+      </div>
+      <div class="ctlrow">
+        <div class="segbar" data-seg>
+          <button type="button" class="on"><span class="n">1</span><span class="t">Home</span></button>
+          <button type="button"><span class="n">2</span><span class="t">Portfolio</span></button>
+          <button type="button"><span class="n">3</span><span class="t">History</span></button>
+        </div>
+      </div>
+    </div>
+    <aside class="rail">
+      <div class="chip rv"><img src="assets/icons/prismpay.svg" alt=""><span class="c-txt"><b>Prism Pay</b><i>Mobile · Payments</i></span></div>
+      <div class="story rv d1">
+        <p>A QR-code payment app for spending digital assets on everyday purchases — part of the crypto finance suite I design at Quantum3 Labs, alongside Stormbit and Qash.</p>
+        <p>I designed the end-to-end payment flows — scan, pay, receive — a QR and wallet experience aimed at non-crypto-native users, and a design language shared with the Qash product family.</p>
+      </div>
+      <div class="stores rv d2">
+        <a class="store" href="https://apps.apple.com/us/app/prism-pay/id6768889220" target="_blank" rel="noreferrer" aria-label="Download Prism Pay on the App Store">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701z"/></svg>
+          <span class="s-txt"><i>Download on the</i><b>App Store</b></span>
+        </a>
+        <a class="store" href="https://play.google.com/store/apps/details?id=quantum3labs.prismapp" target="_blank" rel="noreferrer" aria-label="Get Prism Pay on Google Play">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22.018 13.298l-3.919 2.218-3.515-3.493 3.543-3.521 3.891 2.202a1.49 1.49 0 0 1 0 2.594zM1.337.924a1.486 1.486 0 0 0-.112.568v21.017c0 .217.045.419.124.6l11.155-11.087L1.337.924zm12.207 10.065l3.258-3.238L3.45.195a1.466 1.466 0 0 0-.946-.179l11.04 10.973zm0 2.067l-11 10.933c.298.036.612-.016.906-.183l13.324-7.54-3.23-3.21z"/></svg>
+          <span class="s-txt"><i>GET IT ON</i><b>Google Play</b></span>
+        </a>
+      </div>
+      <div class="facts rv d2">
+        <div class="row"><span class="k">Contributions</span><span class="v">UI/UX, Product</span></div>
+        <div class="row"><span class="k">Year</span><span class="v">2025</span></div>
+      </div>
+    </aside>
+  </section>
+
+  <!-- ======================= GET GOLDY ======================= -->
+  <section id="getgoldy" class="page proj">
+    <button type="button" class="backbtn mob-only" data-back aria-label="Back to Home"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></button>
+    <div class="stage stage-media" data-viewer data-flow style="--mobh:64svh">
+      <div class="canvasarea">
+        <div class="shots phones" data-shots role="button" tabindex="0" aria-label="Get Goldy — next screen">
+          <div class="shot on"><img src="assets/wall/t48.webp" alt="Get Goldy — savings home" loading="lazy"></div>
+          <div class="shot"><img src="assets/wall/t35.webp" alt="Get Goldy — bills and receipts" loading="lazy"></div>
+          <div class="shot"><img src="assets/wall/t10.webp" alt="Get Goldy — start saving" loading="lazy"></div>
+        </div>
+        <button type="button" class="nextbtn" data-next aria-label="Get Goldy — next screen"><span class="halo" aria-hidden="true"></span><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button>
+      </div>
+      <div class="ctlrow">
+        <div class="segbar" data-seg>
+          <button type="button" class="on"><span class="n">1</span><span class="t">Home</span></button>
+          <button type="button"><span class="n">2</span><span class="t">Bills</span></button>
+          <button type="button"><span class="n">3</span><span class="t">Start</span></button>
+        </div>
+      </div>
+    </div>
+    <aside class="rail">
+      <div class="chip rv"><img src="assets/icons/getgoldy.svg" alt=""><span class="c-txt"><b>Get Goldy</b><i>Mobile · Fintech</i></span></div>
+      <div class="story rv d1">
+        <p>A gold-savings app for the Vietnamese market: buy gold by the fraction, watch your stash grow piece by piece, and keep bills in one place.</p>
+        <p>I designed the savings flows, bills and receipts management, and a warm, collectible visual language built around 3D gold artifacts.</p>
+        <p>Tích vàng nhẹ tênh, từng ngày tiền lên.</p>
+      </div>
+      <div class="facts rv d2">
+        <div class="row"><span class="k">Contributions</span><span class="v">UI/UX, Product</span></div>
+        <div class="row"><span class="k">Year</span><span class="v">2025</span></div>
+      </div>
+    </aside>
+  </section>
+
+  <!-- ======================= ONEPLAN ======================= -->
+  <section id="oneplan" class="page proj">
+    <button type="button" class="backbtn mob-only" data-back aria-label="Back to Home"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></button>
+    <div class="stage stage-media" data-viewer data-flow style="--mobh:64svh">
+      <div class="canvasarea">
+        <div class="shots phones" data-shots role="button" tabindex="0" aria-label="OnePlan — next screen">
+          <div class="shot on"><img src="assets/wall/t39.webp" alt="OnePlan — trips" loading="lazy"></div>
+          <div class="shot"><img src="assets/wall/t11.webp" alt="OnePlan — itinerary" loading="lazy"></div>
+          <div class="shot"><img src="assets/wall/t09.webp" alt="OnePlan — market" loading="lazy"></div>
+        </div>
+        <button type="button" class="nextbtn" data-next aria-label="OnePlan — next screen"><span class="halo" aria-hidden="true"></span><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button>
+      </div>
+      <div class="ctlrow">
+        <div class="segbar" data-seg>
+          <button type="button" class="on"><span class="n">1</span><span class="t">Trips</span></button>
+          <button type="button"><span class="n">2</span><span class="t">Itinerary</span></button>
+          <button type="button"><span class="n">3</span><span class="t">Market</span></button>
+        </div>
+      </div>
+    </div>
+    <aside class="rail">
+      <div class="chip rv"><img src="assets/icons/oneplan.svg" alt=""><span class="c-txt"><b>OnePlan Travel</b><i>Mobile · Travel</i></span></div>
+      <div class="story rv d1">
+        <p>An iOS app for planning group travel, where I led both the product and the company as co-founder and CEO.</p>
+        <p>I set the product vision and roadmap, designed the app end-to-end, and shaped the itinerary and shared-expense flows.</p>
+      </div>
+      <div class="facts rv d2">
+        <div class="row"><span class="k">Role</span><span class="v">Co-founder &amp; CEO</span></div>
+        <div class="row"><span class="k">Contributions</span><span class="v">Product, UI/UX</span></div>
+        <div class="row"><span class="k">Year</span><span class="v">2025</span></div>
+        <div class="row"><span class="k">Download</span><a class="v" href="https://apps.apple.com/vn/app/oneplan-travel/id6761648165" target="_blank" rel="noreferrer">App Store</a></div>
+      </div>
+    </aside>
+  </section>
+
+  <!-- ======================= TRUM CHINESE ======================= -->
+  <section id="trumchinese" class="page proj">
+    <button type="button" class="backbtn mob-only" data-back aria-label="Back to Home"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></button>
+    <div class="stage stage-media" data-viewer data-flow style="--mobh:64svh">
+      <div class="canvasarea">
+        <div class="shots phones" data-shots role="button" tabindex="0" aria-label="Trùm Chinese — next screen">
+          <div class="shot on"><img src="assets/wall/t05.webp" alt="Trùm Chinese — AI translation" loading="lazy"></div>
+          <div class="shot"><img src="assets/wall/t13.webp" alt="Trùm Chinese — story reader" loading="lazy"></div>
+          <div class="shot"><img src="assets/wall/t43.webp" alt="Trùm Chinese — interpreter voices" loading="lazy"></div>
+        </div>
+        <button type="button" class="nextbtn" data-next aria-label="Trùm Chinese — next screen"><span class="halo" aria-hidden="true"></span><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button>
+      </div>
+      <div class="ctlrow">
+        <div class="segbar" data-seg>
+          <button type="button" class="on"><span class="n">1</span><span class="t">Translate</span></button>
+          <button type="button"><span class="n">2</span><span class="t">Stories</span></button>
+          <button type="button"><span class="n">3</span><span class="t">Voices</span></button>
+        </div>
+      </div>
+    </div>
+    <aside class="rail">
+      <div class="chip rv"><img src="assets/icons/trumchinese.svg" alt=""><span class="c-txt"><b>Trùm Chinese</b><i>Mobile · Education</i></span></div>
+      <div class="story rv d1">
+        <p>A language-learning app that reached a 4.8-star rating and a top-5 education spot in Vietnam by teaching Chinese through stories and AI translation.</p>
+        <p>I designed the story reader and lesson UI, the AI translation experience, and the voice and character system.</p>
+      </div>
+      <div class="facts rv d2">
+        <div class="row"><span class="k">Rating</span><span class="v">4.8★ · Top 5 education, VN</span></div>
+        <div class="row"><span class="k">Contributions</span><span class="v">UI/UX, Product</span></div>
+        <div class="row"><span class="k">Year</span><span class="v">2024</span></div>
+        <div class="row"><span class="k">Download</span><a class="v" href="https://apps.apple.com/vn/app/tr%C3%B9m-chinese-ti%E1%BA%BFng-trung-hsk/id6468914724" target="_blank" rel="noreferrer">App Store</a></div>
+      </div>
+    </aside>
+  </section>
+
+  <!-- ======================= GEAR RUNNER ======================= -->
+  <section id="gearrunner" class="page proj">
+    <button type="button" class="backbtn mob-only" data-back aria-label="Back to Home"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></button>
+    <div class="stage stage-media" data-viewer data-flow style="--mobh:64svh">
+      <div class="canvasarea">
+        <div class="shots phones" data-shots role="button" tabindex="0" aria-label="Gear Runner — next screen">
+          <div class="shot on"><img src="assets/wall/t01.webp" alt="Gear Runner — activity" loading="lazy"></div>
+          <div class="shot"><img src="assets/wall/t14.webp" alt="Gear Runner — inventory" loading="lazy"></div>
+        </div>
+        <button type="button" class="nextbtn" data-next aria-label="Gear Runner — next screen"><span class="halo" aria-hidden="true"></span><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button>
+      </div>
+      <div class="ctlrow">
+        <div class="segbar" data-seg>
+          <button type="button" class="on"><span class="n">1</span><span class="t">Activity</span></button>
+          <button type="button"><span class="n">2</span><span class="t">Inventory</span></button>
+        </div>
+      </div>
+    </div>
+    <aside class="rail">
+      <div class="chip rv"><img src="assets/icons/gearrunner.svg" alt=""><span class="c-txt"><b>Gear Runner</b><i>Mobile · Game</i></span></div>
+      <div class="story rv d1">
+        <p>Mobile game UI and user-behavior research for a move-to-earn experience that rewards real-world activity with gear and progression.</p>
+        <p>I designed the game UI and inventory system, the activity and health tracking screens, and ran the user-behavior research.</p>
+      </div>
+      <div class="facts rv d2">
+        <div class="row"><span class="k">Contributions</span><span class="v">UI/UX, UX research</span></div>
+        <div class="row"><span class="k">Year</span><span class="v">2024</span></div>
+        <div class="row"><span class="k">Download</span><a class="v" href="https://apps.apple.com/vn/app/gear-runner/id6758157431" target="_blank" rel="noreferrer">App Store</a></div>
+      </div>
+    </aside>
+  </section>
+
+</main>
+
+<!-- ======================= ABOUT DIALOG (desktop) ======================= -->
+<div class="about-dlg" id="about-dlg" role="dialog" aria-modal="true" aria-label="About Danny" aria-hidden="true">
+  <div class="scrim" aria-hidden="true" data-about-close></div>
+  <div class="about-core">
+    <div style="position:relative">
+      <button type="button" class="pola p-left" aria-pressed="false" aria-label="Turn the photo over">
+        <span class="flip" style="aspect-ratio: 1600 / 900">
+          <img src="assets/work/stormbit.webp" alt="Stormbit, designed and built by Danny">
+          <span class="back" aria-hidden="true"><span>Stormbit<br>ETHCC, 2025</span></span>
+        </span>
+      </button>
+      <button type="button" class="pola p-right" aria-pressed="false" aria-label="Turn the photo over">
+        <span class="flip" style="aspect-ratio: 16 / 9">
+          <img src="assets/wall/t46.webp" alt="OnePlan Travel launch visual">
+          <span class="back" aria-hidden="true"><span>OnePlan Travel<br>2025</span></span>
+        </span>
+      </button>
+      <div class="letter">
+        <p class="dear">Dear visitor,</p>
+        <div class="body" data-letter></div>
+      </div>
+    </div>
+    <button type="button" class="roundclose" data-about-close aria-label="Close">
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+    </button>
   </div>
 </div>
 
-
-<!-- MOBILE MENU -->
-<div class="mmenu" id="mmenu">
-  <button class="x" type="button" data-close-menu>Close</button>
-  <a href="#top" data-scroll>Home</a>
-  <button type="button" data-drawer>Work</button>
-  <a href="#services" data-scroll>Services</a>
-  <a href="#about" data-scroll>About</a>
-  <a href="#contact" data-scroll>Contact</a>
-  <button type="button" data-hire>Hire me</button>
+<!-- ======================= LIGHTBOX ======================= -->
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <img src="" alt="">
+  <button type="button" class="roundclose" data-lb-close aria-label="Close">
+    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+  </button>
 </div>
 
-
-<!-- HIRE ME: guided chat -->
-<div class="hirep" id="hirep">
-  <div class="hirep__brand">Danny_xs<br><span class="tm">UI/UX &amp; Product design™</span></div>
-  <button class="hirep__close" type="button" data-hire-close>Close</button>
-  <div class="chat" id="chat"></div>
-</div>
-
-<script src="assets/main.js"></script>
+<script src="assets/main.js?v=5"></script>
 </body>
 </html>

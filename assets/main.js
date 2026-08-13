@@ -78,7 +78,7 @@
     for (var i = 0; i < PROJECTS.length; i++) if (PROJECTS[i].id === id) return PROJECTS[i];
     return null;
   }
-  function iconOf(id) { return id === "welcome" ? "assets/favicon-32.png" : "assets/icons/" + id + ".svg"; }
+  function iconOf(id) { return id === "welcome" ? "assets/favicon-32.png" : "assets/icons/" + id + ".png"; }
   function nameOf(id) { var p = projectOf(id); return p ? p.name : "Home"; }
 
   var mobCurrent = "welcome";

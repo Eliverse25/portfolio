@@ -6,3 +6,5 @@
 .idea/
 .claude/
 logo-src/
+assets/projects/*/*.png
+.DS_Store

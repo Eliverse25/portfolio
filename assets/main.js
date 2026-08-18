@@ -232,7 +232,7 @@
     }, reduceMotion ? 0 : 650 + Math.random() * 450);
   }
   function mailtoHref() {
-    var subject = "Project inquiry — " + chatData.name;
+    var subject = "Project inquiry from " + chatData.name;
     var body = "Hi Danny,\n\nName: " + chatData.name + "\nProject: " + chatData.project + "\nDetails: " + chatData.details + "\n\n(sent from dannyxs.com)";
     return "mailto:" + EMAIL + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
   }

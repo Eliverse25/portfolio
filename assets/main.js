@@ -9,7 +9,6 @@
 
   /* ---------- projects registry (order = page order) ---------- */
   var PROJECTS = [
-    { id: "quantum3labs", name: "Quantum3 Labs", group: "Web3" },
     { id: "stormbit", name: "Stormbit", group: "Web3" },
     { id: "kibble", name: "Kibble Exchange", group: "Web3" },
     { id: "qash", name: "Qash", group: "Web3" },

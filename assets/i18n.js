@@ -23,6 +23,7 @@ window.I18N = {
     "Chat": ["Chat", "聊天"],
     "Lands in my inbox": ["Bay thẳng vào hộp thư của mình", "直达我的邮箱"],
 
+    "Raised": ["Đã gọi vốn", "已融资"],
     "Contributions": ["Đóng góp", "职责"],
     "Year": ["Năm", "年份"],
     "Site": ["Website", "网站"],

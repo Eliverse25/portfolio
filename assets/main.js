@@ -9,6 +9,7 @@
 
   /* ---------- projects registry (order = page order) ---------- */
   var PROJECTS = [
+    { id: "launchpad", name: "OnePlan Travel", group: "Launchpad" },
     { id: "stormbit", name: "Stormbit", group: "Web3" },
     { id: "kibble", name: "Kibble Exchange", group: "Web3" },
     { id: "qash", name: "Qash", group: "Web3" },

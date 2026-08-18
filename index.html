@@ -14,7 +14,7 @@
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
 <link rel="icon" type="image/png" sizes="512x512" href="assets/favicon-512.png">
 <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon-180.png">
-<link rel="stylesheet" href="assets/styles.css?v=14">
+<link rel="stylesheet" href="assets/styles.css?v=15">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Person","name":"Dinh Phan Nhat Nam","alternateName":"Danny","url":"https://dannyxs.com","jobTitle":"Product Designer","worksFor":{"@type":"Organization","name":"Quantum3 Labs","url":"https://www.quantum3labs.com/"},"address":{"@type":"PostalAddress","addressLocality":"Ho Chi Minh City","addressCountry":"VN"},"email":"mailto:eliuniversestu@gmail.com","sameAs":["https://www.linkedin.com/in/eliversenhatnam/","https://x.com/dannyxs2k","https://t.me/danny_xs"],"description":"Product Designer from Vietnam. Leading design at Quantum3 Labs — Stormbit, Qash, Prism Pay — and building Web3 products end-to-end, design to production."}
 </script>
@@ -31,6 +31,14 @@
       <img src="assets/favicon-32.png" alt="">
       <span>Home</span>
     </button>
+
+    <button type="button" class="ghead" data-group="g-launchpad">
+      <span>Launchpad</span>
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+    </button>
+    <div class="group-items" id="g-launchpad">
+      <button type="button" class="tab" data-goto="launchpad"><img src="assets/icons/launchpad.png" alt=""><span>OnePlan Travel</span><span class="raise-dot" aria-hidden="true"></span></button>
+    </div>
 
     <button type="button" class="ghead" data-group="g-web3">
       <span>Web3</span>
@@ -90,6 +98,8 @@
 <div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-label="Open a project">
   <nav>
     <button type="button" class="s-row cur" data-goto="welcome"><img src="assets/favicon-32.png" alt="">Home</button>
+    <div class="s-ghead">Launchpad</div>
+    <button type="button" class="s-row" data-goto="launchpad"><img src="assets/icons/launchpad.png" alt="">OnePlan Travel</button>
     <div class="s-ghead">Web3</div>
     <button type="button" class="s-row" data-goto="stormbit"><img src="assets/icons/stormbit.png" alt="">Stormbit</button>
     <button type="button" class="s-row" data-goto="kibble"><img src="assets/icons/kibble.png" alt="">Kibble Exchange</button>
@@ -129,6 +139,8 @@
       <p class="sub">Product Designer based in Ho Chi Minh City, crafting Web3 and mobile products end-to-end. From first spark to final experience, every step is shaped with intent.</p>
     </div>
     <nav class="mob-list">
+      <div class="m-ghead">Launchpad</div>
+      <button type="button" class="m-row" data-goto="launchpad"><img src="assets/icons/launchpad.png" alt=""><span class="m-txt"><b>OnePlan Travel</b><i>Now raising — turn a TikTok into a trip</i></span></button>
       <div class="m-ghead">Web3</div>
       <button type="button" class="m-row" data-goto="stormbit"><img src="assets/icons/stormbit.png" alt=""><span class="m-txt"><b>Stormbit</b><i>From brand identity to a global DeFi launch</i></span></button>
       <button type="button" class="m-row" data-goto="kibble"><img src="assets/icons/kibble.png" alt=""><span class="m-txt"><b>Kibble Exchange</b><i>A DEX with a 700k-player minigame</i></span></button>
@@ -227,6 +239,84 @@
         <div class="row"><span class="k">Click a tab</span><span class="v">Opens a project</span></div>
         <div class="row"><span class="k">Scroll</span><span class="v">Flips the pages</span></div>
         <div class="row"><span class="k">Chat</span><span class="v">Lands in my inbox</span></div>
+      </div>
+    </aside>
+  </section>
+
+  <!-- ======================= LAUNCHPAD ======================= -->
+  <section id="launchpad" class="page proj">
+    <button type="button" class="backbtn mob-only" data-back aria-label="Back to Home"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></button>
+    <div class="stage stage-pitch">
+      <div class="pitch">
+        <div class="p-hero rv">
+          <span class="p-badge"><span class="p-pulse" aria-hidden="true"></span>Raising — Seed</span>
+          <img class="p-mark" src="assets/icons/oneplan.png" alt="OnePlan Travel">
+          <h2>OnePlan Travel</h2>
+          <p class="p-tag">Drop a TikTok. Get a trip.</p>
+          <p class="p-sub">The iOS app that turns social videos into real group trips — AI pulls the places out of a TikTok or Instagram link, pins them, builds the itinerary and splits every bill.</p>
+          <div class="p-ctas">
+            <a class="store" href="https://apps.apple.com/vn/app/oneplan-travel/id6761648165" target="_blank" rel="noreferrer" aria-label="Download OnePlan on the App Store"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701z"/></svg><span class="s-txt"><i>Download on the</i><b>App Store</b></span></a>
+            <a class="p-site" href="https://oneplan.space" target="_blank" rel="noreferrer">oneplan.space ↗</a>
+          </div>
+        </div>
+
+        <div class="p-stats rv">
+          <div class="p-stat"><b>622</b><i>users in the first 90 days</i></div>
+          <div class="p-stat"><b>63%</b><i>monthly active</i></div>
+          <div class="p-stat"><b>337</b><i>trips planned</i></div>
+          <div class="p-stat"><b>42</b><i>paying subscribers</i></div>
+          <div class="p-stat"><b>+82%</b><i>subscriber growth in July</i></div>
+          <div class="p-stat"><b>1,800</b><i>Marketplace opens / 30 days</i></div>
+        </div>
+
+        <div class="p-block rv">
+          <h3>The magic</h3>
+          <div class="p-steps">
+            <div class="p-step"><span class="n">1</span><b>Drop a link</b><i>any TikTok or Instagram travel video</i></div>
+            <div class="p-step"><span class="n">2</span><b>AI pulls the places</b><i>saved as Pins, automatically</i></div>
+            <div class="p-step"><span class="n">3</span><b>The itinerary builds itself</b><i>day by day, ready to go</i></div>
+            <div class="p-step"><span class="n">4</span><b>Split every bill</b><i>group expenses, zero spreadsheets</i></div>
+          </div>
+        </div>
+
+        <div class="p-block rv">
+          <h3>Why now</h3>
+          <p>Gen-Z plans travel on TikTok, not on TripAdvisor — and nobody owns the moment between <em>watching</em> a place and <em>going</em> there. Splitwise only splits, TripIt only schedules, Google&nbsp;Sheets is… a spreadsheet. OnePlan does the whole trip in one flow, native to the videos people already watch.</p>
+        </div>
+
+        <div class="p-block rv">
+          <h3>How it makes money</h3>
+          <p>A weekly subscription (39.000₫) unlocks the full plan Marketplace plus AI scan credits. The Marketplace is already the strongest magnet in the product — 1,800 opens in 30 days — and every plan in it is one tap away from becoming a paid trip.</p>
+        </div>
+
+        <div class="p-block rv">
+          <h3>What the round builds</h3>
+          <div class="p-road">
+            <div class="p-row"><b>TripFund</b><span>a shared trip wallet on Solana — group money held by group rules, two-signature approvals, atomic settlement. Already runs end-to-end on devnet.</span></div>
+            <div class="p-row"><b>Prism Pay partnership</b><span>cross-promotion with the QR payment app for foreigners in Vietnam — travelers who plan on OnePlan pay with Prism.</span></div>
+            <div class="p-row"><b>Growth loop</b><span>turning solo planners into groups: invites, shared funds and UGC — the flywheel the numbers say is ready to spin.</span></div>
+          </div>
+        </div>
+
+        <div class="p-final rv">
+          <p>Want the deck, the numbers and a live demo?</p>
+          <a class="mailbtn" href="mailto:eliuniversestu@gmail.com?subject=OnePlan%20%E2%80%94%20Investor%20intro&body=Hi%20Danny%2C%0A%0AI%20saw%20OnePlan%20on%20your%20Launchpad%20and%20I%27d%20love%20to%20see%20the%20deck.%0A%0A">Request the deck ✉︎</a>
+        </div>
+      </div>
+    </div>
+    <aside class="rail">
+      <div class="chip rv"><img src="assets/icons/launchpad.png" alt=""><span class="c-txt"><b>Launchpad</b><i>Now raising</i></span></div>
+      <div class="story rv d1">
+        <p>Launchpad is where I put the product I&rsquo;m currently raising for. Right now, that&rsquo;s OnePlan Travel.</p>
+        <p>I co-founded OnePlan and lead it as CEO &mdash; and as the designer-founder I design, build and ship it myself.</p>
+        <p>The app is live on the App Store, the first users are paying, and the next act &mdash; TripFund, an on-chain shared trip wallet &mdash; already runs end-to-end on devnet.</p>
+        <p class="note">If you invest &mdash; or know someone who should &mdash; say hello.</p>
+      </div>
+      <div class="facts rv d2">
+        <div class="row"><span class="k">Stage</span><span class="v">Seed — raising now</span></div>
+        <div class="row"><span class="k">Product</span><span class="v">Live on the App Store</span></div>
+        <div class="row"><span class="k">Base</span><span class="v">Ho Chi Minh City</span></div>
+        <div class="row"><span class="k">Contact</span><a class="v" href="mailto:eliuniversestu@gmail.com?subject=OnePlan%20%E2%80%94%20Investor%20intro&body=Hi%20Danny%2C%0A%0AI%20saw%20OnePlan%20on%20your%20Launchpad%20and%20I%27d%20love%20to%20see%20the%20deck.%0A%0A">eliuniversestu@gmail.com</a></div>
       </div>
     </aside>
   </section>
@@ -700,6 +790,6 @@ END HIDDEN -->
   </button>
 </div>
 
-<script src="assets/main.js?v=14"></script>
+<script src="assets/main.js?v=15"></script>
 </body>
 </html>

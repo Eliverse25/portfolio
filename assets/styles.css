@@ -506,6 +506,97 @@ main {
 .reflect img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: contain; opacity: 0; }
 .reflect img.on { opacity: 1; }
 
+/* ---------- launchpad pitch ---------- */
+.raise-dot {
+  width: 7px; height: 7px; flex-shrink: 0; margin-left: auto;
+  border-radius: 50%; background: #FF7A1A;
+  animation: raise-pulse 2s ease-in-out infinite;
+}
+@keyframes raise-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255, 122, 26, 0.45); }
+  50% { box-shadow: 0 0 0 5px rgba(255, 122, 26, 0); }
+}
+.stage-pitch { display: block; overflow-y: auto; overscroll-behavior: contain; }
+.pitch {
+  display: flex; flex-direction: column; gap: 40px;
+  max-width: 620px; margin: 0 auto; padding: 56px 32px 64px;
+}
+.p-hero { display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center; }
+.p-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 6px 14px; border-radius: 999px;
+  background: #FFF1E6; color: #C2570A;
+  font-size: 12px; font-weight: 600; letter-spacing: 0.02em;
+}
+.p-pulse {
+  width: 8px; height: 8px; border-radius: 50%; background: #FF7A1A;
+  animation: raise-pulse 2s ease-in-out infinite;
+}
+.p-mark { width: 72px; height: 72px; margin-top: 8px; border-radius: 18px; box-shadow: var(--sh-pop); }
+.p-hero h2 { font-size: 34px; font-weight: 700; letter-spacing: -0.02em; }
+.p-tag {
+  font-size: 18px; font-weight: 600;
+  background: linear-gradient(90deg, #FF7A1A, #FF3D77);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: transparent;
+}
+.p-sub { max-width: 480px; font-size: 15px; line-height: 1.65; color: var(--gray-2); }
+.p-ctas { display: flex; align-items: center; gap: 14px; margin-top: 8px; flex-wrap: wrap; justify-content: center; }
+.p-site { font-size: 14px; font-weight: 500; color: var(--ink); text-decoration: underline; text-decoration-color: rgba(0,0,0,.25); text-underline-offset: 3px; }
+.p-site:hover { text-decoration-color: rgba(0,0,0,.7); }
+
+.p-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.p-stat {
+  display: flex; flex-direction: column; gap: 4px;
+  padding: 16px 14px; border-radius: 16px;
+  background: var(--white); box-shadow: var(--sh-sm);
+}
+.p-stat b { font-size: 26px; font-weight: 700; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+.p-stat i { font-style: normal; font-size: 12px; line-height: 1.35; color: var(--gray-4); }
+
+.p-block { display: flex; flex-direction: column; gap: 14px; }
+.p-block h3 { font-size: 13px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--gray-4); }
+.p-block p { font-size: 15px; line-height: 1.7; color: var(--gray-1); }
+.p-steps { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.p-step {
+  display: flex; flex-direction: column; gap: 3px;
+  padding: 16px; border-radius: 16px;
+  background: var(--white); box-shadow: var(--sh-sm);
+}
+.p-step .n {
+  display: flex; width: 22px; height: 22px; margin-bottom: 6px;
+  align-items: center; justify-content: center; border-radius: 50%;
+  background: #FFF1E6; color: #C2570A; font-size: 12px; font-weight: 700;
+}
+.p-step b { font-size: 14px; font-weight: 600; }
+.p-step i { font-style: normal; font-size: 12.5px; line-height: 1.45; color: var(--gray-4); }
+
+.p-road { display: flex; flex-direction: column; }
+.p-row {
+  display: flex; gap: 16px; padding: 14px 0;
+  border-bottom: 1px solid var(--hair);
+  font-size: 14px; line-height: 1.6;
+}
+.p-row:last-child { border-bottom: 0; }
+.p-row b { flex-shrink: 0; width: 150px; font-weight: 600; }
+.p-row span { color: var(--gray-2); }
+
+.p-final {
+  display: flex; flex-direction: column; align-items: center; gap: 14px;
+  padding: 28px; border-radius: 16px; text-align: center;
+  background: linear-gradient(135deg, #FFF3E8, #FFE9F0);
+}
+.p-final p { font-size: 15px; font-weight: 500; color: var(--ink); }
+
+@media (max-width: 1023.98px) {
+  .stage-pitch { background: transparent; }
+  .pitch { padding: 8px 8px 24px; gap: 28px; }
+  .p-stats { grid-template-columns: repeat(2, 1fr); }
+  .p-steps { grid-template-columns: 1fr; }
+  .p-row { flex-direction: column; gap: 4px; }
+  .p-row b { width: auto; }
+}
+
 /* ---------- lightbox ---------- */
 .lightbox {
   position: fixed; inset: 0; z-index: 60;

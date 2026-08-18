@@ -25,7 +25,7 @@
     { id: "oneplan", name: "OnePlan Travel", group: "Mobile Apps" },
     { id: "trumchinese", name: "Trùm Chinese", group: "Mobile Apps" },
     { id: "gearrunner", name: "Gear Runner", group: "Mobile Apps" },
-    { id: "vietspeak", name: "VietSpeak", group: "Mobile Apps" }
+    { id: "vietspeak", name: "Viet Lens", group: "Mobile Apps" }
   ];
 
   /* ---------- the About letter (shared desktop + mobile) ---------- */

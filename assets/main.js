@@ -334,9 +334,10 @@
     var idx = 0;
     var isFlow = stage.hasAttribute("data-flow");
 
-    // measure the first image to size the shots box
+    // size the shots box to the CURRENT image's aspect ratio
     function size() {
-      var img = shots[0].querySelector("img");
+      var img = shots[idx].querySelector("img");
+      if (!img.naturalWidth) img = shots[0].querySelector("img");
       if (!img.naturalWidth) return;
       var area = stage.querySelector(".canvasarea");
       var maxW = area.clientWidth - (isFlow ? 120 : 0);
@@ -350,8 +351,11 @@
       shotsBox.style.height = Math.round(h) + "px";
       if (isFlow) shotsBox.style.borderRadius = (Math.round(w * 0.115) + 8) + "px";
     }
-    var first = shots[0].querySelector("img");
-    if (first.complete) size(); else first.addEventListener("load", size);
+    shots.forEach(function (sh) {
+      var im = sh.querySelector("img");
+      if (!im.complete) im.addEventListener("load", size);
+    });
+    size();
     window.addEventListener("resize", size);
     if ("ResizeObserver" in window) new ResizeObserver(size).observe(stage.querySelector(".canvasarea"));
 
@@ -359,6 +363,7 @@
       idx = (i + shots.length) % shots.length;
       shots.forEach(function (s, j) { s.classList.toggle("on", j === idx); });
       segs.forEach(function (s, j) { s.classList.toggle("on", j === idx); });
+      size();
     }
     segs.forEach(function (s, j) { s.addEventListener("click", function () { show(j); }); });
     if (next) next.addEventListener("click", function () { show(idx + 1); });

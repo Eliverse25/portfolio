@@ -442,7 +442,7 @@ main {
   position: relative; display: flex; min-height: 0; width: 100%; flex: 1;
   align-items: center; justify-content: center;
 }
-.shots { position: relative; }
+.shots { position: relative; transition: width 320ms var(--ease-out), height 320ms var(--ease-out); }
 .shots .shot {
   position: absolute; inset: 0; opacity: 0; z-index: 0;
   transition: opacity 320ms var(--ease-out);

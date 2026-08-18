@@ -458,6 +458,21 @@
 
   /* ---------- language switching (EN / VI / ZH) ---------- */
   var RICH_EN = {};
+  var VND_USD = 26500, VND_CNY = 3680;
+  function formatPrices(lang) {
+    document.querySelectorAll("[data-vnd]").forEach(function (el) {
+      var v = parseInt(el.getAttribute("data-vnd"), 10);
+      if (lang === "en") {
+        var usd = v / VND_USD;
+        el.textContent = "$" + (usd < 10 ? (Math.round(usd * 10) / 10).toFixed(1) : Math.round(usd));
+      } else if (lang === "zh") {
+        var cny = v / VND_CNY;
+        el.textContent = "¥" + (cny < 10 ? (Math.round(cny * 10) / 10).toFixed(1) : Math.round(cny));
+      } else {
+        el.textContent = v.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + "₫";
+      }
+    });
+  }
   function applyLang(lang) {
     LANG = lang;
     try { localStorage.setItem("lang", lang); } catch (e) {}
@@ -485,6 +500,7 @@
     renderLetter();
     if (greetDone) setGreeting(); else if (LANG !== "en") { greetDone = true; setGreeting(); }
     if (chatInput) chatInput.placeholder = chatState >= 4 ? chatT().donePlaceholder : chatT().placeholder;
+    formatPrices(lang);
     document.querySelectorAll("[data-lang]").forEach(function (b) {
       b.classList.toggle("on", b.getAttribute("data-lang") === lang);
     });
@@ -494,7 +510,10 @@
     if (b) applyLang(b.getAttribute("data-lang"));
   });
   if (LANG !== "en") applyLang(LANG);
-  else document.querySelectorAll('[data-lang="en"]').forEach(function (b) { b.classList.add("on"); });
+  else {
+    formatPrices("en");
+    document.querySelectorAll('[data-lang="en"]').forEach(function (b) { b.classList.add("on"); });
+  }
 
   /* start the home video muted-paused; play videos only when visible */
   syncVideos("welcome");

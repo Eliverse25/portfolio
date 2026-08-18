@@ -191,74 +191,83 @@
     });
   });
 
-  /* ---------- omnibox search ---------- */
-  var omniWrap = document.getElementById("omni-wrap");
-  var omniInput = document.getElementById("omni-input");
-  var omniDrop = document.getElementById("omni-drop");
-  var omniList = document.getElementById("omni-list");
-  var omniSel = 0;
+  /* ---------- hire chat (replaces search) ---------- */
+  var chatWrap = document.getElementById("chat-wrap");
+  var chatInput = document.getElementById("chat-input");
+  var chatlog = document.getElementById("chatlog");
+  var chatState = 0; // 0 = not started, 1 = asked name, 2 = asked project, 3 = asked details, 4 = done
+  var chatData = { name: "", project: "", details: "" };
 
-  function omniResults(q) {
-    q = q.trim().toLowerCase();
-    if (!q) return [];
-    return PROJECTS.filter(function (p) {
-      return (p.name + " " + p.group + " " + p.id).toLowerCase().indexOf(q) !== -1;
-    });
+  function chatBubble(cls, html) {
+    var d = document.createElement("div");
+    d.className = "msg " + cls;
+    d.innerHTML = html;
+    chatlog.appendChild(d);
+    chatlog.scrollTop = chatlog.scrollHeight;
+    return d;
   }
-  function renderOmni(res) {
-    if (!res.length) {
-      omniList.innerHTML = '<div class="omni-empty">No matches — try a project name.</div>';
-      return;
+  function esc(t) {
+    var d = document.createElement("div");
+    d.textContent = t;
+    return d.innerHTML;
+  }
+  function botSay(html, cb) {
+    var t = chatBubble("bot typing", '<span class="dot"></span><span class="dot"></span><span class="dot"></span>');
+    setTimeout(function () {
+      t.classList.remove("typing");
+      t.innerHTML = html;
+      chatlog.scrollTop = chatlog.scrollHeight;
+      if (cb) cb();
+    }, reduceMotion ? 0 : 650 + Math.random() * 450);
+  }
+  function mailtoHref() {
+    var subject = "Project inquiry — " + chatData.name;
+    var body = "Hi Danny,\n\nName: " + chatData.name + "\nProject: " + chatData.project + "\nDetails: " + chatData.details + "\n\n(sent from dannyxs.com)";
+    return "mailto:" + EMAIL + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+  }
+  function startChat() {
+    if (chatState > 0) return;
+    chatState = 1;
+    chatlog.hidden = false;
+    document.getElementById("welcome").classList.add("chatting");
+    botSay("Hey! I\u2019m Danny\u2019s assistant \ud83c\udf7a Who am I talking to?");
+  }
+  function chatSend() {
+    var v = chatInput.value.trim();
+    if (!v) return;
+    if (chatState === 0) startChat();
+    if (chatState >= 4) return;
+    chatBubble("me", esc(v));
+    chatInput.value = "";
+    if (chatState === 1) {
+      chatData.name = v;
+      chatState = 2;
+      botSay("Nice to meet you, <b>" + esc(chatData.name) + "</b>! What are you building \u2014 an app, a website, something Web3?");
+    } else if (chatState === 2) {
+      chatData.project = v;
+      chatState = 3;
+      botSay("Sounds good. Tell me a bit more \u2014 scope, timeline, anything that helps.");
+    } else if (chatState === 3) {
+      chatData.details = v;
+      chatState = 4;
+      botSay("Perfect \u2014 I\u2019ve drafted an email to Danny with everything. One click and it\u2019s on its way \ud83d\ude80", function () {
+        var d = chatBubble("bot action", "");
+        d.innerHTML = '<a class="mailbtn" href="' + mailtoHref() + '">Send email to Danny \u2709\ufe0e</a>';
+        chatlog.scrollTop = chatlog.scrollHeight;
+        chatInput.placeholder = "Sent? Danny will get back to you soon \ud83c\udf7a";
+      });
     }
-    omniList.innerHTML = res.map(function (p, i) {
-      return '<button type="button" class="omni-row' + (i === omniSel ? " sel" : "") + '" data-omni="' + p.id + '">' +
-        '<img src="' + iconOf(p.id) + '" alt="">' +
-        '<span class="r-name">' + p.name + '</span>' +
-        '<span class="r-group">' + p.group + '</span>' +
-        '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 4v7a4 4 0 0 1-4 4H4"/><path d="m9 10-5 5 5 5"/></svg>' +
-        "</button>";
-    }).join("");
   }
-  function updateOmni() {
-    var v = omniInput.value;
-    omniWrap.classList.toggle("filled", v.length > 0);
-    var res = omniResults(v);
-    if (v.trim()) {
-      if (omniSel >= res.length) omniSel = 0;
-      renderOmni(res);
-      omniDrop.hidden = false;
-    } else {
-      omniDrop.hidden = true;
-    }
-  }
-  function closeOmni() {
-    omniInput.value = "";
-    omniSel = 0;
-    updateOmni();
-  }
-  if (omniInput) {
-    omniInput.addEventListener("input", function () { omniSel = 0; updateOmni(); });
-    omniInput.addEventListener("keydown", function (e) {
-      var res = omniResults(omniInput.value);
-      if (e.key === "ArrowDown") { e.preventDefault(); if (res.length) { omniSel = (omniSel + 1) % res.length; renderOmni(res); } }
-      else if (e.key === "ArrowUp") { e.preventDefault(); if (res.length) { omniSel = (omniSel - 1 + res.length) % res.length; renderOmni(res); } }
-      else if (e.key === "Enter") { if (res.length) { goTo(res[omniSel].id); closeOmni(); omniInput.blur(); } }
-      else if (e.key === "Escape") { closeOmni(); omniInput.blur(); }
+  if (chatInput) {
+    chatInput.addEventListener("keydown", function (e) {
+      if (e.key === "Enter") { e.preventDefault(); chatSend(); }
     });
-    omniDrop.addEventListener("mousedown", function (e) {
-      var row = e.target.closest("[data-omni]");
-      if (row) { e.preventDefault(); goTo(row.getAttribute("data-omni")); closeOmni(); omniInput.blur(); }
-    });
-    omniWrap.querySelector(".clear").addEventListener("click", function () { closeOmni(); omniInput.focus(); });
-    document.addEventListener("click", function (e) {
-      if (!omniDrop.hidden && !e.target.closest("#omni-wrap")) omniDrop.hidden = true;
-    });
-    omniInput.addEventListener("focus", updateOmni);
+    chatInput.addEventListener("focus", function () { if (chatState === 0) startChat(); });
     document.addEventListener("keydown", function (e) {
       if ((e.metaKey || e.ctrlKey) && (e.key === "k" || e.key === "K")) {
         e.preventDefault();
         goTo("welcome");
-        setTimeout(function () { omniInput.focus(); }, 350);
+        setTimeout(function () { chatInput.focus(); }, 350);
       }
     });
   }
@@ -333,11 +342,13 @@
       var maxW = area.clientWidth - (isFlow ? 120 : 0);
       var maxH = area.clientHeight;
       if (!maxH || maxH < 40) maxH = area.clientHeight;
+      if (isFlow) maxH = maxH * 0.86;
       var ratio = img.naturalWidth / img.naturalHeight;
       var w = maxW, h = w / ratio;
       if (h > maxH) { h = maxH; w = h * ratio; }
       shotsBox.style.width = Math.round(w) + "px";
       shotsBox.style.height = Math.round(h) + "px";
+      if (isFlow) shotsBox.style.borderRadius = Math.round(w * 0.065) + "px";
     }
     var first = shots[0].querySelector("img");
     if (first.complete) size(); else first.addEventListener("load", size);

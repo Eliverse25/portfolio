@@ -134,6 +134,19 @@ input { font: inherit; border: 0; outline: 0; background: transparent; }
   background: var(--card); box-shadow: var(--sh-pop);
 }
 .me-menu[hidden] { display: none; }
+.lang-row {
+  display: flex; gap: 2px;
+  margin-bottom: 6px; padding: 3px; border-radius: 10px;
+  background: var(--press);
+}
+.lang-row button {
+  flex: 1; padding: 5px 0; border-radius: 8px; text-align: center;
+  font-size: 12px; font-weight: 500; color: var(--gray-3);
+  transition: color 0.15s;
+}
+.lang-row button:hover { color: #000; }
+.lang-row button.on { background: var(--white); color: #000; box-shadow: var(--sh-sm); }
+.sheet .lang-row { margin: 0 4px 6px; }
 .me-menu button, .me-menu a {
   display: flex; align-items: center; gap: 12px;
   padding: 8px; border-radius: 10px;

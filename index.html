@@ -14,7 +14,7 @@
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
 <link rel="icon" type="image/png" sizes="512x512" href="assets/favicon-512.png">
 <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon-180.png">
-<link rel="stylesheet" href="assets/styles.css?v=15">
+<link rel="stylesheet" href="assets/styles.css?v=16">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Person","name":"Dinh Phan Nhat Nam","alternateName":"Danny","url":"https://dannyxs.com","jobTitle":"Product Designer","worksFor":{"@type":"Organization","name":"Quantum3 Labs","url":"https://www.quantum3labs.com/"},"address":{"@type":"PostalAddress","addressLocality":"Ho Chi Minh City","addressCountry":"VN"},"email":"mailto:eliuniversestu@gmail.com","sameAs":["https://www.linkedin.com/in/eliversenhatnam/","https://x.com/dannyxs2k","https://t.me/danny_xs"],"description":"Product Designer from Vietnam. Leading design at Quantum3 Labs — Stormbit, Qash, Prism Pay — and building Web3 products end-to-end, design to production."}
 </script>
@@ -68,6 +68,11 @@
 
   <div class="me-wrap">
     <div class="me-menu" id="me-menu" hidden>
+      <div class="lang-row" role="group" aria-label="Language">
+        <button type="button" data-lang="en">EN</button>
+        <button type="button" data-lang="vi">VI</button>
+        <button type="button" data-lang="zh">中文</button>
+      </div>
       <button type="button" data-about>
         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
         About
@@ -113,6 +118,11 @@
     <button type="button" class="s-row" data-goto="gearrunner"><img src="assets/icons/gearrunner.png" alt="">Gear Runner</button>
     <button type="button" class="s-row" data-goto="vietspeak"><img src="assets/icons/vietspeak.png" alt="">VietSpeak</button>
     <div class="s-extra">
+      <div class="lang-row" role="group" aria-label="Language">
+        <button type="button" data-lang="en">EN</button>
+        <button type="button" data-lang="vi">VI</button>
+        <button type="button" data-lang="zh">中文</button>
+      </div>
       <button type="button" class="s-row" data-about>
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
         About
@@ -136,7 +146,7 @@
     <p class="clockline" data-clock></p>
     <div class="hello">
       <h1 aria-label="Hi, I'm Danny!"><img class="mark" src="assets/favicon-180.png" alt=""><span data-typed></span><span class="caret" aria-hidden="true"></span></h1>
-      <p class="sub">Product Designer based in Ho Chi Minh City, crafting Web3 and mobile products end-to-end. From first spark to final experience, every step is shaped with intent.</p>
+      <p class="sub" data-i18n="home-sub-mob">Product Designer based in Ho Chi Minh City, crafting Web3 and mobile products end-to-end. From first spark to final experience, every step is shaped with intent.</p>
     </div>
     <nav class="mob-list">
       <div class="m-ghead">Launchpad</div>
@@ -185,7 +195,7 @@
       <div class="home-inner">
         <div class="hello">
           <h1 aria-label="Hi, I'm Danny!"><img class="mark" src="assets/favicon-180.png" alt=""><span data-typed></span><span class="caret" aria-hidden="true"></span></h1>
-          <p class="sub">Product Designer based in Ho Chi Minh City, crafting Web3 and mobile products end-to-end.<br>From first spark to final experience, every step is shaped with intent.</p>
+          <p class="sub" data-i18n="home-sub">Product Designer based in Ho Chi Minh City, crafting Web3 and mobile products end-to-end.<br>From first spark to final experience, every step is shaped with intent.</p>
         </div>
         <div class="omni-wrap" id="chat-wrap">
           <div class="chatlog" id="chatlog" hidden></div>
@@ -232,8 +242,8 @@
       <div class="story rv d1">
         <p>This layout is inspired by the productivity tools I use to design and ship every day.</p>
         <p>Each project is a tab in the sidebar. Click one to open it, or keep scrolling to move through them. Want to work together? Say hi in the chat.</p>
-        <p>Looking for my experience? It's all in the <a class="txtlink" href="assets/CV-2026.pdf" target="_blank" rel="noreferrer" download="DinhPhanNhatNam_CV-2026.pdf">CV</a>.</p>
-        <p>Want to know more? Open the <button type="button" class="txtlink" data-about>About</button> section. In short: I design Web3 and mobile products — and build them myself, no frontend developers involved.</p>
+        <p data-i18n="rail-cv">Looking for my experience? It's all in the <a class="txtlink" href="assets/CV-2026.pdf" target="_blank" rel="noreferrer" download="DinhPhanNhatNam_CV-2026.pdf">CV</a>.</p>
+        <p data-i18n="rail-about">Want to know more? Open the <button type="button" class="txtlink" data-about>About</button> section. In short: I design Web3 and mobile products — and build them myself, no frontend developers involved.</p>
       </div>
       <div class="facts rv d2">
         <div class="row"><span class="k">Click a tab</span><span class="v">Opens a project</span></div>
@@ -281,7 +291,7 @@
 
         <div class="p-block rv">
           <h3>Why now</h3>
-          <p>Gen-Z plans travel on TikTok, not on TripAdvisor — and nobody owns the moment between <em>watching</em> a place and <em>going</em> there. Splitwise only splits, TripIt only schedules, Google&nbsp;Sheets is… a spreadsheet. OnePlan does the whole trip in one flow, native to the videos people already watch.</p>
+          <p data-i18n="p-whynow">Gen-Z plans travel on TikTok, not on TripAdvisor — and nobody owns the moment between <em>watching</em> a place and <em>going</em> there. Splitwise only splits, TripIt only schedules, Google&nbsp;Sheets is… a spreadsheet. OnePlan does the whole trip in one flow, native to the videos people already watch.</p>
         </div>
 
         <div class="p-block rv">
@@ -790,6 +800,7 @@ END HIDDEN -->
   </button>
 </div>
 
-<script src="assets/main.js?v=15"></script>
+<script src="assets/i18n.js?v=1"></script>
+<script src="assets/main.js?v=16"></script>
 </body>
 </html>

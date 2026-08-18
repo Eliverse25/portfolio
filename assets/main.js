@@ -6,6 +6,12 @@
   var isDesktop = function () { return window.matchMedia("(min-width: 1024px)").matches; };
 
   var EMAIL = "eliuniversestu@gmail.com";
+  var LANG = (function () {
+    try { var l = localStorage.getItem("lang"); if (l === "vi" || l === "zh" || l === "en") return l; } catch (e) {}
+    return "en";
+  })();
+  var T = window.I18N || { leaf: {}, rich: {}, letter: {}, clock: {}, greet: {}, chat: {} };
+  function chatT() { return T.chat[LANG] || T.chat.en; }
 
   /* ---------- projects registry (order = page order) ---------- */
   var PROJECTS = [
@@ -23,17 +29,13 @@
   ];
 
   /* ---------- the About letter (shared desktop + mobile) ---------- */
-  var LETTER = [
-    'I’m Dinh Phan Nhat Nam — everyone calls me Danny. A Product Designer from Vietnam.',
-    'Over the past five years I’ve designed more than 30 products across Web3, education and IoT — and somewhere along the way, design stopped being a job and became the way I look at everything.',
-    'Today I lead design at <a class="txtlink" href="https://www.quantum3labs.com/" target="_blank" rel="noreferrer">Quantum3 Labs</a>, the studio behind Stormbit, Qash and Prism Pay. In Web3 I don’t stop at the mockup: I design and build the product end-to-end, no frontend developers involved.',
-    'I also co-founded <a class="txtlink" href="https://apps.apple.com/vn/app/oneplan-travel/id6761648165" target="_blank" rel="noreferrer">OnePlan Travel</a>, an iOS app for planning group trips — my turn on the founder’s side of the table.',
-    'Along the way the work picked up two Awwwards mentions and a top-3 shirt design at Superteam Malaysia.',
-    'And the beer mug in the corner? That’s the unofficial logo. If you’re ever in Ho Chi Minh City, the first round’s on me.'
-  ];
-  document.querySelectorAll("[data-letter]").forEach(function (el) {
-    el.innerHTML = LETTER.map(function (p) { return "<p>" + p + "</p>"; }).join("");
-  });
+  function renderLetter() {
+    var letter = T.letter[LANG] || T.letter.en || [];
+    document.querySelectorAll("[data-letter]").forEach(function (el) {
+      el.innerHTML = letter.map(function (p) { return "<p>" + p + "</p>"; }).join("");
+    });
+  }
+  renderLetter();
 
   /* ---------- clock ---------- */
   function fmt(tz) {
@@ -42,29 +44,37 @@
   function tickClock() {
     var here = fmt("Asia/Ho_Chi_Minh");
     var yours = fmt(undefined);
+    var tpl = T.clock[LANG] || T.clock.en;
     var txt = (here === yours)
-      ? "It’s " + here + " in Ho Chi Minh City."
-      : "It’s " + here + " in Ho Chi Minh City, and " + yours + " where you are.";
+      ? tpl[0].replace("{A}", here)
+      : tpl[1].replace("{A}", here).replace("{B}", yours);
     document.querySelectorAll("[data-clock]").forEach(function (el) { el.textContent = txt; });
   }
   tickClock();
   setInterval(tickClock, 15000);
 
   /* ---------- typed greeting ---------- */
-  (function () {
+  var greetDone = false;
+  function greetMsg() {
+    var g = T.greet[LANG] || T.greet.en;
     var h = new Date().getHours();
-    var word = h < 12 ? "Good morning" : h < 18 ? "Good afternoon" : "Good evening";
-    var msg = word + ", I’m Danny!";
+    return (h < 12 ? g[0] : h < 18 ? g[1] : g[2]) + g[3];
+  }
+  function setGreeting() {
+    var msg = greetMsg();
+    document.querySelectorAll("[data-typed]").forEach(function (t) { t.textContent = msg; });
+  }
+  (function () {
+    var msg = greetMsg();
     var targets = document.querySelectorAll("[data-typed]");
-    if (reduceMotion) {
-      targets.forEach(function (t) { t.textContent = msg; });
-      return;
-    }
+    if (reduceMotion) { greetDone = true; targets.forEach(function (t) { t.textContent = msg; }); return; }
     var i = 0;
     setTimeout(function type() {
+      if (greetDone) return; // language switched mid-typing
       i++;
       targets.forEach(function (t) { t.textContent = msg.slice(0, i); });
       if (i < msg.length) setTimeout(type, 42 + Math.random() * 46);
+      else greetDone = true;
     }, 500);
   })();
 
@@ -231,7 +241,7 @@
     chatState = 1;
     chatlog.hidden = false;
     document.getElementById("welcome").classList.add("chatting");
-    botSay("Hey! I\u2019m Danny\u2019s assistant \ud83c\udf7a Who am I talking to?");
+    botSay(chatT().greet);
   }
   function chatSend() {
     var v = chatInput.value.trim();
@@ -243,19 +253,19 @@
     if (chatState === 1) {
       chatData.name = v;
       chatState = 2;
-      botSay("Nice to meet you, <b>" + esc(chatData.name) + "</b>! What are you building \u2014 an app, a website, something Web3?");
+      botSay(chatT().q2.replace("{name}", esc(chatData.name)));
     } else if (chatState === 2) {
       chatData.project = v;
       chatState = 3;
-      botSay("Sounds good. Tell me a bit more \u2014 scope, timeline, anything that helps.");
+      botSay(chatT().q3);
     } else if (chatState === 3) {
       chatData.details = v;
       chatState = 4;
-      botSay("Perfect \u2014 I\u2019ve drafted an email to Danny with everything. One click and it\u2019s on its way \ud83d\ude80", function () {
+      botSay(chatT().done, function () {
         var d = chatBubble("bot action", "");
-        d.innerHTML = '<a class="mailbtn" href="' + mailtoHref() + '">Send email to Danny \u2709\ufe0e</a>';
+        d.innerHTML = '<a class="mailbtn" href="' + mailtoHref() + '">' + chatT().btn + '</a>';
         chatlog.scrollTop = chatlog.scrollHeight;
-        chatInput.placeholder = "Sent? Danny will get back to you soon \ud83c\udf7a";
+        chatInput.placeholder = chatT().donePlaceholder;
       });
     }
   }
@@ -445,6 +455,46 @@
     document.body.classList.contains("sheet-open") ? closeSheet() : openSheet();
   });
   if (sheetScrim) sheetScrim.addEventListener("click", closeSheet);
+
+  /* ---------- language switching (EN / VI / ZH) ---------- */
+  var RICH_EN = {};
+  function applyLang(lang) {
+    LANG = lang;
+    try { localStorage.setItem("lang", lang); } catch (e) {}
+    document.documentElement.lang = lang === "zh" ? "zh-Hans" : lang;
+    var li = lang === "vi" ? 0 : lang === "zh" ? 1 : -1;
+    var all = document.body.getElementsByTagName("*");
+    for (var i = 0; i < all.length; i++) {
+      var el = all[i];
+      if (el.children.length) continue;
+      var tag = el.tagName;
+      if (tag === "SCRIPT" || tag === "STYLE" || tag === "INPUT" || tag === "TEXTAREA" || el.namespaceURI !== "http://www.w3.org/1999/xhtml") continue;
+      var key = el.getAttribute("data-en") || el.textContent.trim();
+      var tr = T.leaf[key];
+      if (!tr) continue;
+      if (!el.getAttribute("data-en")) el.setAttribute("data-en", key);
+      el.textContent = li < 0 ? el.getAttribute("data-en") : (tr[li] || el.getAttribute("data-en"));
+    }
+    document.querySelectorAll("[data-i18n]").forEach(function (el) {
+      var k = el.getAttribute("data-i18n");
+      if (!(k in RICH_EN)) RICH_EN[k] = el.innerHTML;
+      var tr = T.rich[k];
+      el.innerHTML = li < 0 || !tr ? RICH_EN[k] : (tr[li] || RICH_EN[k]);
+    });
+    tickClock();
+    renderLetter();
+    if (greetDone) setGreeting(); else if (LANG !== "en") { greetDone = true; setGreeting(); }
+    if (chatInput) chatInput.placeholder = chatState >= 4 ? chatT().donePlaceholder : chatT().placeholder;
+    document.querySelectorAll("[data-lang]").forEach(function (b) {
+      b.classList.toggle("on", b.getAttribute("data-lang") === lang);
+    });
+  }
+  document.addEventListener("click", function (e) {
+    var b = e.target.closest("[data-lang]");
+    if (b) applyLang(b.getAttribute("data-lang"));
+  });
+  if (LANG !== "en") applyLang(LANG);
+  else document.querySelectorAll('[data-lang="en"]').forEach(function (b) { b.classList.add("on"); });
 
   /* start the home video muted-paused; play videos only when visible */
   syncVideos("welcome");

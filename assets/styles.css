@@ -520,9 +520,10 @@ main {
 .reflect img.on { opacity: 1; }
 
 /* ---------- launchpad pitch ---------- */
-.raise-dot {
-  width: 7px; height: 7px; flex-shrink: 0; margin-left: auto;
+.tab .raise-dot, .raise-dot {
+  flex: 0 0 7px; width: 7px; height: 7px; margin-left: auto;
   border-radius: 50%; background: #FF7A1A;
+  -webkit-mask-image: none; mask-image: none; overflow: visible;
   animation: raise-pulse 2s ease-in-out infinite;
 }
 @keyframes raise-pulse {

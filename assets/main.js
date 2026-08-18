@@ -348,7 +348,7 @@
       if (h > maxH) { h = maxH; w = h * ratio; }
       shotsBox.style.width = Math.round(w) + "px";
       shotsBox.style.height = Math.round(h) + "px";
-      if (isFlow) shotsBox.style.borderRadius = Math.round(w * 0.115) + "px";
+      if (isFlow) shotsBox.style.borderRadius = (Math.round(w * 0.115) + 8) + "px";
     }
     var first = shots[0].querySelector("img");
     if (first.complete) size(); else first.addEventListener("load", size);

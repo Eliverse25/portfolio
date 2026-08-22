@@ -128,7 +128,7 @@ window.I18N = {
     "Growth loop": ["Vòng lặp tăng trưởng", "增长飞轮"],
     "turning solo planners into groups: invites, shared funds and UGC. The numbers say this flywheel is ready to spin.": ["biến người lên kế hoạch solo thành nhóm: lời mời, quỹ chung và UGC. Số liệu cho thấy bánh đà này đã sẵn sàng quay.", "把单人规划者变成群组：邀请、共同基金与 UGC。数据表明这个飞轮已经就绪。"],
     "Want the deck, the numbers and a live demo?": ["Muốn xem deck, số liệu và demo trực tiếp?", "想看融资 deck、数据和现场演示？"],
-    "Request the deck ✉︎": ["Nhận deck qua email ✉︎", "索取融资 deck ✉︎"],
+    "Download the deck ⬇": ["Tải deck về ⬇", "下载融资 deck ⬇"],
 
     "Launchpad is where I put the product I’m currently raising for. Right now, that’s OnePlan Travel.": ["Launchpad là nơi mình đặt sản phẩm đang gọi vốn. Hiện tại, đó là OnePlan Travel.", "Launchpad 是我放当前融资项目的地方。现在，它是 OnePlan Travel。"],
     "I co-founded OnePlan and lead it as CEO. As the designer-founder, I design, build and ship it myself.": ["Mình đồng sáng lập OnePlan và điều hành với vai trò CEO. Là designer-founder, mình tự thiết kế, tự xây và tự ship.", "我联合创立 OnePlan 并担任 CEO。作为设计师出身的创始人，我自己设计、自己开发、自己上线。"],
